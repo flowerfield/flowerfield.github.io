@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -113,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -368,7 +368,7 @@
       
         <h3 id="第二章-jQuery框架使用准备"><a href="#第二章-jQuery框架使用准备" class="headerlink" title="第二章 jQuery框架使用准备"></a>第二章 jQuery框架使用准备</h3><h4 id="2-1-jQuery框架和JavaScript加载模式对比"><a href="#2-1-jQuery框架和JavaScript加载模式对比" class="headerlink" title="2.1 jQuery框架和JavaScript加载模式对比"></a>2.1 jQuery框架和JavaScript加载模式对比</h4><p><strong>jQuery框架的加载模式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"window.onload——1"</span>)</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"window.onload——2"</span>)</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <p>打印结果：window.onload——2</p>
-<p><strong>JavaScript的加载模式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.2.1.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"$().ready——1"</span>)</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"ready——2"</span>)</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>JavaScript的加载模式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.2.1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"$().ready——1"</span>)</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"ready——2"</span>)</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <p>打印结果：ready——1      ready——2</p>
 <p><strong>两种加载模式对比</strong><br><code>① 执行时机不相同</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload方法需要等所有的资源（CSS\JS\图片等）都加载完毕后执行包裹代码。</div><div class="line">jQuery框架的ready方法等DOM结构加载完毕后执行包裹代码。</div></pre></td></tr></table></figure>
@@ -378,7 +378,7 @@
 <p>jQuery框架在设计的使用，使用闭包的形式在所有的代码都封装到一个<strong>立即调用函数</strong>中，对外仅仅提供了美元符号和jQuery作为框架的入口。</p>
 <p>jQuery当中所有的操作都是使用<strong>美元符号</strong>或者是<strong>jQuery对象</strong>进行的。假如，我们在使用jQuery框架之前已经在页面的代码中用到了美元符号，那么这种情况下，我们再按照常规的方式使用jQuery就可能会发生错误。</p>
 <p>为了避免这种情况的发生，jQuery框架使用noConflict方法,可以在使用之前把美元符号替换成其它的标识符，相当于是给jQuery对象换个其他的名字。</p>
-<p><strong>代码示例</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.1.1.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> $ = <span class="string">"文顶顶"</span>;</div><div class="line">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"DOM加载完毕"</span>);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>代码示例</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.1.1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> $ = <span class="string">"文顶顶"</span>;</div><div class="line">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"DOM加载完毕"</span>);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <p><strong>代码说明</strong><br>    如果直接执行上面的代码，那么会报错。<br>    报错信息：<code>Uncaught TypeError: $ is not a function</code><br>    报错原因：美元符号被定义为字符串，jQuery框架中美元符号被覆盖。</p>
 <p><strong>解决冲突</strong>（给jQuery框架安排新的代言人）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="comment">//在$符号被定义之前使用noConflict方法来重新设置名称</span></div><div class="line">    <span class="keyword">var</span> jq = $.noConflict();</div><div class="line"></div><div class="line">    <span class="comment">// $符号可能被定义为字符串或其他数据</span></div><div class="line">    <span class="keyword">var</span> $ = <span class="string">"文顶顶"</span>;</div><div class="line"></div><div class="line">    <span class="comment">//解决冲突之后,使用新设置的名称来操作</span></div><div class="line">    jq(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"DOM加载完毕"</span>);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <h4 id="2-3-jQuery对象和DOM对象的相互转换"><a href="#2-3-jQuery对象和DOM对象的相互转换" class="headerlink" title="2.3 jQuery对象和DOM对象的相互转换"></a>2.3 jQuery对象和DOM对象的相互转换</h4><p><strong>DOM对象</strong>：每个HTML页面都是一个 DOM对象(<code>Document Object Model</code>，文本对象模型)，通过传统的JavaScript方法访问页面中的元素，就是访问 DOM 对象。</p>
@@ -518,7 +518,7 @@ DOM对象不能直接访问jQuery原型对象上面的成员，jQuery对象也�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -613,7 +613,7 @@ DOM对象不能直接访问jQuery原型对象上面的成员，jQuery对象也�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -698,6 +698,13 @@ DOM对象不能直接访问jQuery原型对象上面的成员，jQuery对象也�
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
