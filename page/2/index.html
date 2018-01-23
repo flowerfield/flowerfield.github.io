@@ -279,6 +279,213 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/12/第三章-jQuery框架操作CSS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="文顶顶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花田半亩">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/12/第三章-jQuery框架操作CSS/" itemprop="url">第三章 jQuery框架操作CSS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T17:38:52+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端开发技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                
+		<span title="字数统计">
+    		1,336 字
+		 </span>
+		
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+   		6 分钟
+ 		</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="第三章-jQuery框架操作CSS"><a href="#第三章-jQuery框架操作CSS" class="headerlink" title="第三章 jQuery框架操作CSS"></a>第三章 jQuery框架操作CSS</h3><h4 id="3-1-jQuery框架的CSS方法"><a href="#3-1-jQuery框架的CSS方法" class="headerlink" title="3.1 jQuery框架的CSS方法"></a>3.1 jQuery框架的CSS方法</h4><p>jQuery框架提供了css方法，我们通过调用该方法传递对应的参数，可以方便的来批量设置标签的CSS样式。</p>
+<p>使用JavaScript设置标签的样式相对来说比较麻烦，而如果需要批量的设置多个标签的样式那需要写很多代码，使用jQuery可以为我们简化该过程。</p>
+<p><strong>使用原生的方式来设置标签的样式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">&lt;div&gt;我是div标签&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;button id="btnID"&gt;按钮&lt;/</span>button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">"btnID"</span>);</div><div class="line">        oBtn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>)[<span class="number">0</span>];</div><div class="line">            oDiv.style.height = <span class="string">"50px"</span>;</div><div class="line">            oDiv.style.width = <span class="string">"200px"</span>;</div><div class="line">            oDiv.style.background = <span class="string">"red"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>body&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>使用jQuery中的css方法来设置标签的样式</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">&lt;div&gt;我是div标签&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;button id="btnID"&gt;按钮&lt;/</span>button&gt;</div><div class="line">&lt;script src=<span class="string">"jquery-3.2.1.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        $(<span class="string">"#btnID"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $(<span class="string">"div"</span>).css(<span class="string">"height"</span>,<span class="string">"50px"</span>).css(<span class="string">"width"</span>,<span class="string">"200px"</span>).css(<span class="string">"background"</span>,<span class="string">"red"</span>);</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>body&gt;</div></pre></td></tr></table></figure>
+<p><code>CSS方法的语法：</code></p>
+<p><code>①  $(&quot;selector&quot;).css(name,value);</code><br><code>② $(&quot;selector&quot;).css(name1,value).css(name2,value)...;</code><br><code>③ $(&quot;selector&quot;).css( { name1 : value , name2 : value})</code></p>
+<p><strong>代码示例</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        $(<span class="string">"#btnID"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">            <span class="comment">//01 CSS方法的第一种使用方式</span></div><div class="line">            <span class="comment">//$("div").css("height","50px");</span></div><div class="line">            <span class="comment">//$("div").css("width","200px");</span></div><div class="line">            <span class="comment">//$("div").css("background","red");</span></div><div class="line"></div><div class="line"></div><div class="line">            <span class="comment">//02 CSS方法的第二种使用方式:链式编程</span></div><div class="line">            <span class="comment">//$("div").css("height","50px").css("width","200px").css("background","red");</span></div><div class="line"></div><div class="line">            <span class="comment">//03 CSS方法的第三种使用方式:传递样式键值对的对象作为参数</span></div><div class="line">            $(<span class="string">"div"</span>).css(&#123;</div><div class="line">                <span class="string">"height"</span>:<span class="string">"100px"</span>,</div><div class="line">                <span class="string">"width"</span>:<span class="string">"200px"</span>,</div><div class="line">                <span class="string">"background"</span>:<span class="string">"red"</span></div><div class="line">            &#125;)</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="3-2-jQuery框架操作Class"><a href="#3-2-jQuery框架操作Class" class="headerlink" title="3.2 jQuery框架操作Class"></a>3.2 jQuery框架操作Class</h4><blockquote>
+<p>jQuery框架中操作class的方法主要有：<br>addClass : 为选中的所有标签批量的添加Class<br>hasClass：检查选定的标签中是否存在指定的Class<br>removeClass：把选定标签中指定的Class删除<br>toggleClass： 切换Class</p>
+</blockquote>
+<p><code>addClass：</code>为选中的所有标签批量的添加Class，语法</p>
+<p><code>① $(&quot;selector&quot;)addClass(&quot;class1&quot;);</code><br><code>② $(&quot;selector&quot;)addClass(&quot;class1 class2&quot;);</code><br><code>③ $(&quot;selector&quot;)addClass(&quot;class1&quot;).addClass(&quot;class2&quot;);</code></p>
+<hr>
+<p><code>hasClass：</code>检查选定的标签中是否存在指定的Class,只要选中的所有标签中有一个标签存在该Class，那么就把返回true,如果选中的所有标签中都没有找到该class ，那么就返回false。语法为：<br><code>$(&quot;selector&quot;)hasClass(&quot;class1&quot;);</code></p>
+<hr>
+<p><code>removeClass：</code>把所有选定标签中指定的Class删除，遍历jQuery实例对象中所有的标签，如果当前标签中存在该指定的class，那么就删除，如果不存在，则不作处理。语法</p>
+<p><code>① $(&quot;selector&quot;)removeClass(&quot;class1&quot;);</code><br><code>② $(&quot;selector&quot;)removeClass(&quot;class1 class2&quot;);</code><br><code>③ $(&quot;selector&quot;)removeClass(&quot;class1&quot;).removeClass(&quot;class2&quot;);</code></p>
+<hr>
+<p><code>toggleClass：</code>切换所有选中标签的Class，如果当前标签中存在指定的Class，那么就删除，如果不存在，那么就添加。语法</p>
+<p><code>① $(&quot;selector&quot;)toggleClass(&quot;class1&quot;);</code><br><code>② $(&quot;selector&quot;)toggleClass(&quot;class1 class2&quot;);</code><br><code>③ $(&quot;selector&quot;)toggleClass(&quot;class1&quot;).toggleClass(&quot;class2&quot;);</code></p>
+<p><strong>代码示例</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"JS/jquery-3.2.1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">        .class1&#123;</span></div><div class="line"><span class="undefined">            width: 400px;</span></div><div class="line"><span class="undefined">            height: 50px;</span></div><div class="line"><span class="undefined">            background: red;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">        .class2&#123;</span></div><div class="line"><span class="undefined">            width: 600px;</span></div><div class="line"><span class="undefined">            background: green;</span></div><div class="line"><span class="undefined">            border: 1px solid #000000;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">        <span class="comment">//....</span></span></div><div class="line"><span class="javascript">        <span class="comment">//jQuery对Class的操作:</span></span></div><div class="line"><span class="javascript">        <span class="comment">//添加class addClass</span></span></div><div class="line"><span class="javascript">        <span class="comment">//删除class removeClass</span></span></div><div class="line"><span class="javascript">        <span class="comment">//检查class hasClass</span></span></div><div class="line"><span class="javascript">        <span class="comment">//切换class toggleClass</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="comment">//01 添加class</span></span></div><div class="line"><span class="javascript">        $(<span class="string">"button"</span>).eq(<span class="number">0</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">            <span class="comment">//console.log("点击");</span></span></div><div class="line"><span class="javascript">            <span class="comment">//获取指定的标签,并且设置class</span></span></div><div class="line"><span class="javascript">            <span class="comment">//添加class:</span></span></div><div class="line"><span class="javascript">            <span class="comment">//(1) jQ对象.addClass("类")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//(2) jQ对象.addClass("类1")..addClass("类2")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//(3) jQ对象.addClass("类1 类2")</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">            <span class="comment">//$("div").addClass("class1")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//$("div").addClass("class1").addClass("class2")</span></span></div><div class="line"><span class="javascript">            $(<span class="string">"div"</span>).addClass(<span class="string">"class1 class2"</span>)</span></div><div class="line"><span class="undefined">        &#125;)</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="comment">//02 检查class</span></span></div><div class="line"><span class="javascript">        $(<span class="string">"button"</span>).eq(<span class="number">1</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">            <span class="comment">//console.log("点击");</span></span></div><div class="line"><span class="javascript">            <span class="comment">//获取指定的标签,并且设置class</span></span></div><div class="line"><span class="javascript">            <span class="comment">//检查class:检查div标签中是否存在class1,如果存在那么就返回true,否则返回false</span></span></div><div class="line"><span class="javascript">            <span class="built_in">console</span>.log($(<span class="string">"div"</span>).hasClass(<span class="string">"class1"</span>));</span></div><div class="line"><span class="javascript">            <span class="built_in">console</span>.log($(<span class="string">"p"</span>).hasClass(<span class="string">"demo1"</span>));</span></div><div class="line"><span class="undefined">        &#125;)</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="comment">//03 删除class</span></span></div><div class="line"><span class="javascript">        $(<span class="string">"button"</span>).eq(<span class="number">2</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">            <span class="comment">//console.log("点击");</span></span></div><div class="line"><span class="javascript">            <span class="comment">//获取指定的标签,并且设置class</span></span></div><div class="line"><span class="javascript">            <span class="comment">//删除class:</span></span></div><div class="line"><span class="javascript">            <span class="comment">//(1) jQ对象.removeClass("类")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//(2) jQ对象.removeClass("类1")..removeClass("类2")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//(3) jQ对象.removeClass("类1 类2")</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">            <span class="comment">//$("div").removeClass("class2")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//$("div").removeClass("class1").removeClass("class2")</span></span></div><div class="line"><span class="javascript">            $(<span class="string">"div"</span>).removeClass(<span class="string">"class1 class2"</span>)</span></div><div class="line"><span class="undefined">        &#125;)</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="comment">//04 切换class</span></span></div><div class="line"><span class="javascript">        $(<span class="string">"button"</span>).eq(<span class="number">3</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">            <span class="comment">//console.log("点击");</span></span></div><div class="line"><span class="javascript">            <span class="comment">//获取指定的标签,并且设置class</span></span></div><div class="line"><span class="javascript">            <span class="comment">//切换class:如果指定的class存在那么就删除,否则就添加</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">            <span class="comment">//(1) jQ对象.toggleClass("类")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//(2) jQ对象.toggleClass("类1 类2")</span></span></div><div class="line"><span class="javascript">            <span class="comment">//$("div").toggleClass("class2")</span></span></div><div class="line"><span class="javascript">            $(<span class="string">"div"</span>).toggleClass(<span class="string">"class1 class2"</span>)</span></div><div class="line"><span class="undefined">        &#125;)</span></div><div class="line"><span class="undefined">    &#125;)</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>我是div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"demo1"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"demo2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>添加<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>检查<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>切换<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="3-3-jQuery框架操作位置的方法介绍"><a href="#3-3-jQuery框架操作位置的方法介绍" class="headerlink" title="3.3 jQuery框架操作位置的方法介绍"></a>3.3 jQuery框架操作位置的方法介绍</h4><p><strong>【1】 width和height</strong></p>
+<p><code>$(&quot;selector&quot;).width()和$(&quot;selector&quot;).height()方法的使用：如果不传递参数则表示获取指定标签的宽度|高度，如果传递参数则表示要设置标签的宽度|高度。</code></p>
+<p><strong>【2】 offset和position</strong></p>
+<p><code>offset表示获取当前标签距离浏览器窗口的位置，而position获取当前标签距离父标签的位置</code></p>
+<p><strong>代码示例</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"JS/jquery-3.2.1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">       .class1&#123;</span></div><div class="line"><span class="undefined">           width: 200px;</span></div><div class="line"><span class="undefined">           height: 200px;</span></div><div class="line"><span class="undefined">           background: rebeccapurple;</span></div><div class="line"><span class="undefined">           position: relative;</span></div><div class="line"><span class="undefined">       &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">        .class2&#123;</span></div><div class="line"><span class="undefined">            width: 50px;</span></div><div class="line"><span class="undefined">            height: 50px;</span></div><div class="line"><span class="undefined">            background: #2aa198;</span></div><div class="line"><span class="undefined">            left: 10px;</span></div><div class="line"><span class="undefined">            top:20px;</span></div><div class="line"><span class="undefined">            position: absolute;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">        <span class="comment">//....</span></span></div><div class="line"><span class="javascript">        <span class="comment">//01 width和height:</span></span></div><div class="line"><span class="javascript">        <span class="comment">//console.log($(".class2").get(0));</span></span></div><div class="line"><span class="javascript">        <span class="comment">//获取宽度和高度:不传递参数</span></span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).width());</span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).height());</span></div><div class="line"><span class="javascript">        <span class="comment">//设置宽度和高度:传递参数</span></span></div><div class="line"><span class="javascript">        $(<span class="string">".class2"</span>).width(<span class="number">100</span>);</span></div><div class="line"><span class="javascript">        $(<span class="string">".class2"</span>).height(<span class="number">100</span>);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).width());</span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).height());</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="comment">//02 位置:获取当前标签距离窗口的位置 offset</span></span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).offset().left);</span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).offset().top);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="comment">//03 位置:获取当前标签距离父标签的位置 position</span></span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).position().left);</span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log($(<span class="string">".class2"</span>).position().top);</span></div><div class="line"><span class="undefined">    &#125;)</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"class1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"class2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<hr>
+<ul>
+<li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="https://flowerfield.github.io" target="_blank" rel="external">花田半亩</a></li>
+<li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" rel="external">文顶顶_iOS</a></li>
+<li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/12/第二章-jQuery框架使用准备/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -407,7 +614,7 @@
           
             <h3 id="第二章-jQuery框架使用准备"><a href="#第二章-jQuery框架使用准备" class="headerlink" title="第二章 jQuery框架使用准备"></a>第二章 jQuery框架使用准备</h3><h4 id="2-1-jQuery框架和JavaScript加载模式对比"><a href="#2-1-jQuery框架和JavaScript加载模式对比" class="headerlink" title="2.1 jQuery框架和JavaScript加载模式对比"></a>2.1 jQuery框架和JavaScript加载模式对比</h4><p><strong>jQuery框架的加载模式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"window.onload——1"</span>)</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"window.onload——2"</span>)</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <p>打印结果：window.onload——2</p>
-<p><strong>JavaScript的加载模式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.2.1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"$().ready——1"</span>)</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"ready——2"</span>)</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>JavaScript的加载模式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.2.1.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"$().ready——1"</span>)</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"ready——2"</span>)</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <p>打印结果：ready——1      ready——2</p>
 <p><strong>两种加载模式对比</strong><br><code>① 执行时机不相同</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload方法需要等所有的资源（CSS\JS\图片等）都加载完毕后执行包裹代码。</div><div class="line">jQuery框架的ready方法等DOM结构加载完毕后执行包裹代码。</div></pre></td></tr></table></figure>
@@ -417,7 +624,7 @@
 <p>jQuery框架在设计的使用，使用闭包的形式在所有的代码都封装到一个<strong>立即调用函数</strong>中，对外仅仅提供了美元符号和jQuery作为框架的入口。</p>
 <p>jQuery当中所有的操作都是使用<strong>美元符号</strong>或者是<strong>jQuery对象</strong>进行的。假如，我们在使用jQuery框架之前已经在页面的代码中用到了美元符号，那么这种情况下，我们再按照常规的方式使用jQuery就可能会发生错误。</p>
 <p>为了避免这种情况的发生，jQuery框架使用noConflict方法,可以在使用之前把美元符号替换成其它的标识符，相当于是给jQuery对象换个其他的名字。</p>
-<p><strong>代码示例</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.1.1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> $ = <span class="string">"文顶顶"</span>;</div><div class="line">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"DOM加载完毕"</span>);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>代码示例</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"jquery-3.1.1.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">var</span> $ = <span class="string">"文顶顶"</span>;</div><div class="line">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"DOM加载完毕"</span>);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <p><strong>代码说明</strong><br>    如果直接执行上面的代码，那么会报错。<br>    报错信息：<code>Uncaught TypeError: $ is not a function</code><br>    报错原因：美元符号被定义为字符串，jQuery框架中美元符号被覆盖。</p>
 <p><strong>解决冲突</strong>（给jQuery框架安排新的代言人）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="comment">//在$符号被定义之前使用noConflict方法来重新设置名称</span></div><div class="line">    <span class="keyword">var</span> jq = $.noConflict();</div><div class="line"></div><div class="line">    <span class="comment">// $符号可能被定义为字符串或其他数据</span></div><div class="line">    <span class="keyword">var</span> $ = <span class="string">"文顶顶"</span>;</div><div class="line"></div><div class="line">    <span class="comment">//解决冲突之后,使用新设置的名称来操作</span></div><div class="line">    jq(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"DOM加载完毕"</span>);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <h4 id="2-3-jQuery对象和DOM对象的相互转换"><a href="#2-3-jQuery对象和DOM对象的相互转换" class="headerlink" title="2.3 jQuery对象和DOM对象的相互转换"></a>2.3 jQuery对象和DOM对象的相互转换</h4><p><strong>DOM对象</strong>：每个HTML页面都是一个 DOM对象(<code>Document Object Model</code>，文本对象模型)，通过传统的JavaScript方法访问页面中的元素，就是访问 DOM 对象。</p>
@@ -762,7 +969,7 @@ DOM对象不能直接访问jQuery原型对象上面的成员，jQuery对象也�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
