@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端开发技术,网络编程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="1.1 Ajax技术简单介绍Ajax是一门异步的用于发送网络请求的技术。 全称为：Async javascript and XML。 简单说明：Ajax 这个概念是由 Jesse James Garrett 在 2005 年发明的。它本身不是单一技术，是一串技术的集合。 技术特点：通常情况下，每次提交表单的时候，都会刷新整个界面，而使用ajax发送请求可以实现异步发送请求获取数据而不需要刷新整个页">
+<meta name="keywords" content="前端开发技术,网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax简单介绍">
+<meta property="og:url" content="http://yoursite.com/2018/01/26/Ajax简单介绍/index.html">
+<meta property="og:site_name" content="花田半亩">
+<meta property="og:description" content="1.1 Ajax技术简单介绍Ajax是一门异步的用于发送网络请求的技术。 全称为：Async javascript and XML。 简单说明：Ajax 这个概念是由 Jesse James Garrett 在 2005 年发明的。它本身不是单一技术，是一串技术的集合。 技术特点：通常情况下，每次提交表单的时候，都会刷新整个界面，而使用ajax发送请求可以实现异步发送请求获取数据而不需要刷新整个页">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-26T09:06:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ajax简单介绍">
+<meta name="twitter:description" content="1.1 Ajax技术简单介绍Ajax是一门异步的用于发送网络请求的技术。 全称为：Async javascript and XML。 简单说明：Ajax 这个概念是由 Jesse James Garrett 在 2005 年发明的。它本身不是单一技术，是一串技术的集合。 技术特点：通常情况下，每次提交表单的时候，都会刷新整个界面，而使用ajax发送请求可以实现异步发送请求获取数据而不需要刷新整个页">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/26/Ajax简单介绍/"/>
+
+
+
+
+
+  <title>Ajax简单介绍 | 花田半亩</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">花田半亩</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=432506345&auto=0&height=66"></iframe>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/Ajax简单介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="文顶顶">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花田半亩">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ajax简单介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T17:05:13+08:00">
+                2018-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端开发技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                
+		<span title="字数统计">
+    		1,456 字
+		 </span>
+		
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+   		6 分钟
+ 		</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-1-Ajax技术简单介绍"><a href="#1-1-Ajax技术简单介绍" class="headerlink" title="1.1 Ajax技术简单介绍"></a>1.1 Ajax技术简单介绍</h4><p><code>Ajax是一门异步的用于发送网络请求的技术。</code></p>
+<p>全称为：Async javascript and XML。</p>
+<p>简单说明：Ajax 这个概念是由 Jesse James Garrett 在 2005 年发明的。它本身不是单一技术，是一串技术的集合。</p>
+<p>技术特点：通常情况下，每次提交表单的时候，都会刷新整个界面，而使用ajax发送请求可以实现异步发送请求获取数据而不需要刷新整个页面。</p>
+<p><strong><code>Ajax的优点</code></strong></p>
+<p> （1）不需要插件支持(一般浏览器且默认开启 JavaScript 即可);<br> （2）用户体验极佳(不刷新页面即可获取可更新的数据);<br> （3）提升 Web 程序的性能(在传递数据的时候不必整体提交);<br> （4）减轻服务器和带宽的负担(将服务器的一些操作转移到客户端);</p>
+<p><strong><code>Ajax 的不足</code></strong></p>
+<p> （1）不同版本的浏览器度XMLHttpRequest 对象支持度不同(比如IE5之前);<br> （2）前进、后退的功能被破坏;<br> （3）搜索引擎的支持度不够(引擎爬虫还不能理解JS引起变化数据的内容);<br> （4）开发调试工具缺乏</p>
+<h4 id="1-2-Ajax发送GET请求"><a href="#1-2-Ajax发送GET请求" class="headerlink" title="1.2 Ajax发送GET请求"></a>1.2 Ajax发送GET请求</h4><p><strong><code>① 使用Ajax发送GET请求的基本步骤</code></strong></p>
+<p>01 创建请求对象（XMLHTTPRequest<br>02 设置请求对象（open）请求方式为GET<br>03 发送请求（send）<br>04 监听请求的状态（onreadystatechange）<br>05 处理请求结果</p>
+<p><strong><code>② 使用Ajax发送GET请求的注意点</code></strong></p>
+<p><strong>兼容性问题</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//javascript创建请求对象的兼容性处理：</div><div class="line">if（window.XMLHTTPRequest）</div><div class="line">&#123;</div><div class="line">    var request = new XMLHTTPRequest();</div><div class="line">&#125;else</div><div class="line">&#123;</div><div class="line">    var request = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>缓存问题</strong></p>
+<p>问题说明：在IE浏览器中如果发送的是GET请求，只要URL没有发生变化，那么IE浏览器就会认为网页的内容也没有发生变化，因此会优先使用缓存数据。<br>解决方式：如果在IE浏览器中想让数据实时更新（获取到最新的数据），那么<code>可以让每次请求的URL都不一样（即每次请求的URL地址不一样）</code>。</p>
+<p>具体思路：在开发中可以使用<code>随机数因子</code>或者是<code>时间戳</code>来添加一个额外的参数给url路径。</p>
+<ul>
+<li>获取时间戳：var date = new Date();date.valueOf()</li>
+<li>获取随机数因子 Math.radom()</li>
+</ul>
+<p>补充说明</p>
+<p>① 加随机数或者是时间戳的目的在于让每次请求的时候url的内容都不一样<br>② 参数变化的作用就是让每次发送网络请求的时候URL都不相同，以让服务器总是把最新的数据返回。</p>
+<p><strong>监听请求状态</strong></p>
+<p>onreadystatechange的几种状态</p>
+<p>（1）请求未初始化 - 0<br>（2）服务器连接已经建立 - 1<br>（3）请求已经接收 -2<br>（4）请求处理中 -3<br>（5）请求已经完成，且响应已经就绪 -4</p>
+<p><strong>判断请求结果</strong></p>
+<p>网络请求发送之后，可能成功，也可能失败。在代码中，我们可以通过响应状态码来判断请求成功还是失败，并最终做出相应的处理。</p>
+<p>（1）当请求完成的时候再进行处理，readyState == 4<br>（2）通过响应码判断请求成功还是失败，status == 200<br>（3）请求成功解析服务器返回的响应体：response.Text</p>
+<p><strong>请求超时</strong></p>
+<p>在开发中可能需要对请求的时间进行限制，例如要求设置网络请求的超时时间为10秒，如果超过了该时间那么就提示用户检查网络。</p>
+<p>在具体的代码实现中，该需求可以使用定时器配合abort方法来实现。</p>
+<p><strong>中文转码</strong><br>在发送GET请求的时候，如果请求路径中存在中文，那么在发送网络请求之前应该先对请求路径进行中文转码处理，使用<code>encodeURI</code>方法来完成。</p>
+<p><strong><code>③ 使用Ajax发送GET请求的代码示例</code></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 数据处理方法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">json2str</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> data)&#123;</div><div class="line">        arr.push(key+<span class="string">"="</span>+data[key]);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 不能直接将中文提交给服务器, 中文需要编码之后再提交</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">encodeURI</span>(arr.join(<span class="string">"&amp;"</span>));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 发送请求方法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myAjax</span>(<span class="params">url, data,timeout,success, error</span>) </span>&#123;</div><div class="line">    <span class="comment">// 0.对参数进行处理</span></div><div class="line">    <span class="keyword">var</span> res = json2str(data);</div><div class="line"></div><div class="line">	<span class="comment">// 1.创建异步对象</span></div><div class="line">	<span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</div><div class="line">	    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">	    <span class="keyword">var</span> xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 2.设置URL</span></div><div class="line">	xhr.open(<span class="string">"get"</span>, url+<span class="string">"?"</span>+res, <span class="literal">true</span>);</div><div class="line">	<span class="comment">// 3.发送请求</span></div><div class="line">	xhr.send();</div><div class="line">	<span class="comment">// 4.监听状态</span></div><div class="line">	xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 5.处理返回结果</span></div><div class="line">	    <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)&#123;</div><div class="line">	        <span class="comment">// 清空定时器</span></div><div class="line">	        clearTimeout(timer);</div><div class="line">	        <span class="keyword">if</span>(xhr.status == <span class="number">200</span>)&#123;</div><div class="line">	            success(xhr.responseText);</div><div class="line">	        &#125;<span class="keyword">else</span>&#123;</div><div class="line">	            error(xhr.status);</div><div class="line">	        &#125;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 6.对超时时间处理</span></div><div class="line">	<span class="keyword">var</span> timer = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	    alert(<span class="string">"超时了"</span>);</div><div class="line">	    <span class="comment">// 中断请求</span></div><div class="line">	    xhr.abort();</div><div class="line">	&#125;, timeout);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="1-3-Ajax发送POST请求"><a href="#1-3-Ajax发送POST请求" class="headerlink" title="1.3 Ajax发送POST请求"></a>1.3 Ajax发送POST请求</h4><p><strong><code>① 使用Ajax发送POST请求的基本步骤</code></strong></p>
+<p>01 创建请求对象（XMLHTTPRequest）<br>02 设置请求对象（open）请求方式为POST<br>03 设置请求头信息 </p>
+<ul>
+<li>xhr.setRequestHeader(“Content-type”,”application/x-www-form-urlencoded”);</li>
+</ul>
+<p>04 发送请求（send），参数以查询字符串的方式传递<br>05 监听请求的状态（onreadystatechange）<br>06 处理请求结果</p>
+<p><strong><code>② 使用Ajax发送POST请求的代码示例</code></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//001 创建请求对象</span></div><div class="line">      <span class="keyword">var</span> xhr;</div><div class="line">      <span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)</div><div class="line">      &#123;</div><div class="line">          xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">      &#125;<span class="keyword">else</span></div><div class="line">      &#123;</div><div class="line">          xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">//02 设置请求方法和请求路径</span></div><div class="line">      xhr.open(<span class="string">"post"</span>,<span class="string">"php/04-post.php"</span>,<span class="literal">true</span>);</div><div class="line"></div><div class="line">      <span class="comment">//++ 设置请求头信息</span></div><div class="line">      xhr.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line">      <span class="comment">//03 发送请求</span></div><div class="line">      <span class="comment">//++ 把提交的参数存放在请求体中提交</span></div><div class="line">      xhr.send(<span class="string">"username=zs&amp;password=123"</span>);</div><div class="line"></div><div class="line">      <span class="comment">//04 监听网络请求的状态</span></div><div class="line">      xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)</div><div class="line">          &#123;</div><div class="line">              <span class="comment">//05 解析服务器返回的数据</span></div><div class="line">              <span class="keyword">if</span>(xhr.status == <span class="number">200</span>)</div><div class="line">              &#123;</div><div class="line">                  <span class="built_in">console</span>.log(<span class="string">"请求成功"</span> + xhr.responseText);</div><div class="line">              &#125;<span class="keyword">else</span></div><div class="line">              &#123;</div><div class="line">                  <span class="built_in">console</span>.log(<span class="string">"请求失败"</span> + xhr.status);</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<ul>
+<li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="http://wendingding.cn" target="_blank" rel="external">花田半亩</a></li>
+<li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" rel="external">文顶顶_iOS</a></li>
+<li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端开发技术/" rel="tag"># 前端开发技术</a>
+          
+            <a href="/tags/网络编程/" rel="tag"># 网络编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/25/第七章jQuery框架的DOM操作/" rel="next" title="第七章jQuery框架的DOM操作">
+                <i class="fa fa-chevron-left"></i> 第七章jQuery框架的DOM操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="文顶顶" />
+          <p class="site-author-name" itemprop="name">文顶顶</p>
+           
+              <p class="site-description motion-element" itemprop="description">生死有命 富贵在天</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Ajax技术简单介绍"><span class="nav-number">1.</span> <span class="nav-text">1.1 Ajax技术简单介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Ajax发送GET请求"><span class="nav-number">2.</span> <span class="nav-text">1.2 Ajax发送GET请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Ajax发送POST请求"><span class="nav-number">3.</span> <span class="nav-text">1.3 Ajax发送POST请求</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">文顶顶</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
