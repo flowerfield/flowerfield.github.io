@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> jQuery系列 第四章—jQuery选择器介绍 · 花田半亩</title><meta name="description" content="jQuery系列 第四章—jQuery选择器介绍 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/白菜.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">jQuery系列 第四章—jQuery选择器介绍</h1><div class="post-info">Aug 13, 2017</div><div class="post-content"><h4 id="4-1-jQuery选择器说明"><a href="#4-1-jQuery选择器说明" class="headerlink" title="4.1  jQuery选择器说明"></a>4.1  jQuery选择器说明</h4><p>jQuery 最核心的组成部分就是选择器引擎。它完全继承了 CSS 的风格,可以对 DOM 元 素的标签名、属性名、状态等进行快速准确的选 择，而且不必担心浏览器的兼容性，写法更加简洁。</p>
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> jQuery系列 [04]-jQuery框架的选择器 · 花田半亩</title><meta name="description" content="jQuery系列 [04]-jQuery框架的选择器 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/白菜.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">jQuery系列 [04]-jQuery框架的选择器</h1><div class="post-info">Aug 13, 2017</div><div class="post-content"><h4 id="4-1-jQuery选择器说明"><a href="#4-1-jQuery选择器说明" class="headerlink" title="4.1  jQuery选择器说明"></a>4.1  jQuery选择器说明</h4><p>jQuery 最核心的组成部分就是选择器引擎。它完全继承了 CSS 的风格,可以对 DOM 元 素的标签名、属性名、状态等进行快速准确的选 择，而且不必担心浏览器的兼容性，写法更加简洁。</p>
 <p>jQuery 选择器实现了 CSS1~CSS3 的大部分规则之外,还实现了一些自定义的选择器,用于各种特殊状态的选择。</p>
 <p><strong>优点</strong>：相对于直接使用 JavaScript 获取页面元素和处理业务逻辑相比，使用jQuery 选择器来进行操作<code>代码更简单</code>且拥有<code>完善的代码检测机制</code>。</p>
 <p>jQuery 选择器根据获取页面中元素的不同，可以划分为四大类 :<code>基本选择器、层级选择器、筛选选择器和表单选择器。</code></p>
@@ -100,43 +100,43 @@
 </thead>
 <tbody>
 <tr>
-<td><code>last() 或 : last</code></td>
-<td style="text-align:center">获取最后一个元素</td>
-</tr>
-<tr>
-<td><code>first() 或 : first</code></td>
+<td>:first</td>
 <td style="text-align:center">获取第一个元素</td>
 </tr>
 <tr>
-<td><code>:eq(index)</code></td>
+<td>:last</td>
+<td style="text-align:center">获取最后一个元素</td>
+</tr>
+<tr>
+<td>:eq(index)</td>
 <td style="text-align:center">获取指定索引值的元素</td>
 </tr>
 <tr>
-<td><code>:gt(index)</code></td>
+<td>:gt(index)</td>
 <td style="text-align:center">获取大于给定索引值的元素</td>
 </tr>
 <tr>
-<td><code>:lt(index)</code></td>
+<td>:lt(index)</td>
 <td style="text-align:center">获取小于给定索引值的元素</td>
 </tr>
 <tr>
-<td><code>:not(selector)</code></td>
+<td>:not(selector)</td>
 <td style="text-align:center">获取除给定选择器外的所有元素</td>
 </tr>
 <tr>
-<td><code>:header</code></td>
+<td>:header</td>
 <td style="text-align:center">获取所有标题类型的元素，如h1 h2</td>
 </tr>
 <tr>
-<td><code>:animated</code></td>
+<td>:animated</td>
 <td style="text-align:center">获取正在执行动画效果的元素</td>
 </tr>
 <tr>
-<td><code>:even</code></td>
+<td>:even</td>
 <td style="text-align:center">获取所有索引值为偶数的元素，索引号从0开始</td>
 </tr>
 <tr>
-<td><code>:odd</code></td>
+<td>:odd</td>
 <td style="text-align:center">获取所有索引值为奇数的元素，索引号从0开始</td>
 </tr>
 </tbody>
@@ -152,19 +152,19 @@
 </thead>
 <tbody>
 <tr>
-<td><code>:contains(text)</code></td>
+<td>:contains(text)</td>
 <td style="text-align:center">获取包含给定文本的元素</td>
 </tr>
 <tr>
-<td><code>:parent</code></td>
+<td>:parent</td>
 <td style="text-align:center">获取含有子元素或者文本的元素</td>
 </tr>
 <tr>
-<td><code>:empty</code></td>
+<td>:empty</td>
 <td style="text-align:center">获取所有不包含子元素或文本的空元素</td>
 </tr>
 <tr>
-<td><code>:has(selector)</code></td>
+<td>:has(selector)</td>
 <td style="text-align:center">获取含有选择器所匹配的元素</td>
 </tr>
 </tbody>
@@ -181,32 +181,32 @@
 </thead>
 <tbody>
 <tr>
-<td><code>[属性名]</code></td>
+<td>[属性名]</td>
 <td style="text-align:center">获取包含给定属性的元素</td>
 </tr>
 <tr>
-<td><code>[属性名=&#39;value&#39;]</code></td>
+<td>[属性名1][属性名2]</td>
+<td style="text-align:center">获取满足多个条件的复合属性的元素</td>
+</tr>
+<tr>
+<td>[属性名=’value’]</td>
 <td style="text-align:center">获取包含给定属性且等于指定值的元素</td>
 </tr>
 <tr>
-<td><code>[属性名！=&#39;value&#39;]</code></td>
+<td>[属性名！=’value’]</td>
 <td style="text-align:center">获取包含给定属性且不等于指定值的元素</td>
 </tr>
 <tr>
-<td><code>[属性名^=&#39;value&#39;]</code></td>
+<td>[属性名^=’value’]</td>
 <td style="text-align:center">获取包含给定属性且以指定字符开头的元素</td>
 </tr>
 <tr>
-<td><code>[属性名$=&#39;value&#39;]</code></td>
+<td>[属性名$=’value’]</td>
 <td style="text-align:center">获取包含给定属性且以指定字符结尾的元素</td>
 </tr>
 <tr>
-<td><code>[属性名*=&#39;value&#39;]</code></td>
-<td style="text-align:center">获取包含给定属性且包含指定字符的元素</td>
-</tr>
-<tr>
-<td><code>[属性名1][属性名2]</code></td>
-<td style="text-align:center">获取满足多个条件的复合属性的元素</td>
+<td>[属性名*=’value’]</td>
+<td style="text-align:center">获取包含给定属性且包含指定字符或者是子串的元素</td>
 </tr>
 </tbody>
 </table>
@@ -221,19 +221,19 @@
 </thead>
 <tbody>
 <tr>
-<td><code>:first-child</code></td>
+<td>:first-child</td>
 <td style="text-align:center">获取每个父元素下的第一个子元素</td>
 </tr>
 <tr>
-<td><code>:last-child</code></td>
+<td>:last-child</td>
 <td style="text-align:center">获取每个父元素下的最后一个子元素</td>
 </tr>
 <tr>
-<td><code>:only-child</code></td>
+<td>:only-child</td>
 <td style="text-align:center">获取每个父元素下的仅有一个子元素</td>
 </tr>
 <tr>
-<td><code>:nth-child(eq-index)</code></td>
+<td>:nth-child(eq-index)</td>
 <td style="text-align:center">获取每个父元素下特定位置的元素索引从1开始</td>
 </tr>
 </tbody>
@@ -248,11 +248,11 @@
 </thead>
 <tbody>
 <tr>
-<td><code>:visible</code></td>
+<td>:visible</td>
 <td style="text-align:center">获取所有的可见元素</td>
 </tr>
 <tr>
-<td><code>:hidden</code></td>
+<td>:hidden</td>
 <td style="text-align:center">获取所有不可见元素,或者type为hidden的元素</td>
 </tr>
 </tbody>
@@ -267,19 +267,19 @@
 </thead>
 <tbody>
 <tr>
-<td><code>:enabled</code></td>
+<td>:enabled</td>
 <td style="text-align:center">获取表单中所有属性为可用的元素</td>
 </tr>
 <tr>
-<td><code>:disabled</code></td>
+<td>:disabled</td>
 <td style="text-align:center">获取表单中所有属性为不可用的元素</td>
 </tr>
 <tr>
-<td><code>:checked</code></td>
+<td>:checked</td>
 <td style="text-align:center">获取表单中所有被选中的元素</td>
 </tr>
 <tr>
-<td><code>:selected</code></td>
+<td>:selected</td>
 <td style="text-align:center">获取表单中所有被选中option的元素</td>
 </tr>
 </tbody>
@@ -294,11 +294,11 @@
 </thead>
 <tbody>
 <tr>
-<td><code>:visible</code></td>
+<td>:visible</td>
 <td style="text-align:center">获取所有的可见元素</td>
 </tr>
 <tr>
-<td><code>:hidden</code></td>
+<td>:hidden</td>
 <td style="text-align:center">获取所有不可见元素,或者type为hidden的元素</td>
 </tr>
 </tbody>
@@ -314,43 +314,43 @@
 </thead>
 <tbody>
 <tr>
-<td><code>:file</code></td>
+<td>:file</td>
 <td style="text-align:center">获取所有文件域</td>
 </tr>
 <tr>
-<td><code>:image</code></td>
+<td>:image</td>
 <td style="text-align:center">获取所有的图像域</td>
 </tr>
 <tr>
-<td><code>:text</code></td>
+<td>:text</td>
 <td style="text-align:center">获取所有的单行文本框</td>
 </tr>
 <tr>
-<td><code>:reset</code></td>
+<td>:reset</td>
 <td style="text-align:center">获取所有重置按钮</td>
 </tr>
 <tr>
-<td><code>:radio</code></td>
+<td>:radio</td>
 <td style="text-align:center">获取所有单选框按钮</td>
 </tr>
 <tr>
-<td><code>:button</code></td>
+<td>:button</td>
 <td style="text-align:center">获取所有按钮</td>
 </tr>
 <tr>
-<td><code>:submit</code></td>
+<td>:submit</td>
 <td style="text-align:center">获取所有提交按钮</td>
 </tr>
 <tr>
-<td><code>:checkbox</code></td>
+<td>:checkbox</td>
 <td style="text-align:center">获取所有的复选框</td>
 </tr>
 <tr>
-<td><code>:password</code></td>
+<td>:password</td>
 <td style="text-align:center">获取所有的密码框</td>
 </tr>
 <tr>
-<td><code>:input</code></td>
+<td>:input</td>
 <td style="text-align:center">获取所有的input、textarea、select标签</td>
 </tr>
 </tbody>
@@ -359,7 +359,7 @@
 <hr>
 <ul>
 <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="https://flowerfield.github.io" target="_blank" rel="external">花田半亩</a></li>
-<li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" rel="external">文顶顶_iOS</a></li>
+<li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">文顶顶_iOS</a></li>
 <li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a></li>
 </ul>
 </div></article></div></main><footer><div class="paginator"><a href="/2017/08/14/第五章 jQuery的动画特效/" class="prev">上一篇</a><a href="/2017/08/12/第三章 jQuery框架操作CSS/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a></p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
