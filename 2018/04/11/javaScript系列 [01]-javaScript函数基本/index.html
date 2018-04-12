@@ -32,10 +32,13 @@
 <p><div class="tip"><br>这里需要注意的是，很多人容易被自己的经验误导，认为新创建的函数对象身上除prototype实例属性外，还拥有constructor这个实例属性，因为我们经常看到<code>f.constructor类似的代码</code>，其实这里使用的constructor属性是从原型链中获取的，其实是f构造函数关联原型对象上面的属性，即Function.prototype.constructor。</div></p>
 <div>
 
-<p><span style="border: 1px solid #666;">备注：在<a href="https://www.ecma-international.org/ecma-262/5.1/#sec-13.2" target="_blank" rel="external">ECMAScript标准中函数创建相关章节</a>有这样一句话：NOTE A prototype property is automatically created for every function, to allow for the possibility that the function will be used as a constructor.解释了给新创建函数添加prototype属性的意义在于便于该函数作为构造函数使用。</span></p>
+<p style="border: 1px solid #666;">备注：在<a href="https://www.ecma-international.org/ecma-262/5.1/#sec-13.2" target="_blank" rel="external">ECMAScript标准中函数创建相关章节</a>有这样一句话：NOTE A prototype property is automatically created for every function, to allow for the possibility that the function will be used as a constructor.解释了给新创建函数添加prototype属性的意义在于便于该函数作为构造函数使用。</p>
+
 <p><span style="color:#ff3333">② 函数何以能够被调用<span></span></span></p>
 <p>我们已经理解了函数本身就是对象，但又区别于普通对象，最大的区别在于函数可以被调用，（）被称为调用运算符。</p>
-<p><code>函数可以被调用的原因在于JavaScript创建一个函数对象时，会给该对象设置一个“调用”属性。当JavaScript调用一个函数时，可以理解为调用该函数的“调用”属性。</code></p>
+<blockquote>
+<p>❗️ 函数可以被调用的原因在于JavaScript创建一个函数对象时，会给该对象设置一个“调用”属性。当JavaScript调用一个函数时，可以理解为调用该函数的“调用”属性。</p>
+</blockquote>
 <h4 id="1-5-函数的返回值"><a href="#1-5-函数的返回值" class="headerlink" title="1.5  函数的返回值"></a>1.5  函数的返回值</h4><p><strong>函数的调用</strong>：调用一个函数会暂停当前代码的执行，把控制权和参数传递给正被调用的函数。当一个函数被调用的时候，它会先根据实际参数来对函数的形式参数进行初始化，然后从函数体中的第一个语句开始执行并遇到关闭函数体的 } 时结束。然后把控制权交还给调用该函数的上下文。</p>
 <p><strong>函数的返回值</strong>：函数体中return语句可以用来让函数提前返回。当retun语句被执行时，函数会立即返回而不再执行余下的语句，return语句后面跟上返回的具体数据，可以是任意类型（包括函数）。</p>
 <blockquote>
