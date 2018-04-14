@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> javaScript系列 [03]-javaScript的原型链 · 花田半亩</title><meta name="description" content="javaScript系列 [03]-javaScript的原型链 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="https://github.com/flowerField" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">javaScript系列 [03]-javaScript的原型链</h1><div class="post-info">Apr 13, 2018</div><div class="post-content"><blockquote>
-<p>引用： javaScript是一门基于原型的语言，它允许对象通过原型链引用另一个对象来构建对象中的复杂性，JavaScript使用原型链这种机制来实现动态代理。当试图去引用某一个属性时，它会遍历整个原型链，直到最后的节点。<a href="https://book.douban.com/subject/26583722/" target="_blank" rel="external">来源于JavaScript专家编·P24</a></p>
+<p>引用： javaScript是一门基于原型的语言，它允许对象通过原型链引用另一个对象来构建对象中的复杂性，JavaScript使用原型链这种机制来实现动态代理。当试图去引用某一个属性时，它会遍历整个原型链，直到最后的节点。<a href="https://book.douban.com/subject/26583722/" target="_blank" rel="external">JavaScript专家编程·P24</a></p>
 </blockquote>
 <h4 id="1-1-原型对象"><a href="#1-1-原型对象" class="headerlink" title="1.1  原型对象"></a>1.1  原型对象</h4><p>在JavaScript中除了基本数据类型外的其它数据都是对象类型，包括对象、函数、数组等。</p>
 <p>JavaScript语言中有一个非常重要的概念，叫做<code>原型对象</code>，理解原型对象是进一步理解这门语言的基础，因为它是一门基于原型的语言，也因为所有的代码几乎都和原型对象有关，接下来我们先了解下原型对象是什么。</p>
@@ -33,7 +33,7 @@
 
 <p><strong>原型对象总结</strong></p>
 <blockquote>
-<p>❐  <strong style="color=red">所有的对象都拥有<strong>proto</strong>属性，函数既拥有prototype属性又拥有<strong>proto</strong>属性。</strong><br>❐  <strong>对象的<strong>proto</strong>属性指向其构造函数相关联的原型对象</strong>（函数的<strong>proto</strong>属性也一样，指向其构造函数Function相关的原型对象，是一个空函数）。<br>❐  <strong>函数的prototype属性指向默认相关联的原型对象（函数和构造函数本质无差别）。</strong></p>
+<p>❐  <span style="color=red"><strong>所有的对象都拥有<strong>proto</strong>属性，函数既拥有prototype属性又拥有<strong>proto</strong>属性。</strong></span><br>❐  <strong>对象的<strong>proto</strong>属性指向其构造函数相关联的原型对象</strong>（函数的<strong>proto</strong>属性也一样，指向其构造函数Function相关的原型对象，是一个空函数）。<br>❐  <strong>函数的prototype属性指向默认相关联的原型对象（函数和构造函数本质无差别）。</strong></p>
 </blockquote>
 <p><div class="tip"><br> <strong>proto</strong>是一个非标准属性，即ECMAScript中并不包含该属性，这只是某些浏览器为了方便开发人员开发和调试而提供的一个属性，不具备通用性。建议在调试的时候可以使用该属性,但不能出现在正式的代码中，开发中可以使用Object.getPrototypeOf方法来替代。</div></p>
 <div>
