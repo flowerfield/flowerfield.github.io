@@ -1,6 +1,32 @@
 <!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> javaScript系列 [05]-javaScript和JSON · 花田半亩</title><meta name="description" content="javaScript系列 [05]-javaScript和JSON - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="https://github.com/flowerField" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">javaScript系列 [05]-javaScript和JSON</h1><div class="post-info">Apr 16, 2018</div><div class="post-content"><blockquote>
 <p>本文输出和JSON有关的以下内容<br>❐  JSON和javaScript<br>❐  JSON的语法介绍<br>❐  JSON的数据类型<br>❐  JSON的安全问题<br>❐  JSON和XMLHTTPRequest<br>❐  JSON数据在jQuery框架中的使用</p>
 </blockquote>
+<p><strong>1.1 JSON和javaScript</strong></p>
+<p><span style="color:red">JSON是一种数据交换格式。</span></p>
+<p>JSON的全称是JavaScript Object Notation，翻译为JavaScript对象表示法。JSON的这个全称，无疑让很多人既兴奋又困惑，兴奋的人直接认为这就是JavaScript中的对象，困惑的人觉察出JSON数据和JavaScript对象好像有些不一样。接下来我们先谈一谈JSON数据和JavaScript的关系。</p>
+<p>诚然，从JSON的全称可以看出JSON和JavaScript语言必定有种某种神秘关联，至少能够确定的是JSON的命名确实来源于JavaScript这门语言。</p>
+<p>JSON基于JavaScript对象字面量，但JSON本身是一种数据交换格式，因此它是独立于语言的。JSON全称为JavaScript对象表示法，在理解的时候可以认为</p>
+<blockquote>
+<p>JSON = JavaScript + 对象 + 表示法</p>
+</blockquote>
+<p>JavaScript我们知道是一门动态脚本语言，那么<code>对象表示法</code>是什么？</p>
+<p>对象是面向对象编程语言中一种常见的数据类型，表示键值对的集合，那么<code>表示法</code>是什么？</p>
+<p><strong>定义表示法是指一个可以表示诸如数字或单词等数据的字符系统。</strong></p>
+<p>JSON起源于JavaScript（灵感来源于JavaScript的对象语法），但真正重要的是具体的表示法本身。JSON不仅独立于语言，而且使用了一种在许多编程语言中能够找到共同元素的表达方式。基于这种简洁的表达方式，JSON迅速成为一种流行的数据交换格式。目前，客户端和服务器端在进行数据通信的时候，常见的数据格式就是JSON和XML。</p>
+<p><strong>JSON的语法介绍</strong></p>
+<p> JSON因为基于JavaScript的字面量，所以我们先来看下JavaScript字面量的样子，下面给出简单的代码示例，描述了一个书对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>  book = &#123;</div><div class="line">      name:<span class="string">"声名狼藉者的生活"</span>,</div><div class="line">      price:<span class="number">42.00</span>,</div><div class="line">      author:<span class="string">"福柯"</span>,</div><div class="line">      press:<span class="string">"北京大学出版社"</span>,</div><div class="line">      read:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="built_in">console</span>.log(<span class="string">"我的书名为:声名狼藉者的的生活,作者为福柯...."</span>);</div><div class="line">      &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<p>顺便贴出一个简短的JSON数据<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">"name"</span>:<span class="string">"声名狼藉者的生活"</span>,</div><div class="line">      <span class="attr">"price"</span>:<span class="number">42.00</span>,</div><div class="line">      <span class="attr">"author"</span>:<span class="string">"福柯"</span>,</div><div class="line">      <span class="attr">"press"</span>:<span class="string">"北京大学出版社"</span>,</div><div class="line">      <span class="attr">"content"</span>:[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="number">123</span>]</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p> 我们可以对比下上面的JavaScript对象和JSON数据，会发现它们的结构和语法形式很像，都是键值对的集合，接下来我们做更详细的说明。JSON数据在表达上和对象保持一致，但因为数据交换格式的核心是数据，所以<code>JSON并不会保存函数等信息</code>。JSON数据所基于的JavaScript对象字面量单纯指对象字面量以及其属性的语法表示。</p>
+<blockquote>
+<p>JSON的主要语法特点<br>① 以键值对的方式来保存数据<br>② 标准的JSON数据的key必须要使用双引号包裹<br>③ { } 用于表示和存放对象，[ ] 用于表示和存放数组数据</p>
+</blockquote>
+<p>JSON数据的读取，在读取JSON的时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123; 表示开始读取对象，&#125; 表示对象读取结束</div><div class="line">[ 表示开始读取数组，] 表示数组读取结束</div><div class="line">：用于分隔键值对中的key和value</div><div class="line">, 用于分隔对象中的多个键值对或者是数组中的多个元素</div></pre></td></tr></table></figure></p>
+<p><div class="tip"><br>JavaScript对象字面量中的key可以使用单引号，可以使用双引号，可以不必加上引号包裹，但是在JSON中，所有的key必须要加上双引号。</div></p>
+<div>
+
+<p><strong>JSON的验证和格式化工具</strong></p>
+<p>下面列出一些能够对JSON数据进行校验和格式化的在线地址：<br>JSON</p>
 <hr>
 <ul>
 <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="http://wendingding.com" target="_blank" rel="external">文顶顶的个人博客_花田半亩</a></li>
@@ -8,4 +34,4 @@
 <li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a></li>
 </ul>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/zanshang.jpeg?raw=true" width="180" height="180"></p>
-</div></article></div></main><footer><div class="paginator"><a href="/2018/04/15/javaScript系列 [04]-javaScript的原型链/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a></p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+</div></div></article></div></main><footer><div class="paginator"><a href="/2018/04/15/javaScript系列 [04]-javaScript的原型链/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a></p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
