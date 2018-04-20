@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 数据结构与算法 [02]-栈、队列和递归 · 花田半亩</title><meta name="description" content="数据结构与算法 [02]-栈、队列和递归 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="https://github.com/flowerField" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">数据结构与算法 [02]-栈、队列和递归</h1><div class="post-info">Oct 14, 2016</div><div class="post-content"><blockquote>
+<p>本文主要介绍递归的特性，结合栈和队列这两种数据结构来讲解其思想和简单用法。</p>
+</blockquote>
+<h5 id="1-1-栈和队列"><a href="#1-1-栈和队列" class="headerlink" title="1.1 栈和队列"></a>1.1 栈和队列</h5><p><strong>概念定义</strong></p>
+<p><strong><code>栈(stack)</code></strong>是限定仅在表尾进行插入和删除操作的线性表。</p>
+<blockquote>
+<p>❐ 允许插入和删除数据的一端称为栈顶（top）。<br>❐ 不允许插入删除数据的一端称为栈底（bottom）。<br>❐ 不包含任何数据元素的栈称为空栈。<br>❐ 栈是一种后进先出(Last In First Out)的线性表,简称<code>LIFO结构</code>。</p>
+</blockquote>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_9.png?raw=true" width="800"></p>
+<p><strong><code>队列(queue)</code></strong>是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。</p>
+<blockquote>
+<p>❐ 允许插入数据的一端被称为队尾。<br>❐ 允许删除数据的一端被称为队头。<br>❐ 队列是一种先进先出(First In First Out)的线性表，简称<code>FIFO结构</code>。</p>
+</blockquote>
+<p><strong>栈的特性及常见操作</strong></p>
+<p>栈的操作主要有两种，插入数据我们一般称为<code>压栈或者入栈</code>，删除数据我们一般称为<code>弹栈或者出栈</code>。</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_10.png?raw=true" width="900"></p>
+<p>栈这种数据结构本身是基于线性表（链表）来实现的，所以可以有顺序存储方式（<code>顺序栈</code>）和链式存储方式（<code>链式栈</code>）。如果采用顺序存储方式，可能还会见到两个栈共享空间的情况。</p>
+<p><div class="tip"><br>栈这种数据结构的特点是先进去的后出来，那么是否最先存储的元素一定最后出来？需要注意的是，栈对数据的插入和删除位置进行了限制，但是并没有对元素进出的顺序进行限制。</div></p>
+<div>
+
+<p>给定a、b、c这三个数字，它们依次进栈，其出栈顺序可能如下：</p>
+<blockquote>
+<p>① a、b、c进，c、b、a出栈。     <code>[c-b-a]</code><br>② a进，a出；b进，b出；c进，c出。<code>[a-b-c]</code><br>③ a进，b进，b出，a出，c进，c出。<code>[b-a-c]</code><br>④ a进，a出；b进，c进，c出，b出。<code>[a-c-b]</code><br>⑤ a进，b进，b出，c进，c出，a出。<code>[b-c-a]</code></p>
+<p>➯ <code>注意：不可能出现c-a-b这样的出栈次序。</code></p>
+</blockquote>
+<p>其实生活中很多地方都用到了栈这样的数据结构，比如手枪的弹夹，比如浏览器页面的前进和回退按钮（压栈和弹栈），撤销操作等等，我们在开发中常常写的函数调用其实也是这种情况。</p>
+<p><strong>函数调用栈</strong></p>
+<p>计算机在内部会使用一个叫做<code>调用栈</code>的栈，我们可以通过下面贴出的一小段代码来分析其结构。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"当前执行的函数为：a"</span> + <span class="string">"参数为："</span> + arg);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"我是函数b的函数体"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"fn函数体开始"</span> + name);</div><div class="line">      a(<span class="string">"参数T"</span>);</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"a函数调用完毕"</span>);</div><div class="line">      b();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  fn(<span class="string">"文顶顶"</span>);</div></pre></td></tr></table></figure>
+<p>上述代码的执行结果</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_11.png?raw=true" width="300"></p>
+<p><span style="color:#195">分析上面这段代码并试着贴出函数调用栈的示意图<span></span></span></p>
+<p>① 当我们执行    <code>fn(&quot;文顶顶&quot;)</code>这行代码的时候，计算机首先会为该函数的调用分配一块内存。<br>② 调用函数并分配内存后，函数中的变量name的值被设置为文顶顶，这些变量需要存储到内存中。<br>③ 打印字符串。<br><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_12.png?raw=true" width="600"></p>
+<p>④ 执行代码<code>a(&quot;参数T&quot;)</code> 此处调用了a函数，计算机同样需要为高函数分配一块内存空间。<br>⑤ 执行函数a的函数体，变量arg的值被设置为参数T。<br>⑥ a函数中的打印任务执行完毕，从函数调用返回。<br><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_13.png?raw=true" width="600"></p>
+<p>⑦ 打印字符串。<br>⑧  执行代码<code>b()</code> ，调用b函数，会在当前函数调用栈的栈顶添加函数b的内存块。<br>⑨ 函数b执行完毕，从函数调用返回。<br>⑩ 函数fn执行完毕，返回。</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_14.png?raw=true" width="600"></p>
+<p><div class="tip">当函数在函数体中调用另外一个函数时，当前函数将暂停并处于未完成状态。<div></div></div></p>
+<h5 id="1-2-递归说明"><a href="#1-2-递归说明" class="headerlink" title="1.2 递归说明"></a>1.2 递归说明</h5><p><strong>递归的特征</strong> 递归的本质特征是函数自己调用自己，为了不陷入死循环往往递归还需要一个出口。</p>
+<blockquote>
+<p>每个递归函数都拥有两部分</p>
+<p>❐ <code>递归条件（recursive case）</code> 函数自己调用自己<br>❐ <code>基线条件（base case）</code>  函数不再调用自己的出口条件，避免陷入到死循环中。</p>
+</blockquote>
+<p><div class="tip"><br>使用递归并没有性能上的优势，实际上有时候，使用循环解决问题的性能更好。</div></p>
+<div>
+
+<p><strong>如果使用循环，程序的性能可能更好，如果使用递归，程序可能更容易理解。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*斐波那契数列的递归函数*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="comment">/*基线条件*/</span></div><div class="line">    <span class="keyword">if</span> (n &lt; <span class="number">2</span>) <span class="keyword">return</span> n === <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">    <span class="comment">/*递归条件*/</span></div><div class="line">    <span class="keyword">return</span> Fibonacci( n - <span class="number">1</span> ) + Fibonacci( n - <span class="number">2</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//斐波那契数列对应的值：1，1，2，3，5，8，13···</span></div><div class="line"><span class="built_in">console</span>.log(Fibonacci(<span class="number">7</span>));   <span class="comment">//13</span></div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="http://wendingding.com" target="_blank" rel="external">文顶顶的个人博客_花田半亩</a></li>
+<li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">文顶顶</a></li>
+<li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a></li>
+</ul>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/zanshang.jpeg?raw=true" width="180" height="180"></p>
+</div></div></div></article></div></main><footer><div class="paginator"><a href="/2017/08/11/第一章 jQuery框架简单介绍/" class="prev">上一篇</a><a href="/2016/10/13/数据结构与算法 [01]-数组和链表、选择排序与快速排序/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a></p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
