@@ -3,7 +3,7 @@
 </blockquote>
 <h3 id="1-1-this简单说明"><a href="#1-1-this简单说明" class="headerlink" title="1.1 this简单说明"></a>1.1 this简单说明</h3><p><strong>this</strong>关键字被认为是JavaScript语言中最复杂的机制之一，跟this相关的知识很多开发者往往总是一知半解，更有甚者很多人完全搞不懂也不愿意去搞懂跟this相关的内容，在必须要用到的时候宁愿选择在代码中总是使用临时打印验证的方式来探知this的指向。这是现实，也许因为他们觉得跟this有关的这一切都混乱不堪，各种文档晦涩难懂，this的指向好似没有固定的套路，总是变来变去难以捉摸。其实，this原本并没有那么复杂，它就是个被自动定义在函数作用域中的变量，总是指向某个特定的“对象”。接下来，我们将尝试用这样一篇文章来讲清楚跟this有关的以下问题：</p>
 <blockquote>
-<p>❐   this 是什么？<br>❐   为什么要使用this?<br>❐   this指向谁？<br>❐   this绑定的几种情况<br>❐   this固定规则外的注意事项<br>❐   this的几个使用场景介绍</p>
+<p>❐   this 是什么？<br>❐   为什么要使用this?<br>❐   this指向谁？<br>❐   this绑定的几种情况<br>❐   this固定规则外的注意事项</p>
 </blockquote>
 <p><span style="border:1px solid #000"><strong>&nbsp; &nbsp;this是什么?&nbsp; &nbsp;</strong></span></p>
 <p>在声明函数的时候，除了声明时定义的形式参数外，每个函数还接受两个附加的参数：<code>this</code>和<code>arguments</code>。其中arguments是一个类似于数组的结构，保存了函数调用时传递的所有实际参数，arguments这个参数让我们有能力编写<code>能够接受任意个数参数的</code>函数。参数this在面向对象编程中非常重要，它总是指向一个“特定的对象”，至于这个特定的对象是谁通常取决于函数的调用模式。</p>
@@ -34,7 +34,7 @@
 <p><span style="border:1px solid #000"><strong>&nbsp; &nbsp;函数调用和this绑定&nbsp; &nbsp;</strong></span></p>
 <p>因为this的绑定完全取决于函数的调用方式，所以要搞清楚this绑定问题只需要搞清楚函数调用方式即可，函数的调用方式通常来说有以下四种：</p>
 <blockquote>
-<p>❐   普通函数调用(默认绑定)<br>❐   对象方法调用(隐式绑定)<br>❐   构造函数调用(new绑定)<br>❐   函数上下文调用(显式绑定)</p>
+<p>❐   <span style="color:#f22">普通函数调用(默认绑定)</span><br>❐   <span style="color:#f22">对象方法调用(隐式绑定)</span><br>❐   <span style="color:#f22">构造函数调用(new绑定)</span><br>❐   <span style="color:#f22">函数上下文调用(显式绑定)</span></p>
 </blockquote>
 <p>函数的调用方式只有上面的四种情况，而要确定其具体的调用方式，需要先确定函数调用的位置。</p>
 <p><strong>函数调用位置</strong><br>函数调用位置也就是函数在代码中被调用的位置<code>[函数名+()的形式]</code>，我们可以通过下面的示例代码来理解函数的调用位置。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"f1"</span>);</div><div class="line">    <span class="comment">//当前的函数调用栈：f1</span></div><div class="line">    f2();   <span class="comment">//函数f2调用的位置</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"f2"</span>);</div><div class="line">    <span class="comment">//当前函数调用栈:f1 --&gt; f2</span></div><div class="line">    f3();   <span class="comment">//函数f3调用的位置</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//当前函数调用栈:f1--&gt;f2--&gt;f3</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"f3"</span>);</div><div class="line">&#125;</div><div class="line">f1();       <span class="comment">//函数f1调用的位置</span></div></pre></td></tr></table></figure></p>
@@ -58,7 +58,7 @@
 <p><strong>构造函数内部细节</strong></p>
 <p>使用new以构造函数的方式来调用Person的时候，内部主要做以下操作</p>
 <blockquote>
-<p>①  创建空的Object类型的实例对象，假设为对象o<br>② 让函数内部的this指向新创建的实例对象o<br>③ 设置实例对象o的原型对象指向构造函数默认关联的原型对象<br>④ 在函数内通过this来添加属性和方法<br>⑤ 在最后默认把新创建的实例对象返回</p>
+<p>① 创建空的Object类型的实例对象，假设为对象o<br>② 让函数内部的this指向新创建的实例对象o<br>③ 设置实例对象o的原型对象指向构造函数默认关联的原型对象<br>④ 在函数内通过this来添加属性和方法<br>⑤ 在最后默认把新创建的实例对象返回</p>
 </blockquote>
 <p><strong>总结</strong> <span style="color:#f55">如果以构造函数方式调用，函数内部的this绑定给新创建出来的实例对象。</span></p>
 <p><span style="border:1px solid #000"><strong>&nbsp; &nbsp;④ 函数上下文调用(显式绑定) &nbsp; &nbsp;</strong></span><br>在开发中我们可以通过call()或者是apply()方法来显式的给函数绑定指定的this，使用call或者是apply方法这种调用方式我们称为是函数上下文调用。</p>
