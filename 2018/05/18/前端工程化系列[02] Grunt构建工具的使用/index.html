@@ -52,7 +52,7 @@
 <p><code>$ mkdir Grunt_Demo</code> 表示创建文件夹<br><code>$ cd Grunt_Demo/</code>    表示进入文件目录<br><code>$ PWD</code>              表示查看当前路径<br><code>$ touch package.json</code> 表示创建package.json文件<br><code>$ open package.json</code> 表示使用记事本打开文件并编辑</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">wendingding:Grunt_Demo wendingding$ open package.json</div><div class="line">wendingding:Grunt_Demo wendingding$ cat package.json</div><div class="line">&#123;</div><div class="line">	"name":"Grunt_Demo",</div><div class="line">	"version":"1.0.0",</div><div class="line">	"dependencies":&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><code>$ cat package.json</code> 表示查看文件内容</p>
-<p>创建好package.json文件后，可以根据需要添加内容字段到文件中。该json文件中最基本字段主要有<span style="color:#f25">name、version和dependencies</span>，其中name和version对应的是Grunt项目的名称和版本，而dependencies字段中则列出该项目的依赖。</p>
+<p>创建好package.json文件后，可以根据需要添加内容字段到文件中。该json文件中最基本字段主要有<span style="color:#195">name、version和dependencies</span>，其中name和version对应的是Grunt项目的名称和版本，而dependencies字段中则列出该项目的依赖。</p>
 <p><span style="color:#f25">package.json文件用于被npm存储项目的元数据，以便将此项目发布为npm模块。我们可以在此文件中列出项目依赖的Grunt和Grunt插件，保存在devDependencies（开发依赖）配置段内。</span></p>
 <p><strong> ✧ 初始化命令创建package.json文件 ✧ </strong></p>
 <p>除手动创建外，我们还能够通过命令行来进行初始化操作，会以交互的方式来生成一个包含基本配置信息的package.json文件。</p>
