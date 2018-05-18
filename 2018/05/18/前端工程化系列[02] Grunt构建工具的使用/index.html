@@ -18,9 +18,9 @@
 <p>Tasks作为Grunt的基本构建模块，它实际上是由Grunt的registerTask（）方法注册的具名函数。</p>
 <p><span style="border:1px solid #000"><strong>&nbsp; &nbsp;③ Plugins &nbsp; &nbsp;</strong></span></p>
 <p>Plugins是一系列能够用于不同项目的可配置任务的集合。</p>
-<p><span style="border:1px solid #000"><strong>&nbsp; &nbsp;④ 配置 &nbsp; &nbsp;</strong></span></p>
+<p><span style="border:1px solid #000"><strong>&nbsp; &nbsp;④ 任务配置 &nbsp; &nbsp;</strong></span></p>
 <p>Grunt强调配置优先，任务和插件的功能都可以通过配置文件进行定制，以适应不同工程的需求。这种代码和配置相分离的特性，使开发者能够创造出高复用的插件。</p>
-<p><strong>基本信息</strong></p>
+<p><strong>相关参考</strong></p>
 <p><strong>现在最新版本&nbsp;&nbsp;&nbsp;&nbsp;</strong>   <span style="color:#f25">v1.0.2</span><br><strong>其它构建工具&nbsp;&nbsp;&nbsp;&nbsp;</strong> <span style="color:#f25"> gulp、webpack、fis3等</span></p>
 <p><a href="http://www.gruntjs.com" target="_blank" rel="external">Grunt官网</a><br><a href="http://www.gruntjs.net/" target="_blank" rel="external">Grunt官网(中文)</a><br><a href="http://www.gruntjs.net/plugins" target="_blank" rel="external">Grunt相关的插件列表</a></p>
 <h3 id="1-2-Grunt的安装"><a href="#1-2-Grunt的安装" class="headerlink" title="1.2 Grunt的安装"></a>1.2 Grunt的安装</h3><p>Grunt和相关的插件都通过 npm 安装并管理。</p>
@@ -39,7 +39,13 @@
 <p>具体的执行情况<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">wendingding:~ wendingding$ npm install -g grunt-cli</div><div class="line">/usr/local/bin/grunt -&gt; /usr/local/lib/node_modules/grunt-cli/bin/grunt</div><div class="line">+ grunt-cli@1.2.0</div><div class="line">added 16 packages in 9.289s</div><div class="line">wendingding:~ wendingding$ grunt</div><div class="line">grunt-cli: The grunt command line interface (v1.2.0)</div><div class="line"></div><div class="line">Fatal error: Unable to find local grunt.</div><div class="line"></div><div class="line">If you're seeing this message, grunt hasn't been installed locally to</div><div class="line">your project. For more information about installing and configuring grunt,</div><div class="line">please see the Getting Started guide:</div><div class="line"></div><div class="line">http://gruntjs.com/getting-started</div></pre></td></tr></table></figure></p>
 <p><strong>Grunt命令行的作用</strong></p>
 <p><code>Grunt命令行用于调用与Gruntfile在同一目录中 Grunt</code>。每次运行Grunt 时，都会根据node提供的require()系统查找本地安装的 Grunt（<code>因此我们可以在项目的任意子目录中运行grunt</code>） ，如果找到一份本地安装的 Grunt，命令行就将其加载，并传递Gruntfile中的配置信息，然后执行指定的任务。</p>
-<hr>
+<h3 id="1-3-Grunt使用入门"><a href="#1-3-Grunt使用入门" class="headerlink" title="1.3 Grunt使用入门"></a>1.3 Grunt使用入门</h3><h3 id="1-3-1-Grunt使用的基本步骤"><a href="#1-3-1-Grunt使用的基本步骤" class="headerlink" title="1.3.1 Grunt使用的基本步骤"></a>1.3.1 Grunt使用的基本步骤</h3><blockquote>
+<p><strong><span style="color:#f25">Grunt使用的基本步骤</span></strong></p>
+<p>① &nbsp;生成package.json和Gruntfile.js文件<br>② &nbsp;命令行安装项目中需要用到的插件<br>③ &nbsp;编辑Gruntfile文件定义Task并进行配置<br>④ &nbsp;命令行以grunt task的方式执行任务</p>
+</blockquote>
+<p>接下来，我们通过一个完整的Grunt案例来介绍Grunt的常规使用方法</p>
+<p>首先创建的对应的项目文件目录，这里命名为Grunt_demo文件夹，然后创建<code>package.json文件</code>和<code>Gruntfile.js文件</code>并进行相关配置。</p>
+<h3 id="1-3-2-Grunt使用小案例"><a href="#1-3-2-Grunt使用小案例" class="headerlink" title="1.3.2 Grunt使用小案例"></a>1.3.2 Grunt使用小案例</h3><hr>
 <ul>
 <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="http://wendingding.com" target="_blank" rel="external">文顶顶的个人博客_花田半亩</a></li>
 <li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">文顶顶</a></li>
