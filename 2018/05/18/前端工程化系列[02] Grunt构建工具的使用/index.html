@@ -62,8 +62,8 @@
 <p>在执行<code>npm init</code>命令创建基本package.json文件的时候，可以设置名称、版本、依赖等选项，如果不设置直接回车表示以默认(建议)的方式来进行配置。</p>
 <pre class="tip">
 <strong>package.json文件注意点</strong><br>
-❐ &nbsp;package.json应当放置于项目的根目录中，并同项目源代码一起管理。<br>
-❐ &nbsp;如果在根目录中运行`npm install`命令，那么将依据package.json列出的依赖项来自动安装适当版本的依赖。
+❐ package.json应当放置于项目的根目录中，并同项目源代码一起管理。<br>
+❐ 如果在根目录中运行npm install命令，那么将依据package.json列出的依赖项来自动安装适当版本的依赖。
 </pre>
 
 <p><span style="border:1px solid #000"><strong>&nbsp; &nbsp;② 创建Gruntfile文件&nbsp; &nbsp;</strong></span></p>
@@ -123,7 +123,7 @@
 <p>上文列出了代码合并插件concat和压缩插件uglify|uglify的安装和基本使用过程，grunt生态系统拥有数量庞大的高质量插件群体，无法一一介绍，可以到<a href="http://www.gruntjs.net/plugins" target="_blank" rel="external">Grunt相关的插件列表页面-中文</a>或<a href="https://gruntjs.com/plugins" target="_blank" rel="external">Grunt相关的插件列表页面-官网</a>自行查看。</p>
 <blockquote>
 <p><strong><span style="color:#f25">Grunt插件使用总结</span></strong></p>
-<p>❏ 通过命令行把对应的Grunt插件下载和安装到本地项目中<br>❏ 在Gruntfile文件中对Grunt插件的Task进行配置（grunt.initConfig）<br>❏ 在Gruntfile文件中通过代码来加载对应的插件（grunt.loadNpmTasks）<br>❏ 在Gruntfile文件中通过代码来注册任务（grunt.registerTask）<br>❏ 在命令行中通过grunt + 任务名的方式来执行Task或加入到default队列以grunt命令执行。</p>
+<p>❏ 创建package.json文件(简单配置)和Gruntfile文件(<code>$ npm init</code>)<br>❏ 通过命令行把Grunt下载和安装到本地项目中(<code>$ npm install grunt --save-dev</code>)<br>❏ 通过命令行把对应的Grunt插件下载和安装到本地项目中(<code>$ npm install grunt-contrib-xxx --save-dev</code>)<br>❏ 在Gruntfile文件中对Grunt插件的Task进行配置（grunt.initConfig）<br>❏ 在Gruntfile文件中通过代码来加载对应的插件（grunt.loadNpmTasks）<br>❏ 在Gruntfile文件中通过代码来注册任务（grunt.registerTask）<br>❏ 在命令行中通过grunt + 任务名的方式来执行Task或加入到default队列以grunt命令执行。</p>
 </blockquote>
 <hr>
 <ul>
