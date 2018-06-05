@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 网络编程系列 浏览器&&内核和页面渲染过程 · 花田半亩</title><meta name="description" content="网络编程系列 浏览器&amp;&amp;内核和页面渲染过程 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">网络编程系列 浏览器&&内核和页面渲染过程</h1><div class="post-info">Jun 5, 2018<span class="post-count"></span> ✧ 字数统计:2,073(字) &nbsp;&nbsp; ♨︎ 阅读时长:7(分钟)</div><div class="post-content"><h3 id="1-0-浏览器的发展和特性"><a href="#1-0-浏览器的发展和特性" class="headerlink" title="1.0 浏览器的发展和特性"></a>1.0 浏览器的发展和特性</h3><p><strong>浏览器的发展</strong></p>
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 网络编程系列 浏览器、HTML和内核(引擎) · 花田半亩</title><meta name="description" content="网络编程系列 浏览器、HTML和内核(引擎) - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">网络编程系列 浏览器、HTML和内核(引擎)</h1><div class="post-info">Jun 5, 2018<span class="post-count"></span> ✧ 字数统计:2,060(字) &nbsp;&nbsp; ♨︎ 阅读时长:7(分钟)</div><div class="post-content"><h3 id="1-0-浏览器的发展和特性"><a href="#1-0-浏览器的发展和特性" class="headerlink" title="1.0 浏览器的发展和特性"></a>1.0 浏览器的发展和特性</h3><p><strong>浏览器的发展</strong></p>
 <blockquote>
 <p>浏览器的历史并不长，即便到今天来算也只有短短的27年，下面列出浏览器历史中的重要节点。</p>
 </blockquote>
@@ -28,20 +28,17 @@
 <p>HTML（HpperText Markup Language）超文本标记语言，用于网页的创建和显示。现已经发展为HTML5，下面列出HTML发展过程中的关键节点。</p>
 </blockquote>
 <p>1991年，<strong><code>Tim Berners-Lee</code></strong>编写了一份叫做“HTML标签”的文档，里面包含了大约20个用来标记网页的HTML标签，里面直接借用了SGML的标记格式，用于在浏览器中表示文字等信息。</p>
-<p>1993年6月作为IETF（互联网工程工作小组）发布了HTML的草案（并非标准）。</p>
-<p>后来，<a href="https://www.w3.org/" target="_blank" rel="external">W3C组织</a>取代IETF的角色，成为HTML的标准组织。</p>
-<p>历经多次版本更迭后，1997年12月18日，W3C发布<strong><code>HTML 4.0</code></strong>推荐标准。</p>
+<p>1993年6月作为IETF（互联网工程工作小组）发布了HTML的草案（并非标准）。后来，<a href="https://www.w3.org/" target="_blank" rel="external">W3C组织</a>取代IETF的角色，成为HTML的标准组织。</p>
+<p>1997年12月18日，W3C发布<strong><code>HTML 4.0</code></strong>推荐标准。</p>
 <p>1999年12月24日，W3C发布<strong><code>HTML4.0.1</code></strong>推荐标准。</p>
-<p>HTML 4.01发布后，HTML到达了它的第一个拐点，在这之后的很长时间里HTML的发展走向了另外的方向。</p>
+<p>HTML 4.0.1发布后，HTML到达了一个拐点，这之后很长时间里HTML的发展走向了另外的方向。</p>
 <p>2000年1月26日，W3C发布了<strong><code>XHTML1.0</code></strong>，这是在HTML 4.01之后的第一个修订版本，其中X代表“EXtensible”，扩展的意思。新的标准并没有引入任何新标签或属性，而是要求使用XML般的严格语法，被称为XML风格的HTML。</p>
 <p>XHTML1.0的推出刚好碰上了CSS的崛起，Web开发设计者们开始意识到Web标准问题，基于XHTML的严格语法规范被视为编写 HTML代码的最佳实践。</p>
 <p>2001年5月31日，W3C发布了<strong><code>XHTML1.1</code></strong>。如果说XHTML 1.0是XML风格的HTML，那么XHTML 1.1则是货真价实的XML。这意味着XHTML 1.1无法使用<strong><code>text/html MIMEType</code></strong>直接输出，而如果Web开发者使用<strong><code>XML MIMEType</code></strong>，则当时的主流浏览器压根不支持。看上去，W3C似乎正在与当时的Web脱节。</p>
 <p>2002年8月5日，W3C发布了<strong><code>XHTML 2.0</code></strong>工作草案，XHTML 2不向前兼容，甚至不兼容之前的HTML，它是一种全新的语言。现在来看这实在是一场灾难，这是吃力不讨好的无用功。</p>
-<p>W3C闭门造车的作风导致Opera，苹果以及Mozilla的代表们开始发出反对声音。</p>
-<p>2004年，Opera的 Ian Hickson提议在HTML基础上进行扩展以适应新的Web应用，该提议遭到W3C的拒绝。于是，他们自发组织成立了超文本应用技术工作组<a href="https://whatwg.org/" target="_blank" rel="external">WHATWG</a>。WHATWG组织和W3C组织开始从HTML发展的路线上走向不同的方向。</p>
-<p>WHATWG组织的主要工作包括两部分，<strong><code>Web Forms 2.0和Web Apps 1.0</code></strong>，它们都是HTML的扩展，后来合并到一起成为现在的HTML 5规范。在WHATWG致力于HTML5的同时，W3C继续他们的XHTML 2.0，然而，他们慢慢地陷入困境。</p>
-<p>2006年10月，<strong><code>Tim Berners-Lee</code></strong>发表了一篇博客文章，表示，从HTML走向XML的路是行不通的，几个月后（2007年）W3C组建了一个新的HTML工作组，他们非常明智地选择了WHATWG的成果作为基础来立项HTML 5。</p>
-<p>也就是说，W3C同时在进行着两套规范，XHTML 2.0 和HTML 5，而WHATWG也在进行着HTML5规范的工作。</p>
+<p>W3C闭门造车的作风导致Opera，苹果以及Mozilla的代表们开始发出反对声音。2004年，Opera的 Ian Hickson提议在HTML基础上进行扩展以适应新的Web应用，该提议遭到W3C的拒绝。于是，他们自发组织成立了超文本应用技术工作组<a href="https://whatwg.org/" target="_blank" rel="external">WHATWG</a>。WHATWG和W3C组织开始在HTML发展的这条路上走向了不同的方向。</p>
+<p>WHATWG组织的主要工作包括两部分，<strong><code>Web Forms 2.0和Web Apps 1.0</code></strong>，它们都是HTML的扩展，后来合并到一起成为现在的HTML 5规范。</p>
+<p>在WHATWG致力于HTML5的同时，W3C继续他们的XHTML 2.0，然而，他们慢慢地陷入困境。2006年10月，<strong><code>Tim Berners-Lee</code></strong>发表了一篇博客文章，表示从HTML走向XML的路是行不通的，几个月后（2007年）W3C组建了一个新的HTML工作组，他们非常明智地选择了WHATWG的成果作为基础来立项HTML 5。也就是说，W3C同时在进行着两套规范，XHTML 2.0 和HTML 5，而WHATWG也在进行着HTML5规范的工作。</p>
 <p><span style="color:red">2012年，HTML 5被两大组织WHATWG和W3C接纳为候选标准。好在经过长达八年的扯皮和博弈之后，2014年10月底W3C宣布HTML5正式定稿。</span></p>
 <p>纵观HTML5的发展史，有用户的需求在推动，有技术开发者的需求在推动，更有巨大的商业利益在推动，关于HTML5发展史中的博弈可以参考<a href="https://www.cnblogs.com/yy-hh/p/4509748.html" target="_blank" rel="external">html5的发展历程和由此引起的政治斗争</a>。下面给出HTML发展的主要节点图示。</p>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/html.png?raw=true"></p>
