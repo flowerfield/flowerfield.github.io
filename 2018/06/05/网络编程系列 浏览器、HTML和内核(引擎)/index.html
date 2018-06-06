@@ -28,7 +28,7 @@
 <p><div class="tip"><br>web资源主要包括：<span style="color:#195">html文件 &amp;&amp; CSS文件 &amp;&amp; JS文件 &amp;&amp; 图片、PDF等资源。</span></div><img src="https://github.com/flowerField/Source/blob/master/Blog/html4.png?raw=true"></p>
 <p>上图展示了浏览器的主要组件，下面简单说明。</p>
 <p><strong><code>用户界面</code></strong> 包括地址栏，后退/前进按钮，书签菜单等部分。<br><strong><code>渲染引擎</code></strong> 负责显示网络请求得到的内容。<br><strong><code>网络模块</code></strong> 用于网络请求等处里，与具体的平台无关。<br><strong><code>UI后端</code></strong> 用于绘制组合框和窗口等基本UI部件。<br><strong><code>数据存储</code></strong>用于存储和处理浏览器使用中的必要数据。<br><strong><code>浏览器引擎</code></strong> 浏览器最核心的部分。<br><strong><code>JavaScript解释器</code></strong>用于解析和执行JavaScript代码。</p>
-<p><div class="tip"><br>小贴士：chrome浏览器可以通过在地址栏中输入<span style="color:#195">chrome://version/</span>来查看相关版本信息<br></div><br>譬如，我所使用的Chrome浏览器相关信息如下<br><img src="https://github.com/flowerField/Source/blob/master/Blog/html9.png?raw=true"></p>
+<p><div class="tip"><br>小贴士：chrome浏览器可以通过在地址栏中输入<span style="color:#195">chrome://version/</span>来查看相关版本信息<br></div>譬如，我所使用的Chrome浏览器相关信息如下<br><img src="https://github.com/flowerField/Source/blob/master/Blog/html9.png?raw=true"></p>
 <h3 id="2-0-HTML的发展和特性"><a href="#2-0-HTML的发展和特性" class="headerlink" title="2.0 HTML的发展和特性"></a>2.0 HTML的发展和特性</h3><p><strong>HTML的发展</strong></p>
 <blockquote>
 <p>HTML（HpperText Markup Language）超文本标记语言，用于网页的创建和显示。现已经发展为HTML5，下面列出HTML发展过程中的关键节点。</p>
@@ -62,7 +62,7 @@
 <p>2005年<a href="http://tech.sina.com.cn/focus/Adobe_Mm/" target="_blank" rel="external">Adobe花费34亿美元巨资收购Macromedia</a>，把Flash收归旗下，紧接着大幅推广FLV流媒体。</p>
 <p>除Flash这个商业产品成为了事实标准外，W3C当时还面临着另外的尴尬，那就是私有扩展协议的制造者IE。IE当时在桌面浏览器占有垄断地位，并且扩展了大量的IE 私有语法，开发者完全不知道这些语言是谁定义的。基于上面的事实，当时的情况是整个web世界，都被微软和Adobe这两家公司捆绑了。于是以苹果和谷歌为代表的很多IT巨头开始行动起来，既然大家都是W3C的主席单位，好吧，那我们就重新开始做HTML5吧。</p>
 <p>HTML5其实就是这么诞生的，所以<span style="color:red">2007年，其实也是IE和Flash由盛转衰的转折点</span>。HTML5的发展大体经历了<span style="color:red">Web增强</span>和<span style="color:red">移动互联网</span>两个阶段，而现今我们看到的是属于HTML5的春天。需要注意的是虽然HTML5意义深远，但目前来说并非所有浏览器都对HTML5提供100%的支持，我们可以通过<a href="http://html5test.com/" target="_blank" rel="external">HTML5TEST</a>网站来查看各浏览器对HTML5特性的支持情况。</p>
-<h4 id="3-0-浏览器内核（渲染引擎）"><a href="#3-0-浏览器内核（渲染引擎）" class="headerlink" title="3.0 浏览器内核（渲染引擎）"></a>3.0 浏览器内核（渲染引擎）</h4><p><strong>浏览器内核简单介绍</strong></p>
+<h3 id="3-0-浏览器内核（渲染引擎）"><a href="#3-0-浏览器内核（渲染引擎）" class="headerlink" title="3.0 浏览器内核（渲染引擎）"></a>3.0 浏览器内核（渲染引擎）</h3><p><strong>浏览器内核简单介绍</strong></p>
 <p>浏览器内核作为浏览器中最重要的模块，其核心作用是将页面转换为可视化的结果。浏览器内核一般分成<code>渲染引擎(layout engineer 或者 Rendering Engine)</code>和<code>JS 引擎</code>两部分，只是通常我们总是把渲染引擎称之为内核，习惯把JS引擎区分开来单独说明。</p>
 <p><strong><code>渲染</code></strong>指的是根据描述或定义构建模型，通过模型生成可视化图像的过程。</p>
 <p><strong><code>渲染引擎</code></strong>指的是浏览器中能够将HTML/CSS文本及其相关的资源文件转换为图像结果的模块。</p>
