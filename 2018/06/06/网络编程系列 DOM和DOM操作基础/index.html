@@ -6,7 +6,7 @@
 <p><strong>节点的类型</strong></p>
 <p>HTML页面中拥有众多类型的节点，不同类型的节点其表示和操作的方式有很大的差异，下面分别列出：</p>
 <blockquote>
-<p>Document：整个DOM树的根，代表整个文档<br>DocumentType：文档类型（doctype）标签<br>Element：网页的各种HTML标签，如a标签 div标签等<br>Attribute：网页元素的属性节点<br>Text：标签之间或标签包含的文本内容<br>Comment：HTML或XML中的注释<br>DocumentFragment：文档的片段，如果理解起来费解请参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DocumentFragment" target="_blank" rel="external">MDN-DocumentFragment</a></p>
+<p>❏ Text：标签之间或标签包含的文本内容<br>❏ Comment：HTML或XML中的注释<br>❏ Element：网页的各种HTML标签，如a标签 div标签等<br>❏ Document：整个DOM树的根，代表整个文档<br>❏ Attribute：网页元素的属性节点<br>❏ DocumentType：文档类型（doctype）标签<br>❏ DocumentFragment：文档的片段，如果理解起来费解请参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DocumentFragment" target="_blank" rel="external">MDN-DocumentFragment</a></p>
 </blockquote>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/dom2.png?raw=true"></p>
 <p>图示说明：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">在上面的图示中，我们提供了一个div标签，该标签拥有“上坡和下坡不就是同一条路吗”文本内容。</div><div class="line">① 个div标签由开始标签和结尾标签组成，本身是Element类型的。</div><div class="line">② “上坡和下坡不就是同一条路吗”作为div标签的文本内容，本身是Text类型的。</div><div class="line">③ div标签中的class和title是属性节点(key-value)，本身是Attribute类型的。</div></pre></td></tr></table></figure></p>
