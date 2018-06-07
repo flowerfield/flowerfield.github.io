@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>  · 花田半亩</title><meta name="description" content=" - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title"></h1><div class="post-info">Jun 7, 2018</div><div class="post-content">text
+VM627:1 link
+VM627:1 vLink
+VM627:1 aLink
+VM627:1 bgColor
+VM627:1 background
+VM627:1 onblur null
+VM627:1 onerror null
+VM627:1 onfocus null
+VM627:1 onload null
+VM627:1 onresize null
+VM627:1 onscroll null
+VM627:1 onafterprint null
+VM627:1 onbeforeprint null
+VM627:1 onbeforeunload null
+VM627:1 onhashchange null
+VM627:1 onlanguagechange null
+VM627:1 onmessage null
+VM627:1 onmessageerror null
+VM627:1 onoffline null
+VM627:1 ononline null
+VM627:1 onpagehide null
+VM627:1 onpageshow null
+VM627:1 onpopstate null
+VM627:1 onrejectionhandled null
+VM627:1 onstorage null
+VM627:1 onunhandledrejection null
+VM627:1 onunload null
+VM627:1 title
+VM627:1 lang
+VM627:1 translate true
+VM627:1 dir
+VM627:1 dataset DOMStringMap {}
+VM627:1 hidden false
+VM627:1 tabIndex -1
+VM627:1 accessKey
+VM627:1 draggable false
+VM627:1 spellcheck true
+VM627:1 autocapitalize
+VM627:1 contentEditable inherit
+VM627:1 isContentEditable false
+VM627:1 offsetParent null
+VM627:1 offsetTop 0
+VM627:1 offsetLeft 0
+VM627:1 offsetWidth 1216
+VM627:1 offsetHeight 150
+VM627:1 style CSSStyleDeclaration {alignContent: "", alignItems: "", alignSelf: "", alignmentBaseline: "", all: "", …}
+VM627:1 innerText 文顶顶的BLOG标签博客园微博花田半亩
+网络编程系列 DOM和DOM操作基础
+Jun 6, 2018 ✧ 字数统计:783(字)    ♨︎ 阅读时长:3(分钟)
+1.0 关于DOM
+简单介绍
+
+DOM（全称为Document Object Model）即文档对象模型，是用于表示和操作HTML或XML文档内容的一套基础API。
+
+✧ 有时候我们可能会看到DHTML这个专业术语：DHTML是动画HTML的简称，其并不是一项新的技术，而是描述HTML CSS JavaScript技术组合的术语。它曾被认为是HTML/XHTML CSS和JavaScript相结合的产物，像今天的HTML5，但真正凝聚它们的是DOM。
+当网页被加载时，浏览器会内部的引擎会根据DOM模型，将结构化文档（比如HTML和XML）解析成一系列的节点，再由这些节点构建出一种树状结构（DOM Tree）。
+
+下面给出一段简单的HTML示例代码和对应的DOM树结构图。图示中的的方框代表着文档中的一个个节点，每个方框（节点）暨一个Node对象，所有这些节点组成了DOM树。
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM树演示代码</title>
+</head>
+<body>
+<div class="className">Hi! 文顶顶</div>
+<a href="http://www.wendingding.com" target="_blank" rel="external"></a>
+</body>
+</html>
+
+
+节点的类型
+
+HTML页面中拥有众多类型的节点，不同类型的节点其表示和操作的方式有很大的差异，下面分别列出：
+
+❏ Text：标签之间或标签包含的文本内容
+❏ Comment：HTML或XML中的注释
+❏ Element：网页的各种HTML标签，如a标签 div标签等
+❏ Document：整个DOM树的根，代表整个文档
+❏ Attribute：网页元素的属性节点
+❏ DocumentType：文档类型（doctype）标签
+❏ DocumentFragment：文档的片段，如果感觉费解请移步MDN-DocumentFragment
+
+尽管在HTML页面中存在着如此众多类型的节点，但我们真正需要关注的主要还是：元素节点、属性节点和文本节点。在(HTML|XHTML)文档中，文本节点总是被包含在元素节点的内部，属性节点用来对元素做出更具体的描述。
+
+
+
+在上面的图示中，我们提供了一个div标签，该标签拥有“上坡和下坡不就是同一条路吗”文本内容和两个属性节点。
+① 个div标签由开始标签和结尾标签组成，本身是Element类型的。
+② “上坡和下坡不就是同一条路吗”作为div标签的文本内容，本身是Text类型的。
+③ div标签中的class和title是属性节点(key-value)，本身是Attribute类型的。
+节点关系
+
+DOM中节点的关系主要有以下几种情况
+
+子节点 父节点 后代节点(子孙节点) 祖先节点 兄弟节点
+
+通用所说的Document和HTMLDocument以及Element类型与和HTMLElement类型是严格区分的。Document类型代表一个HTML或XML文档，Element类型代表该文档中的一个元素。而HTMLDocument和HTMLElement通常只针对HTML文档和其元素。
+Posted by 博客园·文顶顶 ~ 文顶顶的个人博客_花田半亩
+联系作者 简书·文顶顶 新浪微博·文顶顶
+原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | 文顶顶
+
+
+下一篇
+© 2015 - 2018 文顶顶  ☁ 全站字数统计108.4k(字)
+VM627:1 outerText 文顶顶的BLOG标签博客园微博花田半亩
+网络编程系列 DOM和DOM操作基础
+Jun 6, 2018 ✧ 字数统计:783(字)    ♨︎ 阅读时长:3(分钟)
+1.0 关于DOM
+简单介绍
+
+DOM（全称为Document Object Model）即文档对象模型，是用于表示和操作HTML或XML文档内容的一套基础API。
+
+✧ 有时候我们可能会看到DHTML这个专业术语：DHTML是动画HTML的简称，其并不是一项新的技术，而是描述HTML CSS JavaScript技术组合的术语。它曾被认为是HTML/XHTML CSS和JavaScript相结合的产物，像今天的HTML5，但真正凝聚它们的是DOM。
+当网页被加载时，浏览器会内部的引擎会根据DOM模型，将结构化文档（比如HTML和XML）解析成一系列的节点，再由这些节点构建出一种树状结构（DOM Tree）。
+
+下面给出一段简单的HTML示例代码和对应的DOM树结构图。图示中的的方框代表着文档中的一个个节点，每个方框（节点）暨一个Node对象，所有这些节点组成了DOM树。
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM树演示代码</title>
+</head>
+<body>
+<div class="className">Hi! 文顶顶</div>
+<a href="http://www.wendingding.com" target="_blank" rel="external"></a>
+</body>
+</html>
+
+
+节点的类型
+
+HTML页面中拥有众多类型的节点，不同类型的节点其表示和操作的方式有很大的差异，下面分别列出：
+
+❏ Text：标签之间或标签包含的文本内容
+❏ Comment：HTML或XML中的注释
+❏ Element：网页的各种HTML标签，如a标签 div标签等
+❏ Document：整个DOM树的根，代表整个文档
+❏ Attribute：网页元素的属性节点
+❏ DocumentType：文档类型（doctype）标签
+❏ DocumentFragment：文档的片段，如果感觉费解请移步MDN-DocumentFragment
+
+尽管在HTML页面中存在着如此众多类型的节点，但我们真正需要关注的主要还是：元素节点、属性节点和文本节点。在(HTML|XHTML)文档中，文本节点总是被包含在元素节点的内部，属性节点用来对元素做出更具体的描述。
+
+
+
+在上面的图示中，我们提供了一个div标签，该标签拥有“上坡和下坡不就是同一条路吗”文本内容和两个属性节点。
+① 个div标签由开始标签和结尾标签组成，本身是Element类型的。
+② “上坡和下坡不就是同一条路吗”作为div标签的文本内容，本身是Text类型的。
+③ div标签中的class和title是属性节点(key-value)，本身是Attribute类型的。
+节点关系
+
+DOM中节点的关系主要有以下几种情况
+
+子节点 父节点 后代节点(子孙节点) 祖先节点 兄弟节点
+
+通用所说的Document和HTMLDocument以及Element类型与和HTMLElement类型是严格区分的。Document类型代表一个HTML或XML文档，Element类型代表该文档中的一个元素。而HTMLDocument和HTMLElement通常只针对HTML文档和其元素。
+Posted by 博客园·文顶顶 ~ 文顶顶的个人博客_花田半亩
+联系作者 简书·文顶顶 新浪微博·文顶顶
+原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | 文顶顶
+
+
+下一篇
+© 2015 - 2018 文顶顶  ☁ 全站字数统计108.4k(字)
+VM627:1 onabort null
+VM627:1 oncancel null
+VM627:1 oncanplay null
+VM627:1 oncanplaythrough null
+VM627:1 onchange null
+VM627:1 onclick null
+VM627:1 onclose null
+VM627:1 oncontextmenu null
+VM627:1 oncuechange null
+VM627:1 ondblclick null
+VM627:1 ondrag null
+VM627:1 ondragend null
+VM627:1 ondragenter null
+VM627:1 ondragleave null
+VM627:1 ondragover null
+VM627:1 ondragstart null
+VM627:1 ondrop null
+VM627:1 ondurationchange null
+VM627:1 onemptied null
+VM627:1 onended null
+VM627:1 oninput null
+VM627:1 oninvalid null
+VM627:1 onkeydown null
+VM627:1 onkeypress null
+VM627:1 onkeyup null
+VM627:1 onloadeddata null
+VM627:1 onloadedmetadata null
+VM627:1 onloadstart null
+VM627:1 onmousedown null
+VM627:1 onmouseenter null
+VM627:1 onmouseleave null
+VM627:1 onmousemove null
+VM627:1 onmouseout null
+VM627:1 onmouseover null
+VM627:1 onmouseup null
+VM627:1 onmousewheel null
+VM627:1 onpause null
+VM627:1 onplay null
+VM627:1 onplaying null
+VM627:1 onprogress null
+VM627:1 onratechange null
+VM627:1 onreset null
+VM627:1 onseeked null
+VM627:1 onseeking null
+VM627:1 onselect null
+VM627:1 onstalled null
+VM627:1 onsubmit null
+VM627:1 onsuspend null
+VM627:1 ontimeupdate null
+VM627:1 ontoggle null
+VM627:1 onvolumechange null
+VM627:1 onwaiting null
+VM627:1 onwheel null
+VM627:1 onauxclick null
+VM627:1 ongotpointercapture null
+VM627:1 onlostpointercapture null
+VM627:1 onpointerdown null
+VM627:1 onpointermove null
+VM627:1 onpointerup null
+VM627:1 onpointercancel null
+VM627:1 onpointerover null
+VM627:1 onpointerout null
+VM627:1 onpointerenter null
+VM627:1 onpointerleave null
+VM627:1 nonce
+VM627:1 click ƒ click() { [native code] }
+VM627:1 focus ƒ focus() { [native code] }
+VM627:1 blur ƒ blur() { [native code] }
+VM627:1 inputMode
+VM627:1 namespaceURI http://www.w3.org/1999/xhtml
+VM627:1 prefix null
+VM627:1 localName body
+VM627:1 tagName BODY
+VM627:1 id
+VM627:1 className
+VM627:1 classList DOMTokenList [value: ""]
+VM627:1 slot
+VM627:1 attributes NamedNodeMap {length: 0}
+VM627:1 shadowRoot null
+VM627:1 assignedSlot null
+VM627:1 innerHTML <div id="MathJax_Message" style="display: none;"></div><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">网络编程系列 DOM和DOM操作基础</h1><div class="post-info">Jun 6, 2018<span class="post-count"></span> ✧ 字数统计:783(字) &nbsp;&nbsp; ♨︎ 阅读时长:3(分钟)</div><div class="post-content"><h3 id="1-0-关于DOM"><a href="#1-0-关于DOM" class="headerlink" title="1.0  关于DOM"></a>1.0  关于DOM</h3><p><strong>简单介绍</strong></p>
+    <p>DOM（全称为Document Object Model）即<strong><code>文档对象模型</code></strong>，<span style="color:#195">是用于表示和操作HTML或XML文档内容的一套基础API。</span></p>
+    <div class="tip"><br>✧ 有时候我们可能会看到DHTML这个专业术语：<span style="color:#195">DHTML是动画HTML的简称</span>，其并不是一项新的技术，而是描述HTML CSS JavaScript技术组合的术语。它曾被认为是HTML/XHTML CSS和JavaScript相结合的产物，像今天的HTML5，但真正凝聚它们的是DOM。<br></div>
+
+    <p>当网页被加载时，浏览器会内部的引擎会根据DOM模型，将结构化文档（比如HTML和XML）解析成一系列的节点，再由这些节点构建出一种树状结构（DOM Tree）。</p>
+    <p>下面给出一段简单的HTML示例代码和对应的DOM树结构图。图示中的的方框代表着文档中的一个个节点，每个方框（节点）暨一个Node对象，所有这些节点组成了DOM树。<br></p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>DOM树演示代码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"className"</span>&gt;</span>Hi! 文顶顶<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.wendingding.com"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></tbody></table></figure><p></p>
+    <p><img src="https://github.com/flowerField/Source/blob/master/Blog/dom1.png?raw=true"></p>
+    <p><strong>节点的类型</strong></p>
+    <p>HTML页面中拥有众多类型的节点，不同类型的节点其表示和操作的方式有很大的差异，下面分别列出：</p>
+    <blockquote>
+        <p>❏ Text：标签之间或标签包含的文本内容<br>❏ Comment：HTML或XML中的注释<br>❏ Element：网页的各种HTML标签，如a标签 div标签等<br>❏ Document：整个DOM树的根，代表整个文档<br>❏ Attribute：网页元素的属性节点<br>❏ DocumentType：文档类型（doctype）标签<br>❏ DocumentFragment：文档的片段，如果感觉费解请移步<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DocumentFragment" target="_blank" rel="external">MDN-DocumentFragment</a></p>
+    </blockquote>
+    <p>尽管在HTML页面中存在着如此众多类型的节点，但我们真正需要关注的主要还是：<strong><code>元素节点</code></strong>、<strong><code>属性节点</code></strong>和<strong><code>文本节点</code></strong>。在(HTML|XHTML)文档中，文本节点总是被包含在元素节点的内部，属性节点用来对元素做出更具体的描述。</p>
+    <p><img src="https://github.com/flowerField/Source/blob/master/Blog/dom2.png?raw=true"></p>
+    <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">在上面的图示中，我们提供了一个div标签，该标签拥有“上坡和下坡不就是同一条路吗”文本内容和两个属性节点。</div><div class="line">① 个div标签由开始标签和结尾标签组成，本身是Element类型的。</div><div class="line">② “上坡和下坡不就是同一条路吗”作为div标签的文本内容，本身是Text类型的。</div><div class="line">③ div标签中的class和title是属性节点(key-value)，本身是Attribute类型的。</div></pre></td></tr></tbody></table></figure>
+    <p><strong>节点关系</strong></p>
+    <p>DOM中节点的关系主要有以下几种情况</p>
+    <p><strong><code>子节点</code></strong> <strong><code>父节点</code></strong> <strong><code>后代节点(子孙节点)</code></strong> <strong><code>祖先节点</code></strong> <strong><code>兄弟节点</code></strong></p>
+    <div class="tip">通用所说的<span style="color:#195">Document和HTMLDocument</span>以及<span style="color:#195">Element类型与和HTMLElement类型</span>是严格区分的。Document类型代表一个HTML或XML文档，Element类型代表该文档中的一个元素。而HTMLDocument和HTMLElement通常只针对HTML文档和其元素。</div>
+
+    <hr>
+    <ul>
+        <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="http://wendingding.com" target="_blank" rel="external">文顶顶的个人博客_花田半亩</a></li>
+        <li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">文顶顶</a></li>
+        <li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a></li>
+    </ul>
+    <p><img src="https://github.com/flowerField/Source/blob/master/Blog/zanshang.jpeg?raw=true" width="180" height="180"></p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/06/05/网络编程系列 浏览器、HTML和内核(引擎)/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计108.4k(字)</p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+VM627:1 outerHTML <body><div id="MathJax_Message" style="display: none;"></div><div class="wrap"><header><a href="/" class="logo-link"><img src="/白菜.jpeg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">网络编程系列 DOM和DOM操作基础</h1><div class="post-info">Jun 6, 2018<span class="post-count"></span> ✧ 字数统计:783(字) &nbsp;&nbsp; ♨︎ 阅读时长:3(分钟)</div><div class="post-content"><h3 id="1-0-关于DOM"><a href="#1-0-关于DOM" class="headerlink" title="1.0  关于DOM"></a>1.0  关于DOM</h3><p><strong>简单介绍</strong></p>
+    <p>DOM（全称为Document Object Model）即<strong><code>文档对象模型</code></strong>，<span style="color:#195">是用于表示和操作HTML或XML文档内容的一套基础API。</span></p>
+    <div class="tip"><br>✧ 有时候我们可能会看到DHTML这个专业术语：<span style="color:#195">DHTML是动画HTML的简称</span>，其并不是一项新的技术，而是描述HTML CSS JavaScript技术组合的术语。它曾被认为是HTML/XHTML CSS和JavaScript相结合的产物，像今天的HTML5，但真正凝聚它们的是DOM。<br></div>
+
+    <p>当网页被加载时，浏览器会内部的引擎会根据DOM模型，将结构化文档（比如HTML和XML）解析成一系列的节点，再由这些节点构建出一种树状结构（DOM Tree）。</p>
+    <p>下面给出一段简单的HTML示例代码和对应的DOM树结构图。图示中的的方框代表着文档中的一个个节点，每个方框（节点）暨一个Node对象，所有这些节点组成了DOM树。<br></p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>DOM树演示代码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"className"</span>&gt;</span>Hi! 文顶顶<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.wendingding.com"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></tbody></table></figure><p></p>
+    <p><img src="https://github.com/flowerField/Source/blob/master/Blog/dom1.png?raw=true"></p>
+    <p><strong>节点的类型</strong></p>
+    <p>HTML页面中拥有众多类型的节点，不同类型的节点其表示和操作的方式有很大的差异，下面分别列出：</p>
+    <blockquote>
+        <p>❏ Text：标签之间或标签包含的文本内容<br>❏ Comment：HTML或XML中的注释<br>❏ Element：网页的各种HTML标签，如a标签 div标签等<br>❏ Document：整个DOM树的根，代表整个文档<br>❏ Attribute：网页元素的属性节点<br>❏ DocumentType：文档类型（doctype）标签<br>❏ DocumentFragment：文档的片段，如果感觉费解请移步<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DocumentFragment" target="_blank" rel="external">MDN-DocumentFragment</a></p>
+    </blockquote>
+    <p>尽管在HTML页面中存在着如此众多类型的节点，但我们真正需要关注的主要还是：<strong><code>元素节点</code></strong>、<strong><code>属性节点</code></strong>和<strong><code>文本节点</code></strong>。在(HTML|XHTML)文档中，文本节点总是被包含在元素节点的内部，属性节点用来对元素做出更具体的描述。</p>
+    <p><img src="https://github.com/flowerField/Source/blob/master/Blog/dom2.png?raw=true"></p>
+    <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">在上面的图示中，我们提供了一个div标签，该标签拥有“上坡和下坡不就是同一条路吗”文本内容和两个属性节点。</div><div class="line">① 个div标签由开始标签和结尾标签组成，本身是Element类型的。</div><div class="line">② “上坡和下坡不就是同一条路吗”作为div标签的文本内容，本身是Text类型的。</div><div class="line">③ div标签中的class和title是属性节点(key-value)，本身是Attribute类型的。</div></pre></td></tr></tbody></table></figure>
+    <p><strong>节点关系</strong></p>
+    <p>DOM中节点的关系主要有以下几种情况</p>
+    <p><strong><code>子节点</code></strong> <strong><code>父节点</code></strong> <strong><code>后代节点(子孙节点)</code></strong> <strong><code>祖先节点</code></strong> <strong><code>兄弟节点</code></strong></p>
+    <div class="tip">通用所说的<span style="color:#195">Document和HTMLDocument</span>以及<span style="color:#195">Element类型与和HTMLElement类型</span>是严格区分的。Document类型代表一个HTML或XML文档，Element类型代表该文档中的一个元素。而HTMLDocument和HTMLElement通常只针对HTML文档和其元素。</div>
+
+    <hr>
+    <ul>
+        <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="http://wendingding.com" target="_blank" rel="external">文顶顶的个人博客_花田半亩</a></li>
+        <li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">文顶顶</a></li>
+        <li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a></li>
+    </ul>
+    <p><img src="https://github.com/flowerField/Source/blob/master/Blog/zanshang.jpeg?raw=true" width="180" height="180"></p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/06/05/网络编程系列 浏览器、HTML和内核(引擎)/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计108.4k(字)</p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body>
+VM627:1 scrollTop 0
+VM627:1 scrollLeft 0
+VM627:1 scrollWidth 1216
+VM627:1 scrollHeight 2755
+VM627:1 clientTop 0
+VM627:1 clientLeft 0
+VM627:1 clientWidth 1216
+VM627:1 clientHeight 150
+VM627:1 onbeforecopy null
+VM627:1 onbeforecut null
+VM627:1 onbeforepaste null
+VM627:1 oncopy null
+VM627:1 oncut null
+VM627:1 onpaste null
+VM627:1 onsearch null
+VM627:1 onselectstart null
+VM627:1 previousElementSibling <head>​…​</head>​
+VM627:1 nextElementSibling null
+VM627:1 children HTMLCollection(3) [div#MathJax_Message, div.wrap, script, MathJax_Message: div#MathJax_Message]
+VM627:1 firstElementChild <div id="​"MathJax_Message"" style="​"display:​" none;​"="">​​</div>​
+VM627:1 lastElementChild <script async src="​"/​/​cdn.bootcss.com/​mathjax/​2.7.0/​MathJax.js?config=TeX-MML-AM_CHTML"" integrity="​"sha384-crwIf/​BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW"" crossorigin="​"anonymous"">​</script>​
+VM627:1 childElementCount 3
+VM627:1 onwebkitfullscreenchange null
+VM627:1 onwebkitfullscreenerror null
+VM627:1 setPointerCapture ƒ setPointerCapture() { [native code] }
+VM627:1 releasePointerCapture ƒ releasePointerCapture() { [native code] }
+VM627:1 hasPointerCapture ƒ hasPointerCapture() { [native code] }
+VM627:1 hasAttributes ƒ hasAttributes() { [native code] }
+VM627:1 getAttributeNames ƒ getAttributeNames() { [native code] }
+VM627:1 getAttribute ƒ getAttribute() { [native code] }
+VM627:1 getAttributeNS ƒ getAttributeNS() { [native code] }
+VM627:1 setAttribute ƒ setAttribute() { [native code] }
+VM627:1 setAttributeNS ƒ setAttributeNS() { [native code] }
+VM627:1 removeAttribute ƒ removeAttribute() { [native code] }
+VM627:1 removeAttributeNS ƒ removeAttributeNS() { [native code] }
+VM627:1 hasAttribute ƒ hasAttribute() { [native code] }
+VM627:1 hasAttributeNS ƒ hasAttributeNS() { [native code] }
+VM627:1 getAttributeNode ƒ getAttributeNode() { [native code] }
+VM627:1 getAttributeNodeNS ƒ getAttributeNodeNS() { [native code] }
+VM627:1 setAttributeNode ƒ setAttributeNode() { [native code] }
+VM627:1 setAttributeNodeNS ƒ setAttributeNodeNS() { [native code] }
+VM627:1 removeAttributeNode ƒ removeAttributeNode() { [native code] }
+VM627:1 closest ƒ closest() { [native code] }
+VM627:1 matches ƒ matches() { [native code] }
+VM627:1 webkitMatchesSelector ƒ webkitMatchesSelector() { [native code] }
+VM627:1 attachShadow ƒ attachShadow() { [native code] }
+VM627:1 getElementsByTagName ƒ getElementsByTagName() { [native code] }
+VM627:1 getElementsByTagNameNS ƒ getElementsByTagNameNS() { [native code] }
+VM627:1 getElementsByClassName ƒ getElementsByClassName() { [native code] }
+VM627:1 insertAdjacentElement ƒ insertAdjacentElement() { [native code] }
+VM627:1 insertAdjacentText ƒ insertAdjacentText() { [native code] }
+VM627:1 insertAdjacentHTML ƒ insertAdjacentHTML() { [native code] }
+VM627:1 requestPointerLock ƒ requestPointerLock() { [native code] }
+VM627:1 getClientRects ƒ getClientRects() { [native code] }
+VM627:1 getBoundingClientRect ƒ getBoundingClientRect() { [native code] }
+VM627:1 scrollIntoView ƒ scrollIntoView() { [native code] }
+VM627:1 scrollIntoViewIfNeeded ƒ scrollIntoViewIfNeeded() { [native code] }
+VM627:1 animate ƒ animate() { [native code] }
+VM627:1 before ƒ before() { [native code] }
+VM627:1 after ƒ after() { [native code] }
+VM627:1 replaceWith ƒ replaceWith() { [native code] }
+VM627:1 remove ƒ remove() { [native code] }
+VM627:1 prepend ƒ prepend() { [native code] }
+VM627:1 append ƒ append() { [native code] }
+VM627:1 querySelector ƒ querySelector() { [native code] }
+VM627:1 querySelectorAll ƒ querySelectorAll() { [native code] }
+VM627:1 webkitRequestFullScreen ƒ webkitRequestFullScreen() { [native code] }
+VM627:1 webkitRequestFullscreen ƒ webkitRequestFullscreen() { [native code] }
+VM627:1 attributeStyleMap StylePropertyMap {size: 0}
+VM627:1 scroll ƒ scroll() { [native code] }
+VM627:1 scrollTo ƒ scrollTo() { [native code] }
+VM627:1 scrollBy ƒ scrollBy() { [native code] }
+VM627:1 createShadowRoot ƒ createShadowRoot() { [native code] }
+VM627:1 getDestinationInsertionPoints ƒ getDestinationInsertionPoints() { [native code] }
+VM627:1 computedStyleMap ƒ computedStyleMap() { [native code] }
+VM627:1 ELEMENT_NODE 1
+VM627:1 ATTRIBUTE_NODE 2
+VM627:1 TEXT_NODE 3
+VM627:1 CDATA_SECTION_NODE 4
+VM627:1 ENTITY_REFERENCE_NODE 5
+VM627:1 ENTITY_NODE 6
+VM627:1 PROCESSING_INSTRUCTION_NODE 7
+VM627:1 COMMENT_NODE 8
+VM627:1 DOCUMENT_NODE 9
+VM627:1 DOCUMENT_TYPE_NODE 10
+VM627:1 DOCUMENT_FRAGMENT_NODE 11
+VM627:1 NOTATION_NODE 12
+VM627:1 DOCUMENT_POSITION_DISCONNECTED 1
+VM627:1 DOCUMENT_POSITION_PRECEDING 2
+VM627:1 DOCUMENT_POSITION_FOLLOWING 4
+VM627:1 DOCUMENT_POSITION_CONTAINS 8
+VM627:1 DOCUMENT_POSITION_CONTAINED_BY 16
+VM627:1 DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC 32
+VM627:1 nodeType 1
+VM627:1 nodeName BODY
+VM627:1 baseURI http://wendingding.com/2018/06/06/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97%20DOM%E5%92%8CDOM%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80/
+VM627:1 isConnected true
+VM627:1 ownerDocument #document
+VM627:1 parentNode <html lang="​"zh-Hans"">​<head>​…​</head>​<body>​…​</body>​</html>​
+VM627:1 parentElement <html lang="​"zh-Hans"">​<head>​…​</head>​<body>​…​</body>​</html>​
+VM627:1 childNodes NodeList(3) [div#MathJax_Message, div.wrap, script]
+VM627:1 firstChild <div id="​"MathJax_Message"" style="​"display:​" none;​"="">​​</div>​
+VM627:1 lastChild <script async src="​"/​/​cdn.bootcss.com/​mathjax/​2.7.0/​MathJax.js?config=TeX-MML-AM_CHTML"" integrity="​"sha384-crwIf/​BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW"" crossorigin="​"anonymous"">​</script>​
+VM627:1 previousSibling <head>​…​</head>​
+VM627:1 nextSibling null
+VM627:1 nodeValue null
+VM627:1 textContent 文顶顶的BLOG标签博客园微博花田半亩网络编程系列 DOM和DOM操作基础Jun 6, 2018 ✧ 字数统计:783(字)    ♨︎ 阅读时长:3(分钟)1.0  关于DOM简单介绍
+DOM（全称为Document Object Model）即文档对象模型，是用于表示和操作HTML或XML文档内容的一套基础API。
+✧ 有时候我们可能会看到DHTML这个专业术语：DHTML是动画HTML的简称，其并不是一项新的技术，而是描述HTML CSS JavaScript技术组合的术语。它曾被认为是HTML/XHTML CSS和JavaScript相结合的产物，像今天的HTML5，但真正凝聚它们的是DOM。
+
+当网页被加载时，浏览器会内部的引擎会根据DOM模型，将结构化文档（比如HTML和XML）解析成一系列的节点，再由这些节点构建出一种树状结构（DOM Tree）。
+下面给出一段简单的HTML示例代码和对应的DOM树结构图。图示中的的方框代表着文档中的一个个节点，每个方框（节点）暨一个Node对象，所有这些节点组成了DOM树。1234567891011<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <title>DOM树演示代码</title></head><body><div class="className">Hi! 文顶顶</div><a href="http://www.wendingding.com" target="_blank" rel="external"></a></body></html>
+
+节点的类型
+HTML页面中拥有众多类型的节点，不同类型的节点其表示和操作的方式有很大的差异，下面分别列出：
+
+❏ Text：标签之间或标签包含的文本内容❏ Comment：HTML或XML中的注释❏ Element：网页的各种HTML标签，如a标签 div标签等❏ Document：整个DOM树的根，代表整个文档❏ Attribute：网页元素的属性节点❏ DocumentType：文档类型（doctype）标签❏ DocumentFragment：文档的片段，如果感觉费解请移步MDN-DocumentFragment
+
+尽管在HTML页面中存在着如此众多类型的节点，但我们真正需要关注的主要还是：元素节点、属性节点和文本节点。在(HTML|XHTML)文档中，文本节点总是被包含在元素节点的内部，属性节点用来对元素做出更具体的描述。
+
+1234在上面的图示中，我们提供了一个div标签，该标签拥有“上坡和下坡不就是同一条路吗”文本内容和两个属性节点。① 个div标签由开始标签和结尾标签组成，本身是Element类型的。② “上坡和下坡不就是同一条路吗”作为div标签的文本内容，本身是Text类型的。③ div标签中的class和title是属性节点(key-value)，本身是Attribute类型的。
+节点关系
+DOM中节点的关系主要有以下几种情况
+子节点 父节点 后代节点(子孙节点) 祖先节点 兄弟节点
+通用所说的Document和HTMLDocument以及Element类型与和HTMLElement类型是严格区分的。Document类型代表一个HTML或XML文档，Element类型代表该文档中的一个元素。而HTMLDocument和HTMLElement通常只针对HTML文档和其元素。
+
+
+
+Posted by 博客园·文顶顶 ~ 文顶顶的个人博客_花田半亩
+联系作者 简书·文顶顶 新浪微博·文顶顶
+原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | 文顶顶
+
+
+下一篇© 2015 - 2018 文顶顶  ☁ 全站字数统计108.4k(字)
+VM627:1 hasChildNodes ƒ hasChildNodes() { [native code] }
+VM627:1 getRootNode ƒ getRootNode() { [native code] }
+VM627:1 normalize ƒ normalize() { [native code] }
+VM627:1 cloneNode ƒ cloneNode() { [native code] }
+VM627:1 isEqualNode ƒ isEqualNode() { [native code] }
+VM627:1 isSameNode ƒ isSameNode() { [native code] }
+VM627:1 compareDocumentPosition ƒ compareDocumentPosition() { [native code] }
+VM627:1 contains ƒ contains() { [native code] }
+VM627:1 lookupPrefix ƒ lookupPrefix() { [native code] }
+VM627:1 lookupNamespaceURI ƒ lookupNamespaceURI() { [native code] }
+VM627:1 isDefaultNamespace ƒ isDefaultNamespace() { [native code] }
+VM627:1 insertBefore ƒ insertBefore() { [native code] }
+VM627:1 appendChild ƒ appendChild() { [native code] }
+VM627:1 replaceChild ƒ replaceChild() { [native code] }
+VM627:1 removeChild ƒ removeChild() { [native code] }
+VM627:1 addEventListener ƒ addEventListener() { [native code] }
+VM627:1 removeEventListener ƒ removeEventListener() { [native code] }
+VM627:1 dispatchEvent ƒ dispatchEvent() { [native code] }</div></article></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计108.8k(字)</p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
