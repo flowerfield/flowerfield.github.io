@@ -16,8 +16,6 @@
 <p><strong>节点关系</strong></p>
 <p>DOM中节点的关系主要有以下几种情况</p>
 <p><strong><code>子节点</code></strong> <strong><code>父节点</code></strong> <strong><code>后代节点(子孙节点)</code></strong> <strong><code>祖先节点</code></strong> <strong><code>兄弟节点</code></strong></p>
-<div class="tip">通常来说<span style="color:#195">Document和HTMLDocument</span>以及<span style="color:#195">Element类型与和HTMLElement类型</span>是严格区分的。Document类型代表一个HTML或XML文档，Element类型代表该文档中的一个元素。而HTMLDocument和HTMLElement通常只针对HTML文档和其元素。</div>
-
 <h3 id="2-0-Node-amp-amp-Elemet-amp-amp-nodeType"><a href="#2-0-Node-amp-amp-Elemet-amp-amp-nodeType" class="headerlink" title="2.0 Node &amp;&amp; Elemet &amp;&amp; nodeType"></a>2.0 Node &amp;&amp; Elemet &amp;&amp; nodeType</h3><p><span style="color:red">Node（节点）和 Element（元素节点）是严格区分的</span>。也就是说Node和Element不能简单的混为一谈，因为很多人都搞不清楚它们的关系，所以这里单独拿出来讨论。</p>
 <p><strong><code>Node</code></strong> 节点，表示构成DOM树的最小组成部分。换句话来说，在页面中不论是元素节点、文本节点还是注释或者别的东西本质上都是Node节点。</p>
 <p><strong><code>Element</code></strong>元素节点，是Node节点中的一种类型。</p>
@@ -25,6 +23,8 @@
 <p>对应到这里的关系，那么Element其实是node的一种更具体的类型。不止Element，像Text、Comment以及Attribute等等这些其实都是特殊的Node，它们拥有自己的类型常量（<span style="color:#f88">TEXT_NODE、COMMENT_NODE以及ATTRIBUTE_NODE</span>）用于区分彼此。</p>
 <p>文档中所有的node节点都拥有nodeType属性，我们可以通过该属性的值来确定节点的具体类型，下面列出对应关系。<br><img src="https://github.com/flowerField/Source/blob/master/Blog/dom4.png?raw=true"></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 可以直接在开发者工具的控制台中像下面这样检测和验证节点的类型</div><div class="line">document.body.nodeType 				    //输出结果为1</div><div class="line">document.body.ELEMENT_NODE                           //输出结果为1</div><div class="line">document.body.ELEMENT_NODE == document.body.nodeType //输出结果为true</div><div class="line"></div><div class="line"># 需要注意的是ELEMENT_NODE是常量</div></pre></td></tr></table></figure>
+<div class="tip">通常来说<span style="color:#195">Document和HTMLDocument</span>以及<span style="color:#195">Element类型与和HTMLElement类型</span>是严格区分的。Document类型代表一个HTML或XML文档，Element类型代表该文档中的一个元素。而HTMLDocument和HTMLElement通常只针对HTML文档和其元素。</div>
+
 <hr>
 <ul>
 <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a> ~ <a href="http://wendingding.com" target="_blank" rel="external">文顶顶的个人博客_花田半亩</a></li>
