@@ -17,7 +17,15 @@
 <p>我们把整个过程初步的划分为<strong><code>根据URL加载并解析网页构建DOM树</code></strong>和<strong><code>渲染布局并绘制</code></strong>这两个阶段。</p>
 <p><strong>通过URL加载并解析网页构建DOM树阶段 </strong><br><img src="https://github.com/flowerField/Source/blob/master/Blog/reader04.png?raw=true"></p>
 <blockquote>
-<p><strong>解析网页构建DOM树具体的处理细节</strong><br>① 当用户在浏览器中输入URL的时候，WebKit内核会调用资源加载器来加载指定路径对应的网页资源（发送请求-接收响应模型）。<br>② 资源加载器依赖网络模块和服务器端建立连接发送请求并接收响应。<br>③ 接收服务器返回的响应数据，是HTML/CSS/JavaScript网页和资源文件。<br>④ 网页内容被交给HTML解释器处理，被转变为一系列的Token。<br>⑤ HTML解释器根据Token来构建Node节点，并最终形成一棵DOM树。<br>⑥ 如果遇到JavaScript代码，那么交给JavaScript引擎解释并执行。<br>⑦ JavaScript代码执行的时候可能会影响到最终DOM树的结构。<br>⑧ HTML解释器在处理网页内容的时候，如果发现当前节点需要依赖于其它的资源，那么将调用资源加载器来加载这些资源（CSS/图片/音频/视频等）。如果异步加载，则和DOM树的构建工作并行执行，如果是同步加载（根据URL加载外部的JavaScript文件），则会暂停DOM树的构建，直到任务处理完毕重复这个过程。</p>
+<p><strong>解析网页构建DOM树具体的处理细节</strong></p>
+<p>① 当用户在浏览器中输入URL的时候，WebKit内核会调用资源加载器来加载指定路径对应的网页资源（发送请求-接收响应模型）。</p>
+<p>② 资源加载器依赖网络模块和服务器端建立连接发送请求并接收响应。</p>
+<p>③ 接收服务器返回的响应数据，是HTML/CSS/JavaScript网页和资源文件。</p>
+<p>④ 网页内容被交给HTML解释器处理，被转变为一系列的Token。</p>
+<p>⑤ HTML解释器根据Token来构建Node节点，并最终形成一棵DOM树。</p>
+<p>⑥ 如果遇到JavaScript代码，那么交给JavaScript引擎解释并执行。</p>
+<p>⑦ JavaScript代码执行的时候可能会影响到最终DOM树的结构。</p>
+<p>⑧ HTML解释器在处理网页内容的时候，如果发现当前节点需要依赖于其它的资源，那么将调用资源加载器来加载这些资源（CSS/图片/音频/视频等）。如果异步加载，则和DOM树的构建工作并行执行，如果是同步加载（根据URL加载外部的JavaScript文件），则会暂停DOM树的构建，直到任务处理完毕重复这个过程。</p>
 </blockquote>
 <div class="tip">小贴士：网页在加载和渲染的处理过程中，会触发DOM的相关事件。在DOM树构建完成后触发<code>DOMContentLoaded事件</code>，在DOM树构建完已经所有资源都加载完毕后触发<code>onload事件</code>。我们在代码中常常通过把js代码写在window.onload方法中的方式来等DOM加载完毕再执行代码，其实监听的就是DOM的onload事件，相应的在jQuery框架的使用过程中，我们把相关的js代码写在<code>$(function(){...})</code>回调函数中，其实监听的是DOM的DOMContentLoaded事件。</div>
 
