@@ -28,7 +28,7 @@
 <div class="tip">小贴士：网页在加载和渲染的处理过程中，会触发DOM的相关事件。在DOM树构建完成后将会触发<code>DOMContentLoaded事件</code>，在DOM树构建完已经所有资源都加载完毕后将会触发<code>onload事件</code>。我们在代码中常常通过把js代码写在window.onload方法中的方式来等DOM加载完毕再执行代码，其实监听的就是DOM的onload事件，相应的在jQuery框架的使用过程中，我们把相关的js代码写在<code>$(function(){...})</code>或者$().ready(function(){//…})回调函数中，其实监听的是DOM的DOMContentLoaded事件。</div>
 
 <p><strong> ↪ ︎渲染布局并绘制阶段</strong></p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/reader05.png?raw=true"><br><strong><span style="color:red">渲染布局以及绘制阶段具体的处理细节</span></strong></p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/reader5.png?raw=true"><br><strong><span style="color:red">渲染布局以及绘制阶段具体的处理细节</span></strong></p>
 <p>① CSS样式相关的部分将被CSS解释器处理为内部表示结构。</p>
 <p>② 将CSS解释器处理完后的样式信息附加在构件好的DOM树上，成为RenderObject树。</p>
 <p>③ 在RenderObject节点创建的同时，WebKit内核会根据网页的层次结构来创建RenderLayer树。</p>
