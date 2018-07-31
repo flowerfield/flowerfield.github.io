@@ -8,11 +8,10 @@
 </blockquote>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/reader03.png?raw=true"></p>
 <p>接下来我们开始讨论<span style="color:#f66">从浏览器地址栏输入URL地址敲下回车键到我们能够看到网页内容的这个过程</span>。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/reader01.png?raw=true"></p>
 <p>把用户输入的URL转换为可视化的视图，这本身就是浏览器最最主要的功能，这个过程基本上可以划分为网页的加载和显示(渲染)两个部分。所谓网页的加载，指的主要是从用户输入URL到DOM树构建完成的过程，而网页渲染的过程，主要处理根据DOM树来生成可视化视图的部分。</p>
 <p><span style="color:#0b0">当我们在浏览器的地址栏里输入了指定的URL之后，浏览器会先调用网络相关模块向指定的服务器发送网络请求，服务器接收到合法的请求后把网页文件以响应的方式返回给客户端（浏览器）。</span><br><span style="color:#0b0"><br>当浏览器接收到对应的网页内容后，会先把网页内容作为输入交给HTML解释器处理，HTML解释器会将网页内容最终解释为一棵DOM树(DOM Tree)，这期间如果遇到JavaScript代码，则转交给JavaScript引擎处理，如果遇到CSS内容，则转交给CSS解释器处理。当DOM树构建完成的时候，渲染引擎将接收CSS解释器输出的样式信息，并作用于DOM树构建出一个新的内部绘图模型（也称为渲染树，即Render Tree）。在构建出渲染树之后，再由布局模块计算出各个元素的位置和大小等信息，最后交给绘图模块画出最终的视图。</span></p>
 <p>为了更好的理解这个过程，这里给出基本的渲染过程图示，除必要过程外，图中还列出了该过程中需要依赖的主要模块，需要注意的是<code>有的过程是单向的（单箭头）有的过程是双向的（双向箭头</code>。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/reader02.png?raw=true"></p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/reader002.png?raw=true"></p>
 <h3 id="2-0-WebKit的渲染过程"><a href="#2-0-WebKit的渲染过程" class="headerlink" title="2.0 WebKit的渲染过程"></a>2.0 WebKit的渲染过程</h3><p>虽然主流内核对HTML网页的渲染过程大同小异，但不同的渲染引擎其内部的处理细节差别还是比较大的，这种差别主要体现在<strong><code>渲染流程</code></strong>和<strong><code>专业术语</code></strong>等方面，考虑到WebKit内核当前的主导地位，这里专门挑出WebKit内核，并深入其内部的具体渲染细节。</p>
 <p>我们把整个过程初步的划分为<strong><code>根据URL加载并解析网页构建DOM树</code></strong>和<strong><code>渲染布局并绘制</code></strong>这两个阶段。</p>
 <p><strong> ↪ ︎通过URL加载并解析网页构建DOM树阶段 </strong><br><img src="https://github.com/flowerField/Source/blob/master/Blog/reader04.png?raw=true"></p>
