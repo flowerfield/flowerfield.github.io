@@ -26,7 +26,7 @@
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/crypt003.png?raw=true"></p>
 <p><strong>凯撒密码</strong> 凯撒密码指的是公元前100年左右诞生于古罗马的军事统帅<code>朱利叶斯·凯撒</code>使用的密码。凯撒密码的特点是通过将明文中所使用的字母表按照一定的字数平移来进行加密和解密。在这里如何加密（平移）其实就是加密算法，平移的位数其实就是密钥。凯撒密码本质上使用了替换技术来实现加密和解密操作。</p>
 <p><strong>暴力破解</strong> 在破译密码的时候，把所有的密钥都尝试一遍以试图推出原文的方式被称为<strong>暴力破解（brute-force search）</strong>，因为这种破解的方式其实质是要从所有可能的密钥中找出正确的密钥所以也被称为<code>穷举搜索</code>。</p>
-<p><strong>密钥空间</strong> 一种密码技术能够使用的所有密钥的集合被称为密钥空间<code>（key space）</code>, 所有可以使用的密钥的总数就是密钥空间的大小，<span style="color:#195">密钥空间越大，暴力破解的难度就越高</span>。</p>
+<p><strong>密钥空间</strong> 一种密码技术能够使用的所有密钥的集合被称为<strong>密钥空间（key space）</strong>, 所有可以使用的密钥的总数就是密钥空间的大小，<span style="color:#195">密钥空间越大，暴力破解的难度就越高</span>。</p>
 <p><strong>编码</strong> 将显示世界中的数据信息映射为比特序列的操作被称为<code>编码（encoding）</code>, 计算机领域中常见的编码模式有ASCII、UTF8、Base64等。</p>
 <p><strong>算法类型</strong> 从广义上理解，明文生成密文的方法共两种，<strong>流加密法（stream ciphers）</strong>和<strong>分组加密法（block ciphers）</strong>, 其中分组加密法也称为块加密法。流加密技术一次加密明文中的一个位，解密时也是一位一位的进行。块加密即时一次加密明文中的一个分组（常见的是64位一组），解密时也是一个分组一个分组的进行。基于性能的考量，分组加密算法适用性更广具体实现也较多。</p>
 <p><strong>算法模式</strong> 在分组加密算法中有多种算法模式，不同的算法模式对应的分组加密方式也很不一样，常用的算法模式主要有<strong>电子密码本模式（ECB）</strong>、<strong>电子密码链条模式（CBC）</strong>、<strong>加密反馈模式（CFB）</strong>以及<strong>输出反馈模式（OFB）</strong>等等。</p>
