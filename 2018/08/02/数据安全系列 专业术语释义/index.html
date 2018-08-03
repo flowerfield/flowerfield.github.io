@@ -52,13 +52,13 @@
 <p><strong>中间人攻击（Man-in-the-MiddleAttack）</strong> 在特定的场景中(比如网络通信)，使用非对称加密的方式来进行安全的通信可能会遭遇到中间人攻击。假设在客户端和服务器端刚建立通信的时候，客户端先发请求给服务器端索要加密中需要用到的公钥，而这个过程如果被窃听，<span style="color:#195">那么当服务器把公钥返回给客户端的时候，窃听者把返回的公钥截留，然后再自己伪造一个密钥对并把伪造的公钥返回给客户端</span>。客户端拿到公钥之后因为无法对公钥进行认证所以并不知道收到的公钥已在中途被替换，客户端使用窃听者伪造的公钥对消息进行加密之后发给服务器，中途窃听者接收到加密的消息后<span style="color:#195">使用配对的私钥来对加密的消息进行解密，篡改消息的内容后再使用之前截留的公钥来对消息加密并转发给服务器端</span>。整个过程中，客户端和服务器端都没察觉通信已经被监听、消息已经被篡改，它们彼此还天真的以为自己在使用着非对称加密算法进行着世界上最隐蔽的交流。上面描述的这个过程就是一个典型的中间人攻击的场景，利用的正是<code>客户端无法对公钥进行认证</code>以及HTTP明文传输，要解决这个问题可以考虑对公钥进行<strong>数字签名</strong>，在Web通信中对公钥进行数字签名其实就是<strong>证书</strong>。</p>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/crypt0008.png?raw=true"></p>
 <p><strong>RSA算法</strong> RSA是最著名和可靠的非对称加密算法，它的名字由它的三位开发者，即<code>Ron Rivest</code>、<code>Adi Shamir</code>和<code>Leonard Adleman</code>的姓氏的首字母组成，也就是（<strong>Rivest - Shamir - Adleman</strong>）, RSA算法实现基于数学中的素数，它基于的数学事实是：<code>两个大的素数相乘很容易而对于得到的积求因子则很困难</code>。</p>
-<p><strong>数字签名（digital signature）</strong> 数字签名是一种在信息安全领域能够解决伪装、篡改和否认等问题的技术，类似于现实世界中的签名盖章。数字签名技术的使用基于这样的事实：<code>使用一个公钥加密的消息只能使用相应的私钥来进行解密，反过来，使用私钥加密的消息只能用相应的公钥进行解密</code>。想象下面的场景，在双方通信的时候，我们如何能够确认收到的消息是对方发送而不是由中间人伪造的呢？在现实中我们采用的方式可能是盖章、签名或者指纹，因为不管是签名还是指纹都只有特定的人拥有，是私有性质的。我们知道在非对称加密中公钥是可以公开的，私钥私有不能公开，所以具体的实现数字签名的时候，发送方<code>使用自己的私钥来来对消息进行加密就可以得到一个数字签名</code>，接收者收到消息（数字签名）之后如果能够用公钥对消息进行加密那么我们就能够实现基本的<strong>认证</strong>。数字签名技术在现代Web商务中至关重要，多数国家已经把数字签名看成是与手工签名具有同等法律效力的授权机制。</p>
+<p><strong>数字签名（digital signature）</strong> 数字签名是一种在信息安全领域能够解决伪装、篡改和否认等问题的技术，类似于现实世界中的签名盖章。数字签名技术的使用基于这样的事实：<span style="color:#195">使用一个公钥加密的消息只能使用相应的私钥来进行解密，反过来，使用私钥加密的消息只能用相应的公钥进行解密</span>。想象下面的场景，在双方通信的时候，我们如何能够确认收到的消息是对方发送而不是由中间人伪造的呢？在现实中我们采用的方式可能是盖章、签名或者指纹，因为不管是签名还是指纹都只有特定的人拥有，是私有性质的。我们知道在非对称加密中公钥是可以公开的，私钥私有不能公开，所以具体的实现数字签名的时候，发送方<code>使用自己的私钥来来对消息进行加密就可以得到一个数字签名</code>，接收者收到消息（数字签名）之后如果能够用公钥对消息进行加密那么我们就能够实现基本的<strong>认证</strong>。数字签名技术在现代Web商务中至关重要，多数国家已经把数字签名看成是与手工签名具有同等法律效力的授权机制。</p>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/crypt009.png?raw=true"></p>
 <p><strong>生成数字签名</strong> 使用自己的私钥来对特定消息进行加密得到签名字符串的过程，我们称为生成数字签名，该步骤由发送者处理。</p>
 <p><strong>验证数字签名</strong> 接收到签名消息后使用发送者的公钥<span style="color:#195">（签名密钥只能由签名的人持有，而验证公钥则是任何需要验证签名的人都可以持有）</span>来对签名进行解密匹配的过程，我们称为验证数字签名，该步骤由接收者处理。验证数字签名的结果可以是成功或者是失败，如果成功则表示该信息确实是由特定的发送者发出的。</p>
 <p><strong>数字签名机制</strong> 数字签名的机制似乎刚好是把非对称加密的过程反过来，在数字签名技术中，我们使用私钥来对消息加密生成签名，然后使用公钥来对签名进行验证。常用的生成和验证数字签名的方法有两种<strong>① 直接对消息进行签名</strong>以及<strong>② 对消息的散列值进行签名</strong>。</p>
 <p><strong>散列值（Hash Value）</strong> 使用<strong>单向散列函数</strong>来对消息进行散列计算得到的结果被称为散列值，散列值也被称为<strong>消息摘要（Message digest）</strong>或者<strong>指纹（Fingerprint）</strong>。</p>
-<p><strong>单向散列函数（One-way Hash Function）</strong> 单向散列函数也被称为<strong>消息摘要函数（Message Digest Function）</strong>、<strong>哈希函数</strong>或者是<strong>杂凑函数</strong>。单向散列函数根据消息的内容来计算出散列值，在数据加密（如注册-登录）、文件完整性验证、版权处理、云盘秒传等方面有具体的应用。经典的单向散列函数算法有：MD4、MD5、SHA家族以及HMAC等，下面简单罗列单向散列函数的性质特征：</p>
+<p><strong>单向散列函数（One-way Hash Function）</strong> 单向散列函数也被称为<strong>消息摘要函数（Message Digest Function）</strong>、<strong>哈希函数</strong>或者是<strong>杂凑函数</strong>。单向散列函数根据消息的内容来计算出散列值，在数据加密（如注册-登录）、文件完整性验证、版权处理、云盘秒传等方面有具体的应用。经典的单向散列函数算法有：<code>MD4、MD5、SHA家族以及HMAC</code>等，下面简单罗列单向散列函数的性质特征：</p>
 <blockquote>
 <p>❑ 对任意长度的消息计算得到的散列值是定长的。<br>❑ 计算散列值的速度快、效率高<br>❑ 消息相同，散列值一定相同，消息不同，散列值一定不同。<br>❑ 散列计算的过程是单向的，不可逆</p>
 </blockquote>
@@ -68,7 +68,7 @@
 <p><strong>弱抗碰撞性</strong> 单向散列函数必须确保要找到和该条消息具有相同散列值的另外一条消息是非常困难的，这一性质被称为弱抗碰撞性。</p>
 <p><strong>MD4</strong> 消息摘要算法第4版本，<strong>（Message Digest 4）</strong>1990年由Rivest设计，已经被破解并不安全。</p>
 <p><strong>MD5</strong> 消息摘要算法第5版本，<strong>（Message Digest 5）</strong> Rivest于1991年设计的单向散列函数，能够产生128位的散列值，该算法的强抗碰撞性已经被攻破也不安全。</p>
-<p><strong>SHA家族算法</strong> SHA家族拥有一系列的具体算法，包括：SHA-1、SHA-256、SHA-384、SHA-512等，这些算法均是由美国国家标准与技术研究院（National Institute of Standards and Technology，NIST）设计的单向散列函数。目前SHA-1的强抗碰撞性已经被攻破（2005年由山东大学王小云教授带领的团队提出了针对SHA-1的碰撞攻击算法）。</p>
+<p><strong>SHA家族算法</strong> SHA家族拥有一系列的具体算法，包括：<code>SHA-1、SHA-256、SHA-384、SHA-512</code>等，这些算法均是由美国国家标准与技术研究院（National Institute of Standards and Technology，NIST）设计的单向散列函数。目前SHA-1的强抗碰撞性已经被攻破（2005年由山东大学王小云教授带领的团队提出了针对SHA-1的碰撞攻击算法）。</p>
 <p><strong>消息认证码（Message Authentication Code，MAC）</strong> 消息认证码和消息摘要类似，区别在于消息摘要是消息的指纹，其散列计算并不涉及到具体的加密过程，而MAC则要求通信双方知道共享对称密钥用来准备MAC，其涉及到具体的加密过程。</p>
 <p><strong>HAMC</strong> 是基于散列的消息认证码（<code>Hash-based Message Authentication Code ,HMAC</code>）其在IP协议中作为强制的安全实施方法，在SSL安全协议中也广泛使用，其核心思想是复用MD5和SHA-1这样的消息摘要算法，说白了HAMC是包含了加密的消息摘要算法，其本身存在实用性的问题。</p>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/crypt0011.png?raw=true"></p>
