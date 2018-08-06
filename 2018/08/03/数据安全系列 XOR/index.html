@@ -31,7 +31,7 @@
 <p>上面的示例中我们使用两个8位的二进制系列A和B进行异或运算，其中A的内容为0101 0001，B的内容为0010 0101。在对多个比特序列进行异或运算的时候，需要分别对每一位的数据进行异或运算以得到结果。这里A ⊕ B 得到的最终结果为C，其内容是0111 0100。</p>
 <p>上面的计算过程非常简单，这里要特别说明的是因为异或运算的特点是：<code>相同为0，不同为1</code>, 所以考虑如果把A ⊕ B得到的结果 和 B 再次进行XOR运算，那么结果会变回A，即A ⊕ B = C ，C ⊕ B = A 。下面给出具体的图示：</p>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/xor05.png?raw=true"></p>
-<p><strong><code>XOR运算的可逆性可以用来恢复原值，这在加密算法中意义非凡</code></strong>。</p>
+<p><strong><span style="color:#195">XOR运算的可逆性可以用来恢复原值，这在加密算法中意义非凡</span></strong>。</p>
 <p>源于XOR运算的以上特性，其实完全可以利用简单异或运算设计出一款高强度的密码算法，我们把A作为原文，B作为密钥，C作为密文，对应的密码算法为：</p>
 <p>加密算法  <span style="border:1px solid #000"><strong>&nbsp; &nbsp;原文  ⊕   密钥 =&gt;  密文 &nbsp; &nbsp; </strong></span><br>解密算法  <span style="border:1px solid #000"><strong>&nbsp; &nbsp;密文  ⊕   密钥 =&gt;  原文 &nbsp; &nbsp; </strong></span></p>
 <hr>
