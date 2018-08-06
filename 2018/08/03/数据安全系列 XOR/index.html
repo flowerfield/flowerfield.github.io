@@ -1,17 +1,39 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 数据安全系列 XOR · 花田半亩</title><meta name="description" content="数据安全系列 XOR - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/鲸鱼.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">数据安全系列 XOR</h1><div class="post-info">Aug 3, 2018<span class="post-count"></span> ✧ 字数统计:500(字) &nbsp;&nbsp; ♨︎ 阅读时长:2(分钟)</div><div class="post-content"><blockquote>
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 数据安全系列 XOR · 花田半亩</title><meta name="description" content="数据安全系列 XOR - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/鲸鱼.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">数据安全系列 XOR</h1><div class="post-info">Aug 3, 2018<span class="post-count"></span> ✧ 字数统计:1,654(字) &nbsp;&nbsp; ♨︎ 阅读时长:6(分钟)</div><div class="post-content"><blockquote>
 <p>本文简单介绍计算机体系中的异或运算，运算其特点以及在数据安全领域的应用。</p>
 </blockquote>
-<p><strong>XOR</strong> 全称为<code>exclusive OR</code>,简写为XOR，中文称为<strong>异或运算</strong>。</p>
+<h3 id="异或运算介绍"><a href="#异或运算介绍" class="headerlink" title="异或运算介绍"></a>异或运算介绍</h3><p><strong>XOR</strong> 全称为<code>exclusive OR</code>,简写为XOR，中文称为<strong>异或运算</strong>。</p>
 <p>异或运算是一种数学运算符，主要应用于逻辑运算和计算机体系中的位运算。异或运算的数学符号常表示为“⊕”，运算法则为：<code>A ⊕ B = (¬A ∧B) ∨ (A ∧¬B)</code>。<br>简单研究下1个位（比特）的异或运算。</p>
-<div style="font-Size:18px;color:#195;border:1px solid #000;width:350px;padding:20px;text-align:center"> 0 ⊕ 0 = 0；（0与0异或运算的结果为0）<br>0 ⊕ 1 = 1；（0与1异或运算的结果为1）<br>1 ⊕ 0 = 1；（1与0异或运算的结果为1）<br>1 ⊕ 1 = 0；（1与1异或运算的结果为0）<br></div>
+<div style="font-Size:16px;color:#190;border:1px dashed #000;width:350px;padding:10px;text-align:center"> 0 ⊕ 0 = 0；（0与0异或运算的结果为0）<br>0 ⊕ 1 = 1；（0与1异或运算的结果为1）<br>1 ⊕ 0 = 1；（1与0异或运算的结果为1）<br>1 ⊕ 1 = 0；（1与1异或运算的结果为0）<br></div>
 
 <p>异或运算可以类比于<span style="text-decoration:underline;color:#f66;">奇偶数的加法运算</span>或者是<span style="text-decoration:underline ; color:#F66;">翻牌处理</span>。在按位运算的过程中，参与运算的数值只有两种可能，那么为0要么为1，在这里0为偶数，1位奇数，可以得出下面的运算特征，我们发现结果和异或运算是一致的。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/xor01.png?raw=true"></p>
+<div style="font-Size:16px;color:#456;border:1px dashed #000;width:500px;padding:10px;text-align:center"> 偶数 + 偶数 = 偶数；（偶数与偶数相加运算的结果为偶数）<br>偶数 + 奇数 = 奇数；（偶数与奇数相加运算的结果为奇数）<br>奇数 + 偶数 = 奇数；（奇数与偶数相加运算的结果为奇数）<br>奇数 + 奇数 = 偶数；（奇数与奇数相加运算的结果为偶数）<br></div>
+
 <p>接下来我们来看下所谓的<strong>翻牌处理</strong>。我们可以想象一下，假如桌面中有一张扑克牌，对应二进制总位的异或运算有0和1两种情况，那么对于扑克牌也有两种情况，那么就是不翻转和翻转，我们找到它们的对应关系。</p>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/xor02.jpeg?raw=true" width="150px"></p>
 <p>接下来我们来分析下对扑克牌进行翻转|不翻转处理以及对应特征，我们发现结果和异或运算是一致的。</p>
 <p><img src="https://github.com/flowerField/Source/blob/master/Blog/xor03.png?raw=true"></p>
 <p><strong>异或运算的特征可以简单的归纳为：<code>相同为0，不同为1</code></strong>。</p>
+<h3 id="常用位运算符补充"><a href="#常用位运算符补充" class="headerlink" title="常用位运算符补充"></a>常用位运算符补充</h3><p>位操作符用于最基本的层次，它们按照内存中表示数值的位来操作数值，位运算符主要有：<strong>按位与（&amp;）</strong>、<strong>按位或（|）</strong>、<strong>按位异或（^）</strong>、<strong>按位取反（~）</strong>、<strong>左移（&lt;&lt;）</strong>和<strong>右移（&gt;&gt;）</strong>，这里将简单介绍常用的位运算符以及其基本特征作为补充。</p>
+<p><strong>按位或运算（OR）</strong>的运算符为<code>|</code>, 是双目运算符，其运算特征是：<code>两个运算数中有1则为1，否则为0</code>。</p>
+<p><strong>按位与运算（AND）</strong>的运算符为<code>&amp;</code>，是双目运算符，其运算特征是：<code>只有当两个操作数均为1的时候结果为1，否则为0（也可以理解为：两个运算数中有0则为0，否则为1）</code>。</p>
+<p><span style="color:#195"><strong>OR&nbsp;运算</strong></span>&nbsp; &nbsp;<span style="border:1px solid #000"><strong>&nbsp; &nbsp;1  |  1 = 1，1  |  0 = 1， 0  |  1 = 1，0  |  0 = 0 &nbsp; &nbsp;</strong></span></p>
+<p><span style="color:#195"><strong>AND运算</strong></span>     <span style="border:1px solid #000"><strong>&nbsp; &nbsp;1 &amp; 1 = 1，1 &amp; 0 = 0， 0 &amp; 1 = 0，0 &amp; 0 = 0 &nbsp; &nbsp;</strong></span></p>
+<p><strong>按位取反运算（NOT）</strong>也称为按位非运算，运算符为<code>~</code>，单目运算符。对操作数执行按位取反会返回操作数的反码，其运算本质为：<strong>操作数的负值-1</strong>。为了理解这一点，必须搞清楚下面的这些基本概念。</p>
+<p>在处理数据的时候，通常把数据分为<code>有符号</code>和<code>无符号</code>的，如果我们使用32 位二进制码（不同语言有差异表示数据，那么对于有符号的整数，则32位中的前 31 位用于表示整数的值。第 32 位用于表示数值的符号：其中0 表示正数，1 表示负数。第32位被称为符号位。如果要表示19这个数字，那么其二进制码形式如下：<span style="color:#195">00000000   00000000   00000000   00010011 </span>需要注意的是，虽然负数在使用二进制码表示的时候使用的格式是二进制补码。下面给出负数的二进制补码表示方式的处理过程：</p>
+<blockquote>
+<p>[1] 求负数绝对值的二进制码。<br>[2] 求该二进制码的反码形式。<br>[3] 对得到的二进制反码加一。</p>
+</blockquote>
+<p>这里，我们以-19为例子来演示负数的表示方式。</p>
+<p>19的二进制码     <span style="color:#195">00000000   00000000   00000000   00010011</span><br>二进制码反码      11111111   11111111   11111111   11101100<br>上面反码加①      <span style="color:#f22">11111111   11111111   11111111   11101101</span></p>
+<p>我们回到按位非（NOT）的操作中来，它的结算特点是每个参与计算的二进制位都取反，相当于是求二进制的反码。我们已经知道负数的二进制表示方式，应该也就能够理解<code>对操作数进行按位非操作结果其实就是操作数的负值-1</code>。因为操作数的负值表示需要（反码 + 1），而我们需要的结果是反码，所以只需要倒退一步即可。</p>
+<h3 id="XOR和密码体系"><a href="#XOR和密码体系" class="headerlink" title="XOR和密码体系"></a>XOR和密码体系</h3><p>现在我们已经清楚了异或运算的特点，而且掌握了1个二进制位的异或运算方式，那么下面我们来看一个稍微复杂点的例子，尝试着对一系列的二进制位进行异或处理。</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/xor04.png?raw=true"></p>
+<p>上面的示例中我们使用两个8位的二进制系列A和B进行异或运算，其中A的内容为0101 0001，B的内容为0010 0101。在对多个比特序列进行异或运算的时候，需要分别对每一位的数据进行异或运算以得到结果。这里A ⊕ B 得到的最终结果为C，其内容是0111 0100。</p>
+<p>上面的计算过程非常简单，这里要特别说明的是因为异或运算的特点是：<code>相同为0，不同为1</code>, 所以考虑如果把A ⊕ B得到的结果 和 B 再次进行XOR运算，那么结果会变回A，即A ⊕ B = C ，C ⊕ B = A 。下面给出具体的图示：</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/xor05.png?raw=true"></p>
+<p><strong><code>XOR运算的可逆性可以用来恢复原值，这在加密算法中意义非凡</code></strong>。</p>
+<p>源于XOR运算的以上特性，其实完全可以利用简单异或运算设计出一款高强度的密码算法，我们把A作为原文，B作为密钥，C作为密文，对应的密码算法为：</p>
+<p>加密算法  <span style="border:1px solid #000"><strong>&nbsp; &nbsp;原文  ⊕   密钥 =&gt;  密文 &nbsp; &nbsp; </strong></span><br>解密算法  <span style="border:1px solid #000"><strong>&nbsp; &nbsp;密文  ⊕   密钥 =&gt;  原文 &nbsp; &nbsp; </strong></span></p>
 <hr>
 <ul>
 <li>获取更多、更专业的IT技能，请猛戳~<a href="http://www.520it.com/" target="_blank" rel="external">小码哥教育</a>︎</li>
@@ -19,4 +41,4 @@
 <li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="external">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">Coder_文顶顶</a></li>
 <li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="external">文顶顶</a><br><img src="https://github.com/flowerField/Source/blob/master/Blog/banner.jpg?raw=true" onclick="window.open('http://www.520it.com/zt/t30/');"></li>
 </ul>
-</div></article></div></main><footer><div class="paginator"><a href="/2018/08/02/数据安全系列 专业术语释义/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计151.9k(字)</p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/08/02/数据安全系列 专业术语释义/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计153.1k(字)</p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
