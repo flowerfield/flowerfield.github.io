@@ -34,8 +34,7 @@
 <p><strong><span style="color:#195">XOR运算的可逆性可以用来恢复原值，这在加密算法中意义非凡</span></strong>。</p>
 <p>源于XOR运算的以上特性，其实完全可以利用简单异或运算设计出一款高强度的密码算法，我们把A作为原文，B作为密钥，C作为密文，对应的密码算法为：</p>
 <p><strong>加密算法</strong>  <span style="border:1px solid #000"><strong>&nbsp; &nbsp;原文  ⊕   密钥 =&gt;  密文 &nbsp; &nbsp; </strong></span><br><strong>解密算法</strong>  <span style="border:1px solid #000"><strong>&nbsp; &nbsp;密文  ⊕   密钥 =&gt;  原文 &nbsp; &nbsp; </strong></span><br><img src="https://github.com/flowerField/Source/blob/master/Blog/xor07.png?raw=true"></p>
-<p>我们来简单看一下上面的图形展示，图形中我们把<code>实心的点假设为1，空性的点假设为0</code>，那么第一张图相当于明文（原文），第二张图作为蒙版（相当于密钥）盖在第一张图上的时候可以得到第三张图形（相当于密文），这个过程是可逆的，如果把第二张图片盖在第三张图片上面那么将能够还原出第一张图形来。</p>
-<p>接下来我们来看下字符串的处理情况，假设对<code>miao和nice</code>进行操作，它们在进行XOR运算后将得到一个位数相同的二进制码，把得到的二进制码和<code>nice</code>再进行XOR运算将能够恢复得到原文<code>miao</code>字符串。下面给出具体的图示：<br><img src="https://github.com/flowerField/Source/blob/master/Blog/xor06.png?raw=true"></p>
+<p>我们来简单看一下上面的图形展示，图形中我们把<code>实心的点假设为1，空性的点假设为0</code>，那么第一张图相当于明文（原文），第二张图作为蒙版（相当于密钥）盖在第一张图上的时候可以得到第三张图形（相当于密文），这个过程是可逆的，如果把第二张图片盖在第三张图片上面那么将能够还原出第一张图形来。接下来我们来看下字符串的处理情况，假设对<code>miao和nice</code>进行操作，它们在进行XOR运算后将得到一个位数相同的二进制码，把得到的二进制码和<code>nice</code>再进行XOR运算将能够恢复得到原文<code>miao</code>字符串。下面给出具体的图示：<br><img src="https://github.com/flowerField/Source/blob/master/Blog/xor06.png?raw=true"></p>
 <p>其实像上面的这样的处理方式早在1917年就由维纳（<code>G·S Vernam</code>）提出了，被称为<strong>一次性密码</strong>，一次性密码的加密解密方式决定了它在理论上永远无法被破译，这一特性于1949年由香农通过数学方法加以证明。但实际上，这样简单的一次性密码并没有在现实中被广泛使用，原因有以下几点：<span style="color:#195">①  因为加密解密使用的是相同的密钥，所以无法保证密钥的配送和保存的安全。② 因为密钥的长度需要和明文匹配，所以意味着明文有500MB，那么密钥也必须500MB。③ 在一次性密码中需要生成大量真正的随机数，这很难实现。</span></p>
 <p>不过，虽然直接应用XOR运算的可逆性实现的一次性密码算法无法在商业中真正应用，但我们还是能在很多经典的加密算法（比如，<code>DES</code>和<code>AES</code>）中看到XOR运算的身影。关于异或运算在其他算法中的应用，这里我们不做展开，相关的内容我将再写一篇新的文章来说明。。</p>
 <hr>
