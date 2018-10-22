@@ -1,6 +1,51 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 微信小程序实战[02]-衣橱商城服务端数据处理 · 花田半亩</title><meta name="description" content="微信小程序实战[02]-衣橱商城服务端数据处理 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/鲸鱼.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">微信小程序实战[02]-衣橱商城服务端数据处理</h1><div class="post-info">Oct 19, 2018<span class="post-count"></span> ✧ 字数统计:77(字) &nbsp;&nbsp; ♨︎ 阅读时长:1(分钟)</div><div class="post-content"><blockquote>
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 微信小程序实战[02]-衣橱商城云开发数据处理 · 花田半亩</title><meta name="description" content="微信小程序实战[02]-衣橱商城云开发数据处理 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/鲸鱼.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶的BLOG</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place" target="_blank" class="nav-list-link">微博</a></li><li class="nav-list-item"><a href="http://blog.sina.com.cn/u/1910914290" target="_blank" class="nav-list-link">花田半亩</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">微信小程序实战[02]-衣橱商城云开发数据处理</h1><div class="post-info">Oct 19, 2018<span class="post-count"></span> ✧ 字数统计:1,434(字) &nbsp;&nbsp; ♨︎ 阅读时长:5(分钟)</div><div class="post-content"><blockquote>
 <p>本文简单说明衣橱商城小程序开发过程中的服务器端和数据处理方式。</p>
 </blockquote>
-<p><strong>1.0 服务器端和数据处理方式说明</strong></p>
-<p>在做小程序开发的时候，有很大一部分工作是要进行服务器端和数据的处理。</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2018/10/22/javaScript系列 [07]-日期类型和计时器/" class="prev">上一篇</a><a href="/2018/10/18/微信小程序实战[01]-衣橱商城项目整体结构/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计206.1k(字)</p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<h4 id="1-0-服务器端和数据处理方式说明"><a href="#1-0-服务器端和数据处理方式说明" class="headerlink" title="1.0 服务器端和数据处理方式说明"></a>1.0 服务器端和数据处理方式说明</h4><p>在做小程序开发的时候，基本都需要进行服务器端和数据的处理。</p>
+<p>目前来看，服务器端的处理可以有两种方式，一种是自己搭建服务器来处理(可以使用<code>Node</code>、<code>Apache</code>等)也可以选择直接使用小程序开发工具中已经集成的<a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html" target="_blank" rel="external">云开发</a>来处理。</p>
+<p>在<a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html" target="_blank" rel="external">小程序.云开发官方文档</a>中有如下描写。</p>
+<pre><code>开发者在开发小程序、小游戏时，无需搭建服务器，即可使用云端能力。
+ 云开发为开发者提供完整的云端支持，弱化了后端和运维的概念，无需搭建服务器。
+ 只需要使用平台提供的 API 进行核心业务开发，即可实现快速上线和迭代，同时这与云服务相互兼容。
+</code></pre><p><strong>云开发提供3种基础能力支持</strong></p>
+<blockquote>
+<p>❏ <strong>云函数</strong> 云端运行的代码，微信私有协议天然鉴权，只需编写业务逻辑代码<br>❏ <strong>数据库</strong> 支持既能在小程序前端操作，也能在云函数中读写的 JSON 数据库<br>❏ <strong>文件存储</strong> 支持小程序前端直接上传/下载云端文件，在云开发控制台可视化管理</p>
+</blockquote>
+<div class="tip"> 使用云开发功能必须填写 AppID，且云开发能力从基础库 2.2.3 开始支持，需要考虑兼容性问题。APPID可以在登录微信公众平台后的设置 → 开发者设置中获取。</div>
+
+
+<h4 id="2-0-开始使用云开发"><a href="#2-0-开始使用云开发" class="headerlink" title="2.0 开始使用云开发"></a>2.0 开始使用云开发</h4><p><strong><code>001 开通云开发功能</code></strong></p>
+<p>当<code>使用APPID新建微信小程序项目</code>后，在开发者工具工具栏左侧，点击 “云开发” 按钮即可开通云开发。</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/wx40.png?raw=true"></p>
+<p><strong><code>002 创建云开发环境</code></strong></p>
+<p>开通后我们能获得一套云开发环境，各个环境相互隔离，每个环境都包含独立的数据库实例、存储空间、云函数配置等资源。每个环境都有唯一的环境 ID 标识，初始创建的环境自动成为默认环境。</p>
+<p>在创建开发环境的时候需要填写：<code>环境的名称</code>和<code>环境的ID</code>。其中<span style="color:#195">环境的ID 是在使用云服务时需要用到的全局唯一标识符，一经创建便不可修改</span>。</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/wx41.png?raw=true"></p>
+<div class="tip"><strong>注意</strong> 每个小程序帐号可免费创建两个环境，环境的ID可以直接使用系统默认生成的。在实际开发中，建议每一个正式环境都搭配一个测试环境，所有功能先在测试环境测试完毕后再上到正式环境。</div>
+
+<p><strong><code>003 云开发控制台说明</code></strong></p>
+<p>当云开发环境创建好之后，我们将能够看到如下图所示的功能界面。</p>
+<p><img src="https://github.com/flowerField/Source/blob/master/Blog/wx42.png?raw=true"></p>
+<p>云开发控制台是管理云开发资源的地方，主要提供以下支持:</p>
+<blockquote>
+<p>❏ <strong>概览</strong>        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看云开发的基础使用数据。<br>❏ <strong>云函数</strong>    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;查看云函数列表、配置、日志和监控。<br>❏ <strong>数据库</strong>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;管理数据库，支持对数据进行增删改查、管理索引和数据库访问权限等操作。<br>❏ <strong>统计分析</strong> &nbsp;&nbsp;查看云开发资源具体使用的统计信息，包括<code>API调用图表</code>以及<code>存储容量和CDN浏览</code>等。<br>❏ <strong>存储管理</strong>  &nbsp;&nbsp;管理存储空间，可用于保存图片等资源，支持创建文件夹、批量上传和删除等操作。<br>❏ <strong>用户管理</strong>  &nbsp;&nbsp;查看小程序用户的具体信息，包括<code>头像</code>、<code>昵称</code>、<code>城市</code>、<code>最后一次进入时间</code>等信息。</p>
+</blockquote>
+<h4 id="3-0-数据库和文件存储"><a href="#3-0-数据库和文件存储" class="headerlink" title="3.0 数据库和文件存储"></a>3.0 数据库和文件存储</h4><p><span style="border:1px solid #000;padding:5px 20px;"><strong>001 数据库说明</strong> </span></p>
+<p>云开发环境为我们提供了一个 <code>JSON 数据库</code>，与典型的关系型数据库所不同的是<span style="color:#195">JSON数据库中的每条记录都是一个 JSON 格式的对象</span>。一个数据库可以有多个集合（相当于关系型数据中的表），集合可看做一个 JSON 数组，数组中的每个对象就是一条记录，记录的格式是 JSON 对象。<strong>[备注]</strong> 关于json相关知识点可以参考<a href="http://wendingding.com/2018/04/16/javaScript%E7%B3%BB%E5%88%97%20[05]-javaScript%E5%92%8CJSON/" target="_blank" rel="external">javaScript和JSON</a>这篇文章。</p>
+<p>云开发环境中的数据库对<span style="color:red"><strong>集合</strong></span>(相当于关系型数据库中的表)的操作主要有：<strong>添加集合</strong>、<strong>删除集合</strong>。</p>
+<p>在添加集合的时候需要给集合设置一个名称，对某个特定集合的操作主要有：<code>添加记录</code>、<code>编辑记录</code>、<code>删除记录</code>等操作，每条记录中可以包含多个字段。其中记录就相当于是关系型数据库中的某一行，而字段则相当于是关系型数据库中的某一列。</p>
+<p>在添加记录的时候支持手动创建也支持直接导入<code>json</code>或<code>csv</code>文件，因为小程序中需要使用到的数据通常都会比较大，所以建议在具体处理的时候选择直接导入文件会更方便一些。给出一段简单的数据，假设要保存到云开发的数据库中，这里给出手动创建和导入json文件两种具体的操作示例。</p>
+<p><strong><code>001 手动创建</code></strong></p>
+<pre><code>(1) 新建集合
+(2) 添加记录
+(3) 添加字段，选择字段类型，设置值
+(4) 确定保存
+</code></pre><p><img src="https://github.com/flowerField/Source/blob/master/Blog/wx43.gif?raw=true"></p>
+<p><strong><code>002 直接导入</code></strong></p>
+<pre><code>(1) 新建集合
+(2) 提前准备好json文件(动图中已提前准备好demo.json文件)
+(3) 导入文件，选择文件路径(导入)
+(4) 确定保存
+</code></pre><p><img src="https://github.com/flowerField/Source/blob/master/Blog/wx44.gif?raw=true"></p>
+<p><span style="border:1px solid #000;padding:5px 20px;"><strong>002 文件存储说明</strong> </span></p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/10/22/javaScript系列 [07]-日期类型和计时器/" class="prev">上一篇</a><a href="/2018/10/18/微信小程序实战[01]-衣橱商城项目整体结构/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2018 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计207.4k(字)</p><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
