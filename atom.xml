@@ -46,9 +46,20 @@
     <link href="https://weibo.com/u/3800117445/2018/10/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AE%9E%E6%88%98%5B02%5D-%E8%A1%A3%E6%A9%B1%E5%95%86%E5%9F%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
     <id>https://weibo.com/u/3800117445/2018/10/19/微信小程序实战[02]-衣橱商城服务端数据处理/</id>
     <published>2018-10-19T10:30:39.000Z</published>
-    <updated>2018-10-19T02:14:17.372Z</updated>
+    <updated>2018-10-22T08:01:18.643Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文简单说明衣橱商城小程序开发过程中的服务器端和数据处理方式。</p></blockquote><p><strong>1.0 服务器端和数据处理方式说明</strong></p><p>在做小程序开发的时候，有很大一部分工作是要进行服务器端和数据的处理。</p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文简单说明衣橱商城小程序开发过程中的服务器端和数据处理方式。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;1.0 服务器端和数据处理方式说明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在做小程序开发的时候，有很大一部分工作是要进行服务器端和数
+      
     
     </summary>
     
