@@ -2,11 +2,11 @@
 
 <p class="titleX"><strong>BOM简单介绍</strong></p>
 
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/js_base36.png?raw=true" height="100px"></p>
+<p><img src="../../../../src/js_base36.png" height="100px"></p>
 <p>我们已经知道JavaScript的范围包括<code>ECMAScript(语言核心) + DOM(文档对象模型) + BOM(浏览器对象模型)</code>。</p>
 <p>BOM 是 <a href=""> Browser Object Model（浏览器对象模型）</a>的缩写，它提供了独立于内容 而与浏览器窗口进行交互的对象。由于BOM主要用于管理窗口与窗口之间的通讯，因此其核心对象是window，它表示流浏览器的一个实例。BOM由一系列相关的对象构成，并且每个对象都提供了很多方法与属性，window作为最顶层的对象，BOM中所有的对象都是通过它延伸出来的。</p>
 <p><strong>标准化</strong> JavaScript语法的标准化组织是ECMA，DOM的标准化组织是W3C, 而BOM因为缺乏标准，BOM最初其实是Netscape浏览器标准的一部分，而这也正是各种浏览器不兼容的根源所在。此外需要指出的是，W3C为了把浏览器中JavaScript最基本的部分标准化，已经将BOM的主要方面纳入了HTML5的规范中。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/js_base37.png?raw=true"></p>
+<p><img src="../../../../src/js_base37.png"></p>
 <p class="titleX"><strong>window和全局作用域</strong></p>
 
 <p> 在浏览器中，window对象拥有着双重的角色，它既是通过JavaScript访问浏览器窗口的接口，也是ECMAScript规定中的Global全局对象。因此，所有在全局作用域中声明的变量、函数都会自动成为window对象的属性和方法。</p>
@@ -22,7 +22,7 @@
 <p class="titleX"><strong>window核心成员详解</strong></p>
 
 <p>接下来，我将分门别类的讲解浏览器窗口的大小、滚动、导航、打开、弹窗、位置操作、历史记录以及事件处理等内容，所以这些功能都通过 <code>window</code>的核心成员来提供和实现。</p>
-<p> <img src="https://github.com/flowerField/Source/blob/master/Blog/js_base38.png?raw=true"></p>
+<p><img src="../../../../src/js_base38.png"></p>
 <p> <span style="border:1px solid #ccc;padding:2px 10px;color:#666">window的 location 对象</span></p>
 <p> <code>location</code>对象是window中最有用最重要的对象之一，它提供了与当前窗口中加载的文档有关的信息，而且它非常特殊，它既是<code>window</code>的属性也是<code>document</code>的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">location 对象的主要属性</span><br><span class="line"></span><br><span class="line">hash     设置/返回从井号 (#) 开始的 URL（锚点）==&gt;哈希值。</span><br><span class="line">href     设置/返回完整的 URL。</span><br><span class="line">search   设置/返回从问号 (?) 开始的 URL（参数部分）。</span><br><span class="line">host     服务器名称和端口号</span><br><span class="line">hostname 服务器名称</span><br><span class="line">pathname URL中的目录和文件名</span><br><span class="line">port     返回指定的端口号，如果没有指定则返回空字符串</span><br><span class="line">protocol 返回网络协议</span><br><span class="line"></span><br><span class="line">location 对象的主要方法</span><br><span class="line">assign()            加载新的页面</span><br><span class="line">reload()            重新加载(刷新)</span><br><span class="line">replace(newurl)     使用新的页面来替换当前页面</span><br></pre></td></tr></table></figure></p>
 <p><code>url</code>的组成<code>http://www.baidu.com:10086/api/reg.php?username=zs&amp;password=123&amp;age=18#123</code><br><strong><code>协议</code></strong>：http<br><strong><code>域名</code></strong>：baidu.com<br><strong><code>端口</code></strong>：10086 (默认:80)<br><strong><code>路径</code></strong>：/api/<br><strong><code>参数</code></strong>：username=zs&amp;password=123&amp;age=18<br><strong><code>哈希</code></strong>：#123</p>

@@ -13,7 +13,7 @@
 <p>☞ 随后我们通过对象的动态特性给Person的原型对象添加了showName方法，通过打印结果可以验证构造函数的实例化对象(p)可以访问其原型对象上面的成员。</p>
 </blockquote>
 <p>通过对代码和其运行结果分析，我们不难得出构造函数（Person）、原型对象(Person.prototype)、实例对象（p）之间的关系图，如下。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/js_05.png?raw=true"></p>
+<p><img src="../../../../src/js_05.png"></p>
 <p><code>代码说明</code></p>
 <blockquote>
 <p><strong>① 实例对象p由Person构造函数实例化而来。</strong></p>
@@ -21,7 +21,8 @@
 <p><strong>③ 实例对象p可以通过<strong>proto</strong>属性访问其构造函数的原型对象</strong>（可以简称为p的原型对象，我们在说原型对象的时候，应该先确定主语是构造函数还是实例对象，如果主语是构造函数，那么指的是构造函数.prototype，如果主语是实例对象，那么指的是创建该实例对象的构造函数相关联的原型对象，表示为实例对象.<strong>proto</strong>）。</p>
 <p><strong>④ 原型对象（Person.prototype）可以通过constructor(构造器)属性来访问其关联的构造函数，无法访问实例对象。</strong></p>
 </blockquote>
-<p>下面贴出上面代码更详细的原型结构关系图。<br><img src="https://github.com/flowerField/Source/blob/master/Blog/js_06.png?raw=true"></p>
+<p>下面贴出上面代码更详细的原型结构关系图。</p>
+<p><img src="../../../../src/js_06.png"></p>
 <p><strong>原型对象的访问</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//获取原型对象的方式</span></span><br><span class="line"><span class="comment">//01 构造函数访问原型对象：构造函数.prototype</span></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype);</span><br><span class="line"><span class="comment">//02 构造函数的实例对象访问原型对象：实例对象.__proto__</span></span><br><span class="line"><span class="built_in">console</span>.log(p.__proto__);</span><br><span class="line"><span class="built_in">console</span>.log(p.__proto__ == Person.prototype);</span><br><span class="line"><span class="comment">//03 通过Object.getPrototypeOf方法传递实例对象作为参数访问</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(p));</span><br></pre></td></tr></table></figure></p>
 <p>总结一下，原型对象的访问方式如下</p>
 <pre style="color:red">

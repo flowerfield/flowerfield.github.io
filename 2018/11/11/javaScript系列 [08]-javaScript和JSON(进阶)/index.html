@@ -38,7 +38,7 @@
 <p><strong>缩进 ➤</strong>JSON的编码规范并不存在与JSON数据缩进相关的话题，主要因为JSON本身是一种序列化格式而非呈现格式，所以缩进对JSON本身而言意义不大，在优化JSON现实的时候，常见的缩进方案是两格缩进或四格缩进。</p>
 <p><strong>工具 ➤</strong> </p>
 <p>在线生成合法JSON文档的工具(1)  <a href="http://jsonmate.com" target="_blank" rel="noopener">JSONmate</a><br>在线生成合法JSON文档的工具(2)  <a href="https://jsoneditoronline.org" target="_blank" rel="noopener">JSON Editor Online</a><br>在线校验JSON文档是否合法的工具(1) <a href="http://json-schema.org" target="_blank" rel="noopener">JSON Schema</a><br>在线校验JSON文档是否合法的工具(2) <a href="http://jsonvalidate.com" target="_blank" rel="noopener">JSON Validate</a><br>快速生成大量测试JSON数据的工具推荐 <a href="https://www.json-generator.com" target="_blank" rel="noopener">JSON Generator</a><br>在线对复杂JSON数据格式化的工具推荐 <a href="http://tool.oschina.net/codeformat/json" target="_blank" rel="noopener">JSON 在线格式化</a></p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/json_01.png?raw=true"></p>
+<p><img src="../../../../src/json_01.png"></p>
 <div class="tip">创建|编辑JSON文件的时候，建议使用<a href="https://jsoneditoronline.org" target="_blank" rel="noopener">JSON Editor Online</a>在线工具，上图是其基本工作界面。</div>
 
 <h3 id="JSON-Schema"><a href="#JSON-Schema" class="headerlink" title="JSON Schema"></a>JSON Schema</h3><p><a href="http://json-schema.org" target="_blank" rel="noopener">JSON Schema</a>是对JSON文档中的内容、结构和格式进行的声明，用于校验JSON文档。区别于普通的JSON校验工具，JSON Schema能够对JSON文档执行<strong>语法校验</strong>和严格的<strong>语义校验</strong>。<a href="http://json-schema.org" target="_blank" rel="noopener">JSON Schema</a>这种能够用于校验JSON文档内容和语义的工具能够有效提供服务的安全性，在消息系统中的应用能够确保数据格式的正确性，在API设计领域还能够帮助定义API协议等。</p>
@@ -55,7 +55,8 @@
 <p><strong><code>additionalProperties</code></strong> 将该字段设置为false可以禁止JSON文档当前节点中出现额外的字段。<br><strong><code>required</code></strong> 该数组用于声明JSON文档中所有的必需字段，即必需包含这些字段，否则视为非法文档。<br><strong><code>dependencies</code></strong> 设置字段的依赖关系，即JSON文档中出现了某个字段的出现必须依赖某个特定字段。<br><strong><code>patternProperties</code></strong> 模式属性可以基于正则表达式来声明部分重复的字段名，如<code>^string[1-3]$</code>。</p>
 <div class="tip"><strong>建议</strong> 在工作中如果需要对JSON数据进行严格的语法和语义校验，那么建议先使用典型的JSON文档利用<a href="http://json-schema.org" target="_blank" rel="noopener">JSON Schema在线工具</a>自动生成对应的Schema校验文件，然后再对该文件进行二次编辑，这样效率会更高一些。</div>
 
-<p>这里给出<code>JSON Schema在线工具</code>的使用示例。<br><img src="https://github.com/flowerField/Source/blob/master/Blog/json_02.gif?raw=true"></p>
+<p>这里给出<code>JSON Schema在线工具</code>的使用示例。</p>
+<p><img src="../../../../src/json_02.gif"></p>
 <p><strong>扩展</strong> 前文中在对JSON文档和对应Schema进行校验的时候，在命令行中使用的是<code>validate模块</code>，该模块是<a href="http://jsonvalidate.com" target="_blank" rel="noopener">JSON Validate</a>网站所对应的npm包，具体使用的是名为<a href="https://www.npmjs.com/package/ujs-jsonvalidate" target="_blank" rel="noopener">ujs-jsonvalidate</a>的处理器。此外，<a href="https://github.com/epoberezkin/ajv" target="_blank" rel="noopener">ajv</a>也是Node中优秀的一款JSON校验类库，它本身很简洁且兼容性很好，更多信息可以参考链接地址。</p>
 <hr>
 <ul>
