@@ -3,31 +3,28 @@
 </blockquote>
 <p><strong>数组</strong></p>
 <p>数组用来存储多个数据。<br>数组中存储元素的地址是<code>连续的</code>。<br>数组中的元素拥有索引，索引从0开始依次递增。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_1.png?raw=true" width="400"></p>
+<p><img src="../../../../src/sort_1.png" width="400"></p>
 <p><strong>链表</strong></p>
 <p>链表用来存储多个数据。<br>链表中存储数据的地址可以是<code>不连续的</code>。<br>链表中的每个数据用于指针，指向下一个数据。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_2.png?raw=true" width="400"></p>
+<p><img src="../../../../src/sort_2.png" width="400"></p>
 <p><strong>数组和链表操作比较</strong></p>
 <p>① 插入数据</p>
-<p><code>数组</code>在插入数据的时候，需要考虑到是否有连续的内存地址，如果没有那么可能需要挪动整个数组。如果从数组的中间位置插入，那么在空间足够的情况下，需要将后面元素整体向后移动。<br><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_3.png?raw=true" width="400"></p>
-<p><code>链表</code>在插入数据的时候，只需要修改插入位置前这个元素指向的地址即可，更方便。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_4.png?raw=true" width="500"></p>
+<p><code>数组</code>在插入数据的时候，需要考虑到是否有连续的内存地址，如果没有那么可能需要挪动整个数组。如果从数组的中间位置插入，那么在空间足够的情况下，需要将后面元素整体向后移动。<br><img src="../../../../src/sort_3.png" width="400"></p>
+<p><code>链表</code>在插入数据的时候，只需要修改插入位置前这个元素指向的地址即可，更方便。<br><img src="../../../../src/sort_4.png" width="500"></p>
 <p>② 删除数据</p>
-<p><code>数组</code>删除数据的时候，后面所有的元素都向前移动，区别于插入操作，删除元素的时候总能成功。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_5.png?raw=true" width="400"></p>
-<p><code>链表</code>删除在数据的时候，只需要修改前一个元素指向的地址即可。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_6.png?raw=true" width="400"></p>
+<p><code>数组</code>删除数据的时候，后面所有的元素都向前移动，区别于插入操作，删除元素的时候总能成功。<br><img src="../../../../src/sort_5.png" width="400"></p>
+<p><code>链表</code>删除在数据的时候，只需要修改前一个元素指向的地址即可。<br><img src="../../../../src/sort_6.png" width="400"></p>
 <p>③ 查询操作</p>
 <p><code>链表</code>在进行数据查询操作的时候，如果需要读取最后一个元素的数据，那么不能够直接读取，因为我们无法直接知道它所处的地址，必须通过第一个元素依次向后查找，效率很低。</p>
 <p><code>数组</code>在进行查询操作的时候，因为我们清楚的明白数组中每个元素的地址，所以我们可以通过其索引迅速的找到任意元素。</p>
-<p>下面给出数组和链表相关操作的运行时间。<br><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_7.png?raw=true" width="600"></p>
+<p>下面给出数组和链表相关操作的运行时间。<br><img src="../../../../src/sort_7.png" width="600"></p>
 <p><strong>选择排序</strong></p>
 <p><code>核心思想</code></p>
 <blockquote>
 <p>❐ 先找出所有数据中最小的数，存储。<br>❐ 再在剩余数据中找出所有数据中最小的数，存储。<br>❐ 重复上面的过程。</p>
 </blockquote>
 <p>选择排序的实现可以用伪代码表示为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def selectionSort(arr);</span><br><span class="line">	newArr = []</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)):</span><br><span class="line">		smallest = arr[<span class="number">0</span>];</span><br><span class="line">		smallest_index = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(arr)):</span><br><span class="line">			<span class="keyword">if</span> arr[i] &lt; smallest</span><br><span class="line">			smallest = arr[i]</span><br><span class="line">			smallest_index = i;</span><br><span class="line">		newArr.append(arr.pop(smallest_index))</span><br><span class="line">	<span class="keyword">return</span> newArr</span><br></pre></td></tr></table></figure></p>
-<p>算法图解<br><img src="https://github.com/flowerField/Source/blob/master/Blog/sort_8.png?raw=true" width="500"></p>
+<p>算法图解<br><img src="../../../../src/sort_8.png" width="500"></p>
 <p><strong>选择排序时间复杂度说明</strong>：在使用选择排序的时候，每次都需要遍历数组检查数组中的最小值，该时间计为n，对于上面时间为O(n)的操作需要执行n次，因此其时间复杂度为O(n²)。</p>
 <p><div class="tip"><br>随着排序的进行，每次需要检查的元素数量在逐渐减少，最后一次需要检查的元素只有一个，既然这样那<code>为什么时间复杂度还是O(n²) ？</code> 在这里，平均每次检查的元素个数为1/2 * n ,因此时间复杂度应该为O（n * 1/2*n），也就是O(1/2n²) ，但是大O表示法省略诸如这里1/2这样的常数。</div></p>
 <div>
@@ -39,4 +36,4 @@
 <li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="noopener">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">Coder_文顶顶</a></li>
 <li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a></li>
 </ul>
-</div></div></article></div></main><footer><div class="paginator"><a href="/2016/11/16/数据结构与算法 [02]-栈、队列与递归/" class="prev">上一篇</a><a href="/2016/06/12/Node系列-Timeline/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2020 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计 390.8k (字)</p><div class="topDiv"><div><img src="https://raw.githubusercontent.com/flowerField/Source/master/Blog/M.png" style="width:100px;height:100px"> </div></div><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+</div></div></article></div></main><footer><div class="paginator"><a href="/2016/11/16/数据结构与算法 [03]-栈的实现和应用(JavaScript)/" class="prev">上一篇</a><a href="/2016/06/12/Node系列-Timeline/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2020 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计 386.8k (字)</p><div class="topDiv"><div><img src="https://raw.githubusercontent.com/flowerField/Source/master/Blog/M.png" style="width:100px;height:100px"> </div></div><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

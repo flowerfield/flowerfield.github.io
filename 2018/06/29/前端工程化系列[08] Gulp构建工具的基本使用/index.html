@@ -1,19 +1,19 @@
 <!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 前端工程化系列[08] Gulp构建工具的基本使用 · 花田半亩</title><meta name="description" content="前端工程化系列[08] Gulp构建工具的基本使用 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/鲸鱼.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="https://github.com/flowerField" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">前端工程化系列[08] Gulp构建工具的基本使用</h1><div class="post-info">Jun 29, 2018<span class="post-count"></span> ✧ 字数统计:2,573(字) &nbsp;&nbsp; ♨︎ 阅读时长:11(分钟)</div><div class="post-content"><blockquote>
 <p>本文主要介绍前端开发中常用的构建工具Gulp，具体包括Gulp的基本情况、安装、使用以及常见插件的安装、配置和使用等内容。</p>
 </blockquote>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/gulp.png?raw=true" height="200px"></p>
+<p><img src="../../../../src/gulp.png" height="200px"></p>
 <h3 id="Gulp介绍"><a href="#Gulp介绍" class="headerlink" title="Gulp介绍"></a>Gulp介绍</h3><p><strong>Gulp</strong><code>是使用JavaScript编写的，运行在Node.js上的一款自动化构建工具</code>，同类型的构建工具还有Grunt、Npm-script等。Gulp的构建系统基于流来实现，增加了监听文件、读写文件以及流式处理等功能，Gulp作为后起之秀整体来说比Grunt更加强大而且使用起来也更加简单，你值得拥有。</p>
 <p><strong>Gulp优点</strong></p>
 <blockquote>
 <p>❏  基于流的操作，能更快速的构建项目并减少频繁的IO操作，更高效。<br>❏  提供最少的API，降低开发者的学习成本，自动构建相关代码更简单。<br>❏  代码优先的策略，让简单的任务简单处理，让复杂的任务变得可管理。<br>❏  严格的插件指南，确保所有的插件简单，职责单一能按期望方式工作。</p>
 </blockquote>
-<p><strong>Gulp和Grunt简单对比</strong><br><img src="https://github.com/flowerField/Source/blob/master/Blog/gulp01.png?raw=true"></p>
+<p><strong>Gulp和Grunt简单对比</strong><br><img src="../../../../src/gulp01.png"></p>
 <p><strong>Gulp的组成结构</strong></p>
 <p>Gulp本身和Grunt还是很相像的，Gulp项目主要由<code>Gulp-Cli</code>、<code>Node模块(本地的gulp和gulp插件)</code>以及<code>Gulpfile文件</code>构成。</p>
 <blockquote>
 <p><strong>Gulp-Cli &nbsp;&nbsp; ✧ </strong>  &nbsp;启动Gulp构建工具的命令行接口，全局安装。<br><strong>本地Gulp ✧ </strong>   &nbsp;构建时实际运行的本地程序,提供基本的API并加载构建指令和运行任务。<br><strong>Gulp插件 ✧ </strong>   &nbsp;Gulp构建工具生态系统中拥有众多高质量的插件，本质上是对特定任务的封装。<br><strong>Gulpfile文件 ✧ </strong> &nbsp;定义所有构建任务的配置文件，告诉本地Gulp如何执行具体构建操作的指令文件。</p>
 </blockquote>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/gulp02.png?raw=true"></p>
+<p><img src="../../../../src/gulp02.png"></p>
 <p>上图是Gulp几个部分的关系图，这里做简单说明。</p>
 <p><code>Gulp-cli</code>是Gulp的命令行工具，如果项目中要使用Gulp构建工具，那么必须先安装Gulp-cli，它的作用非常简单，就死检查当前项目里是否安装了本地的Gulp，如果安装了那么Gulp-cli会根据命令行中输入的命令参数来启动本地Gulp接管后续的操作。Gulp-cli通常需要全局安装，这样任何目录下面的Gulp才能够在终端中执行。</p>
 <p><code>本地Gulp</code>主要有两个作用，一个是提供构建必要的基本API，另一个是加载并执行定义好的任务。需要注意的是，本地的Gulp才是真正的Gulp运行时，它负责处理所有的任务，而Gulp-Cli是本地Gulp的全局入口，它负责把所有的命令参数都转交给本地Gulp处理，之后由Gulp来接手具体的构建过程。</p>
@@ -60,4 +60,4 @@
 <li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="noopener">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">Coder_文顶顶</a></li>
 <li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a></li>
 </ul>
-</div></article></div></main><footer><div class="paginator"><a href="/2018/07/05/读书笔记 [012]-可爱的洪水猛兽/" class="prev">上一篇</a><a href="/2018/06/24/TypeScript系列 [06]-typeScript语言特性(五)/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2020 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计 390.8k (字)</p><div class="topDiv"><div><img src="https://raw.githubusercontent.com/flowerField/Source/master/Blog/M.png" style="width:100px;height:100px"> </div></div><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/07/05/读书笔记 [012]-可爱的洪水猛兽/" class="prev">上一篇</a><a href="/2018/06/24/TypeScript系列 [06]-typeScript语言特性(五)/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2020 <a href="https://weibo.com/u/3800117445">文顶顶</a> &nbsp;☁ 全站字数统计 386.8k (字)</p><div class="topDiv"><div><img src="https://raw.githubusercontent.com/flowerField/Source/master/Blog/M.png" style="width:100px;height:100px"> </div></div><!--p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].--></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
