@@ -113,6 +113,31 @@
   </entry>
   
   <entry>
+    <title>奇怪问题 - palindrome+</title>
+    <link href="https://weibo.com/u/3800117445/2020/04/29/%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9B%9E%E6%96%87+/"/>
+    <id>https://weibo.com/u/3800117445/2020/04/29/奇怪问题-字符串回文+/</id>
+    <published>2020-04-28T16:00:09.000Z</published>
+    <updated>2020-05-09T07:56:54.678Z</updated>
+    
+    <content type="html"><![CDATA[<div class="titleX" style="background:#DC534A;color:white"><strong>问题，求让指定字符串构成回文字符串的最小子串。</strong></div><p><strong>说明</strong> 回文字符串的特点是：<code>自左-&gt;右读和自右-&gt;左读内容一致</code>，譬如<code>abcba</code>。<br><strong>举例</strong> 给定字符串<code>abc</code>，让该字符串成为回文字符串可以拼接<code>cba</code>构成<code>abccba</code>成为回文，也可以拼接<code>ba</code>构成<code>abcba</code>成为回文，题目的要求是求最小回文，所以通过代码得到的最小子串应该为<code>ba</code>。</p><div class="titleX" style="background:#239F60;color:white"><strong>解决方案1</strong></div><p><strong>思路</strong> 利用栈的结构来处理回文。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMinCharsToPalindrome</span>(<span class="params">strA</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> str = [...strA].reverse().join(<span class="string">""</span>);</span><br><span class="line">    <span class="keyword">let</span> stack = [];</span><br><span class="line">    <span class="keyword">let</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = str.length; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (stack[stack.length - <span class="number">1</span>] === str[i]) &#123;</span><br><span class="line">            stack.pop()</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'推出'</span>, stack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.push(str[i]);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'入栈'</span>, stack);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> res = stack.join(<span class="string">""</span>);</span><br><span class="line">    <span class="keyword">return</span> flag ? strA + res : strA + res.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"ab"</span>, findMinCharsToPalindrome(<span class="string">"ab"</span>));     <span class="comment">/* ab aba */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"abc"</span>, findMinCharsToPalindrome(<span class="string">"abc"</span>));   <span class="comment">/* abc abcba */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"abcc"</span>, findMinCharsToPalindrome(<span class="string">"abcc"</span>)); <span class="comment">/* abcc abccba */</span></span><br></pre></td></tr></table></figure><ul><li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a> | <a href="http://wendingding.com" target="_blank" rel="noopener">花田半亩</a></li><li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="noopener">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">Coder_文顶顶</a></li><li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;div class=&quot;titleX&quot; style=&quot;background:#DC534A;color:white&quot;&gt;&lt;strong&gt;问题，求让指定字符串构成回文字符串的最小子串。&lt;/strong&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt; 回文字符串的特点是：
+      
+    
+    </summary>
+    
+    
+      <category term="奇怪问题" scheme="https://weibo.com/u/3800117445/tags/%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title>奇怪问题 - 校验括号是否匹配</title>
     <link href="https://weibo.com/u/3800117445/2020/04/28/%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98-%E6%A0%A1%E9%AA%8C%E6%8B%AC%E5%8F%B7%E6%98%AF%E5%90%A6%E5%8C%B9%E9%85%8D/"/>
     <id>https://weibo.com/u/3800117445/2020/04/28/奇怪问题-校验括号是否匹配/</id>
@@ -474,29 +499,6 @@
     
     
       <category term="Gossip" scheme="https://weibo.com/u/3800117445/tags/Gossip/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>webpack打包出错</title>
-    <link href="https://weibo.com/u/3800117445/2019/03/01/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87-webpack%E6%89%93%E5%8C%85%E5%87%BA%E9%94%99/"/>
-    <id>https://weibo.com/u/3800117445/2019/03/01/疑难杂症-webpack打包出错/</id>
-    <published>2019-02-28T16:00:00.000Z</published>
-    <updated>2020-05-09T05:21:48.555Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="190228"><a href="#190228" class="headerlink" title="190228"></a>190228</h3><p><strong>问题描述</strong> 在使用<code>extract-text-webpack-plugin</code>给 <code>webpack</code> 打包时出现报错。</p><p><strong>报错信息</strong> <span style="color:red">Tapable.plugin is deprecated. Use new API on <code>.hooks</code> instead</span></p><p><strong>问题原因</strong> <code>extract-text-webpack-plugin</code>目前版本不支持<code>webpack4</code>。</p><p><strong>解决方案</strong> 使用<code>extract-text-webpack-plugin</code>的最新的beta版。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install extract-text-webpack-plugin@next</span><br></pre></td></tr></table></figure></p><hr><ul><li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a> | <a href="http://wendingding.com" target="_blank" rel="noopener">花田半亩</a></li><li>联系作者 简书·<a href="http://www.jianshu.com/users/c5703017b9f5/latest_articleshttp://www.jianshu.com/users/c5703017b9f5/latest_articles" target="_blank" rel="noopener">文顶顶</a> 新浪微博·<a href="http://weibo.com/p/1005053800117445/home?from=page_100505&amp;mod=TAB#place">Coder_文顶顶</a></li><li>原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;190228&quot;&gt;&lt;a href=&quot;#190228&quot; class=&quot;headerlink&quot; title=&quot;190228&quot;&gt;&lt;/a&gt;190228&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;问题描述&lt;/strong&gt; 在使用&lt;code&gt;extract-text-webpack-pl
-      
-    
-    </summary>
-    
-    
-      <category term="网络编程系列" scheme="https://weibo.com/u/3800117445/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/"/>
     
   </entry>
   
