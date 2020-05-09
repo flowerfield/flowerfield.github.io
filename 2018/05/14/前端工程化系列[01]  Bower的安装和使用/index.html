@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 前端工程化系列[01]-Bower包管理工具的使用 · 花田半亩</title><meta name="description" content="前端工程化系列[01]-Bower包管理工具的使用 - 文顶顶"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/logo.jpeg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://weibo.com/u/3800117445/atom.xml" title="花田半亩"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/鲸鱼.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">文顶顶</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/wendingding/" target="_blank" class="nav-list-link">博客园</a></li><li class="nav-list-item"><a href="https://github.com/flowerField" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">前端工程化系列[01]-Bower包管理工具的使用</h1><div class="post-info">May 14, 2018<span class="post-count"></span> ✧ 字数统计:4,212(字) &nbsp;&nbsp; ♨︎ 阅读时长:18(分钟)</div><div class="post-content"><blockquote>
 <p>本文主要介绍前端开发中常用的包管理工具Bower，具体包括Bower的基本情况、安装、使用和常见命令等内容，最后还介绍了依赖树管理的常见方式以及Bower采用的策略并进行了比较。</p>
 </blockquote>
-<h3 id="1-1-关于Bower"><a href="#1-1-关于Bower" class="headerlink" title="1.1 关于Bower"></a>1.1 关于Bower</h3><p><img src="https://github.com/flowerField/Source/blob/master/Blog/bower.png?raw=true" height="200px"></p>
+<h3 id="1-1-关于Bower"><a href="#1-1-关于Bower" class="headerlink" title="1.1 关于Bower"></a>1.1 关于Bower</h3><p><img src="../../../../src/bower.png" height="200px"></p>
 <p>Bower是一款优秀的包管理器，它由Twitter公司开发，支持以命令行的方式来对包进行搜索、下载、更新和卸载。</p>
 <p><strong>模块或组件</strong>指独立完整的模块，可以是应用的一部分或者是扩展，依赖可以是jQuery或backbone这样的库，也可以像Bootstrap这样的UI框架或者是UI组件。</p>
 <p><strong>包</strong>英文（package）模块或组件的另一种叫法。</p>
@@ -78,7 +78,7 @@
 <p><code>$ bower list</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">Test /Users/文顶顶/Desktop/Test</span><br><span class="line">└─┬ ember#2.18.2 (latest is 3.0.0-beta.2)</span><br><span class="line">  └── jquery#3.3.1</span><br></pre></td></tr></table></figure></p>
 <p>该命令行在安装ember包的时候，发现需要依赖于jQuery框架，就会自动下载对应版本的jQuery框架并安装到本地项目中。</p>
 <h3 id="1-6-依赖树管理"><a href="#1-6-依赖树管理" class="headerlink" title="1.6 依赖树管理"></a>1.6 依赖树管理</h3><p>组件(包)并非总是相互独立的，有些组件(包)在使用的时候需要依赖于另外一些组件(包)，就像上文提到的ember需要依赖于jQuery，jQuery-ui需要依赖于jQuery一样，我们尝试使用下面的图示来描述这种关系。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/bower_tree1.png?raw=true"></p>
+<p><img src="../../../../src/bower_tree1.png"></p>
 <p>上面的图示揭示了包（组件）与包（组件）之间的依赖关系，非常简单容易理解。在实际中，每个组件可能都有多个依赖，而这些依赖自己可能还有别的依赖，或者多个不同组件都依赖于某个指定的组件，因此在处理的时候可能会非常复杂。为了理清楚这复杂的关系，依赖管理工具会把所有的依赖构成一颗<code>Dependency Tree</code>（依赖树）。</p>
 <blockquote>
 <p><strong>依赖树主要有三种</strong><br>❑   嵌套依赖树<br>❑   扁平依赖树<br>❑   混合依赖树</p>
@@ -86,13 +86,12 @@
 <p>注意：在构造依赖树的时候，组件（包）必须要有唯一的标识，该标识由组件的名称和版本号构成，也就是说jQuery1.7.3和jQuery3.3.1是两个不同的组件。</p>
 <p><strong>嵌套依赖树</strong></p>
 <p><code>基本理念</code>：每个组件各自都有自己的依赖，而不会共用一个依赖。<br><code>主要问题</code>：项目中会产生同一组件的多个副本，且可能有多个版本的组件共存比较混乱。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/bower_tree2.png?raw=true"></p>
+<p><img src="../../../../src/bower_tree2.png"></p>
 <p><strong>扁平依赖树</strong></p>
 <p><code>基本理念</code>：保证每个组件在项目只有一个版本，没有任何其它的副本。<br><code>主要问题</code>：容易产生冲突，如果两个组件需要同一个依赖的不同版本，就会导致出错，必须要用户自己来解决冲突，决定具体使用哪个依赖并解决潜在的不一致性。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/bower_tree3.png?raw=true"></p>
-<p><strong>混合依赖树</strong></p>
+<p><img src="../../../../src/bower_tree3.png"><br><strong>混合依赖树</strong></p>
 <p><code>基本理念</code>：使用最高效的办法来管理一个组件的不同版本。<br><code>主要特点</code>：混合依赖树是扁平依赖树和嵌套依赖树的折中方案，如果一个组件的依赖已经安装了，而且版本也兼容，那么就不必再次下载安装，只要指向已安装的那个组件即可，如果版本不兼容的话，则下载安装并版本兼容的组件。</p>
-<p><img src="https://github.com/flowerField/Source/blob/master/Blog/bower_tree4.png?raw=true"></p>
+<p><img src="../../../../src/bower_tree4.png"></p>
 <h3 id="1-7-Bower依赖树管理和冲突处理"><a href="#1-7-Bower依赖树管理和冲突处理" class="headerlink" title="1.7 Bower依赖树管理和冲突处理"></a>1.7 Bower依赖树管理和冲突处理</h3><p>Bower作为专为前端开发者设计的依赖管理工具，是完全基于扁平依赖树的。上文介绍了扁平依赖树在处理的时候要求<strong>保证每个组件在项目只有一个版本，没有任何其它的副本</strong>，优缺参半。那既然如此，Bower为什么不使用更高效的混合依赖树？</p>
 <blockquote>
 <p><strong>Bower采用扁平依赖树管理的原因</strong></p>
