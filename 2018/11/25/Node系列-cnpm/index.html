@@ -21,6 +21,7 @@
 <h4 id="3-0-番外篇"><a href="#3-0-番外篇" class="headerlink" title="3.0 番外篇"></a>3.0 番外篇</h4><p>我们使用CNPM的主要原因在于它在处理包的时候速度更快，很多人认为它的可取之处仅在于使用了国内的镜像，其实就算不用国内的镜像，CNPM的安装速度相对NPM也要更快一些。这是因为<strong>CNPM在处理的时候会把一些包缓存到<code>node_module/.npminstall</code>目录下，再以符号链接的方式将依赖目录链接到其对应的路径，这样做的好处是相同版本的包在安装的过程中实际上只有一份实体</strong>。</p>
 <p><code>CNPM</code>截止本文最新的版本<code>6.0.0</code>,在目录结构和依赖支持方面它的4.2以及4.3+版本是比较重要的一个分水岭。在4.2的版本里，它的目录结构和<code>NPM 2</code>保持一致，是嵌入式的结构。后来因为<code>NPM 3</code>的原因导致很多前端以及部分Node依赖在NPM 2下无法正常工作。</p>
 <p>因此，在4.3版本中CNMP为前端开发者加入了扁平化的支持，即后期的版本中除按照嵌入式目录结构安装依赖外，还会顺便将计算得到的依赖(<strong>依赖</strong> 、<strong>依赖的依赖</strong>或者是<strong>依赖的特定版本</strong>)存放一份到node_moudles目录下，不过这也导致<strong style="color:#f00">node_moubles下目录成群···</strong></p>
+<p><img src="../../../../z.png" width="200px"></p>
 <hr>
 <ul>
 <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a> | <a href="http://wendingding.com" target="_blank" rel="noopener">花田半亩</a></li>

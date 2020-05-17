@@ -61,6 +61,7 @@
 <p><strong><code>注意[1]</code></strong> 绝大部分的事件都能冒泡，除<a href=""> blur、focus、load、unload </a>几个特殊的事件外。<br><strong><code>注意[2]</code></strong> 事件冒泡到最顶层的目标不同，大部分浏览器到window对象，IE8-到document对象。<br><strong><code>注意[3]</code></strong> 开发中我们可以在事件函数中调用<code>event.stopPropagation()方法</code>来阻止事件冒泡，如果是<a href="">IE8-</a>浏览器则需要通过<code>event.cancelBubble = true</code>代码设置。</p>
 <p><strong>默认行为</strong>  HTML页面中的很多标签都存在默认行为，譬如超连接点击的时候会自动跳转到目标页面，表单点击提交后会把内容提交到action指定的页面，还有右键菜单以及文本选择等等。在开发中，我们如果需要阻止这些标签的默认行为，那么可以使用<code>event.preventDefault()方法</code>，如果是<a href="">E8-</a>浏览器则需要通过<code>event.returnValue = false</code>代码设置。</p>
 <p><strong>事件委托</strong> 事件委托是一种用来解决<code>页面中事件处理函数过多</code>问题的方案，它利用事件冒泡只指定一个事件处理函数就能够管理某一类型的所有事件，恰当的利用事件委托，可以节省内存空间，有效的提升程序的整体性能。 </p>
+<p><img src="../../../../z.png" width="200px"></p>
 <hr>
 <ul>
 <li>Posted by 博客园·<a href="http://www.cnblogs.com/wendingding/" target="_blank" rel="noopener">文顶顶</a> | <a href="http://wendingding.com" target="_blank" rel="noopener">花田半亩</a></li>
